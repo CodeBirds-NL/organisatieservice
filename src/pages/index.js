@@ -1,8 +1,10 @@
 import React, { Component } from "react"
 import { Link, graphql } from "gatsby"
+import Button from "../components/common/button"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import "../components/styles/pages/homePage.css"
 
 class HomePage extends Component {
   render() {
@@ -10,9 +12,14 @@ class HomePage extends Component {
     return (
       <Layout>
         <SEO title={title} />
-        <h1>{title}</h1>
-        <p>{data.hero_text}</p>
-        <Link to="/page-2/">Go to page 2</Link>
+        <section className="hero">
+          <div className="container wrapper">
+            <h1 className="title">{data.hero_title}</h1>
+            <h2 className="subTitle">{data.hero_subtitle}</h2>
+            <p className="text">{data.hero_text}</p>
+            <Button type="ghostery" label={data.hero_call_to_action} />
+          </div>
+        </section>
       </Layout>
     )
   }

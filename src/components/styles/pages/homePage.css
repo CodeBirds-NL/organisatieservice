@@ -1,0 +1,43 @@
+section.hero {
+  height: calc(100vh - 105px);
+  display: flex;
+  flex-direction: column;
+  color: #001010;
+}
+
+.hero .wrapper {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.hero .title {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.hero .subTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 32px;
+}
+
+.hero .text {
+  font-size: 20px;
+  line-height: 1.5em;
+  color: #3c424f;
+  /* text-align: justify; */
+  width: 500px;
+  margin-left: 30px;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.hero .text::before {
+  content: "''";
+  font-size: 48px;
+  font-weight: 700;
+  position: absolute;
+  top: 3px;
+  left: -30px;
+}
