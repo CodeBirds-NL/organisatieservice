@@ -1,35 +1,39 @@
-import React from "react"
-import { Link, StaticQuery, graphql } from "gatsby"
+import React, { Component } from "react"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <StaticQuery
-      query={graphql`
-        query homePageQuery {
-          allWordpressPage {
-            edges {
-              node {
-                title
-                content
-              }
-            }
-          }
-        }
-      `}
-      render={data => <h1>{data.allWordpressPage.edges[1].node.title}</h1>}
-    />
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+class HomePage extends Component {
+  render() {
+    const { title, acf: data } = this.props.data.allWordpressPage.edges[0].node
+    return (
+      <Layout>
+        <SEO title={title} />
+        <h1>{title}</h1>
+        <p>{data.hero_text}</p>
+        <Link to="/page-2/">Go to page 2</Link>
+      </Layout>
+    )
+  }
+}
 
-export default IndexPage
+export default HomePage
+
+export const query = graphql`
+  query HomePageQuery {
+    allWordpressPage(filter: { slug: { eq: "home" } }) {
+      edges {
+        node {
+          acf {
+            hero_call_to_action
+            hero_subtitle
+            hero_text
+            hero_title
+          }
+          title
+        }
+      }
+    }
+  }
+`
