@@ -1,12 +1,13 @@
 import React, { Component } from "react"
 import Arrow from "./common/arrow"
 import Emoji from "./common/emoji"
+import "./styles/forms/form.css"
 
 class ActionBar extends Component {
   render() {
     const {
       active,
-      actionSelected,
+      selectedAction,
       onActionSelect,
       onActionBarClick,
       actions,
@@ -37,6 +38,63 @@ class ActionBar extends Component {
             </button>
           ))}
         </div>
+        {selectedAction ? (
+          <div className="stage2">
+            <form>
+              <div className="details">
+                <h3>Details</h3>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    type="text"
+                    id="question"
+                    name="question"
+                    placeholder="Uw vraag/probleem..."
+                  />
+                </div>
+                <div className="form-group">
+                  <textarea
+                    className="form-control"
+                    placeholder="Wat is uw eigen idee hoe ik u zou kunnen helpen?"
+                    rows="4"
+                    id="summary"
+                    name="summary"
+                  />
+                </div>
+              </div>
+              <div className="contactOptions">
+                <h3>Contact opties</h3>
+                <div className="form-group">
+                  <ul>
+                    <li>
+                      <label>
+                        <input
+                          name="contactOptions"
+                          value="Bel me"
+                          type="radio"
+                        />
+                        Bel me
+                      </label>
+                    </li>
+                    <li>
+                      <label>
+                        <input
+                          name="contactOptions"
+                          value="Afspraak op locatie"
+                          type="radio"
+                        />
+                        Afspraak op locatie
+                      </label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="submit right">
+                <button className="btn full">Volgende</button>
+              </div>
+            </form>
+          </div>
+        ) : null}
       </div>
     )
   }
