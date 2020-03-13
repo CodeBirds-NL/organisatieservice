@@ -15,25 +15,78 @@
   }
 }
 
-.btn.ghostery {
+.btn {
+  cursor: pointer;
+  outline: 0;
   background-color: transparent;
+  font-size: 20px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  font-size: 20px;
+}
+
+.btn.ghostery {
   border: 3px solid #001010;
-  cursor: pointer;
-  outline: 0;
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -moz-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -ms-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -o-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.05);
 }
+.btn.ghostery.gray {
+  border-color: #102b3f;
+  /* background-color: #2196f3; */
+}
+
 .btn.ghostery:hover {
   background-color: #001010;
   color: white;
-  /* box-shadow: 5px 5px 22px 0px rgba(0, 0, 0, 0.1); */
+}
+.btn.ghostery.gray:hover {
+  background-color: #102b3f;
+}
+
+.btn.withArrow {
+  border: 0;
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 24px;
+  display: flex;
+  flex-direction: row;
+  transition: background-color 0.25s ease-out;
+  -webkit-transition: background-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out;
+  -ms-transition: background-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out;
+}
+
+.btn.withArrow:hover .arrow {
+  transform: translateX(30%);
+  -webkit-transform: translateX(30%);
+  -moz-transform: translateX(30%);
+  -ms-transform: translateX(30%);
+  -o-transform: translateX(30%);
+}
+
+.btn.withArrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.arrow {
+  display: inline-block;
+  line-height: 1em;
+  margin-left: 12px;
+  transition: transform 0.25s ease-out;
+  -webkit-transition: transform 0.25s ease-out;
+  -moz-transition: transform 0.25s ease-out;
+  -ms-transition: transform 0.25s ease-out;
+  -o-transition: transform 0.25s ease-out;
+}
+
+.btn.full {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0;
 }

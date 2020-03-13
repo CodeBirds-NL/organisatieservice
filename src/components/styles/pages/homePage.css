@@ -3,6 +3,7 @@ section.hero {
   display: flex;
   flex-direction: column;
   color: #001010;
+  /* position: relative; */
 }
 
 .hero .wrapper {
@@ -25,7 +26,7 @@ section.hero {
 .hero .text {
   font-size: 20px;
   line-height: 1.5em;
-  color: #3c424f;
+  color: #102b3f;
   /* text-align: justify; */
   width: 500px;
   margin-left: 30px;
@@ -40,4 +41,49 @@ section.hero {
   position: absolute;
   top: 3px;
   left: -30px;
+}
+
+/* action bar styles */
+.actionBar {
+  color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: #2196f3;
+  padding: 30px 40px;
+}
+
+.actionBar .heading {
+  font-size: 32px;
+  font-weight: 600;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.actionBar .subHeading {
+  font-size: 20px;
+  margin-bottom: 2em;
+}
+
+.actionBar .actions {
+  display: flex;
+  flex-direction: column;
+}
+
+/* action bar ---- active styles */
+.actionBar.active {
+  width: calc(100vw - 140px);
+}
+
+.active .actions {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.active .actions .btn {
+  margin-right: 24px;
+  margin-bottom: 24px;
 }

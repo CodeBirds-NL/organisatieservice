@@ -1,9 +1,9 @@
-import React, { Component } from "react"
+import React from "react"
 import "./hamburger.css"
 
 const Hamburger = ({ onToggle }) => {
   return (
-    <div onClick={onToggle} id="nav-icon">
+    <div onClick={onToggle} id="nav-icon" role="toggle menu">
       <span></span>
       <span></span>
       <span></span>

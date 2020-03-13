@@ -43,7 +43,7 @@ class Header extends Component {
             <ul>
               {menuItems.map(item => (
                 <li key={item.wordpress_id} className="menuItem">
-                  <Link to={item.slug === "home" ? "/" : item.slug}>
+                  <Link to={item.slug === "home" ? "/" : `/${item.slug}`}>
                     {item.title}
                   </Link>
                 </li>
@@ -65,36 +65,6 @@ class Header extends Component {
             </ul>
           </div>
         </div>
-        {/* <div className="logo">
-          <img src={logoUrl} alt={logoAlt} />
-        </div>
-        <div className="menuWrapper">
-          <div className="menu">
-            <ul>
-              {menuItems.map(item => (
-                <li key={item.wordpress_id} className="menuItem">
-                  <Link to={item.slug === "home" ? "/" : item.slug}>
-                    {item.title}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="contactInfo">
-            <ul>
-              <li dangerouslySetInnerHTML={{ __html: adres }} />
-              <li>
-                <a href={`tel:${tel1}`}>{tel1}</a>
-              </li>
-              <li>
-                <a href={`tel:${tel2}`}>{tel2}</a>
-              </li>
-              <li>
-                <a href={`mailto:${email}`}>{email}</a>
-              </li>
-            </ul>
-          </div>
-        </div> */}
       </header>
     )
   }
