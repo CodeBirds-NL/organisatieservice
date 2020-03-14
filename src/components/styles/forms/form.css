@@ -87,8 +87,18 @@ label {
   transition: all 0.15s ease;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
 .submit.right {
   text-align: right;
+}
+
+form .submit.right .btn.full {
+  margin-right: 0;
 }
 
 @media only screen and (min-width: 900px) {
@@ -96,11 +106,12 @@ label {
     display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
+    max-width: 800px;
   }
   .details {
     width: 60%;
   }
-  .contactOptions {
+  .options {
     width: 40%;
   }
 }
