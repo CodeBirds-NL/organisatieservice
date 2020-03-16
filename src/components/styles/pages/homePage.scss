@@ -1,8 +1,10 @@
+@use '../layout/colors.scss' as c;
+
 section.hero {
   height: calc(100vh - 105px);
   display: flex;
   flex-direction: column;
-  color: #001010;
+  color: c.$black;
   /* position: relative; */
 }
 
@@ -26,7 +28,7 @@ section.hero {
 .hero .text {
   font-size: 20px;
   line-height: 1.5em;
-  color: #102b3f;
+  color: c.$text-color;
   /* text-align: justify; */
   width: 500px;
   margin-left: 30px;
@@ -45,12 +47,12 @@ section.hero {
 
 /* action bar styles */
 .actionBar {
-  color: white;
+  color: c.$white;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: #2196f3;
+  background-color: c.$primary-color;
   padding: 30px 40px;
   overflow-y: auto;
 }
@@ -94,7 +96,8 @@ section.hero {
 }
 .active .actions .btn.full:first-of-type {
   opacity: 1;
-  border: 3px solid rgba(255, 255, 255, 0.6);
+  border: 3px solid currentColor;
+  @include c.transparent-white(border-color, 0.6);
 }
 
 @media only screen and (min-width: 900px) {

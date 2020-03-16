@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import ActionStep from "./actionStep"
 import ActionButtons from "./common/actionButtons"
-import "./styles/forms/form.css"
+import "./styles/forms/form.scss"
 import Administratie from "./administratie"
 import CopyWriting from "./copywriting"
 import Website from "./website"

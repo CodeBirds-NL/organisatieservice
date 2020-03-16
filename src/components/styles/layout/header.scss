@@ -1,13 +1,15 @@
+@use '../layout/colors.scss' as c;
+
 /* HEADER STYLES */
 .header {
   height: auto;
   background-color: transparent;
   padding: 30px 40px;
-  color: #000;
+  color: c.$black;
 }
 
 .header a {
-  color: #000;
+  color: c.$black;
 }
 
 .header .left {
@@ -27,7 +29,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: #f8f8f8;
+  background-color: c.$light-gray;
   width: 400px;
   z-index: 2;
   padding: 120px 40px;
@@ -77,5 +79,6 @@
 
 .offCanvasMenu .contactInfo li a {
   text-decoration: none;
-  border-bottom: 2px solid #2196f3;
+  border-bottom: 3px solid currentColor;
+  border-color: c.$primary-color;
 }

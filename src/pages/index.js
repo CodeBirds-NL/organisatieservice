@@ -4,7 +4,7 @@ import Button from "../components/common/button"
 import ActionBar from "../components/actionBar"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import "../components/styles/pages/homePage.css"
+import "../components/styles/pages/homePage.scss"
 
 class HomePage extends Component {
   state = {

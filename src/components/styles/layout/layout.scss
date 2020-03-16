@@ -1,3 +1,9 @@
+@use 'colors';
+
+// @mixin transparent-white($property, $alpha) {
+//   #{$property}: rgba(255, 255, 255, $alpha);
+// }
+
 :root {
   font-family: "Gilroy", sans-serif;
 }
@@ -27,29 +33,32 @@
   -o-border-radius: 5px;
 }
 
-.btn.ghostery {
-  border: 3px solid #001010;
+.ghostery {
+  @extend .btn;
+  border: 3px solid colors.$black;
+  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.05);
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -moz-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -ms-transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -o-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.05);
-}
-.btn.ghostery.gray {
-  border-color: #102b3f;
-  /* background-color: #2196f3; */
 }
 
-.btn.ghostery:hover {
-  background-color: #001010;
-  color: white;
-}
-.btn.ghostery.gray:hover {
-  background-color: #102b3f;
+.ghostery:hover {
+  background-color: colors.$black;
+  color: colors.$white;
 }
 
-.btn.withArrow {
+.gray {
+  @extend .ghostery;
+  border-color: colors.$gray;
+}
+.gray:hover {
+  background-color: colors.$gray;
+}
+
+.withArrow {
+  @extend .btn;
   border: 0;
   padding: 15px 20px;
   text-align: left;
@@ -63,7 +72,7 @@
   -o-transition: background-color 0.25s ease-out;
 }
 
-.btn.withArrow:hover .arrow {
+.withArrow:hover .arrow {
   transform: translateX(30%);
   -webkit-transform: translateX(30%);
   -moz-transform: translateX(30%);
@@ -71,8 +80,8 @@
   -o-transform: translateX(30%);
 }
 
-.btn.withArrow:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+.withArrow:hover {
+  @include colors.transparent-white(background-color, 0.2);
 }
 
 .arrow {
@@ -86,7 +95,8 @@
   -o-transition: transform 0.25s ease-out;
 }
 
-.btn.full {
-  background-color: rgba(255, 255, 255, 0.2);
+.full {
+  @extend .btn;
+  @include colors.transparent-white(background-color, 0.2);
   border: 0;
 }

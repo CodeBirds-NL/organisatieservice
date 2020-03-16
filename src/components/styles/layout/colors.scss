@@ -1,0 +1,11 @@
+$primary-color: #2196f3;
+$light-gray: #f8f8f8;
+$black: #001010;
+$gray: #102b3f;
+$white: #fff;
+$text-color: #102b3f;
+$heading-color: $black;
+
+@mixin transparent-white($property, $alpha) {
+  #{$property}: rgba(255, 255, 255, $alpha);
+}

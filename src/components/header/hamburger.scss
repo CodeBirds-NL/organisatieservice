@@ -1,3 +1,5 @@
+@use '../styles/layout/colors.scss' as c;
+
 #nav-icon {
   width: 60px;
   height: 45px;
@@ -22,7 +24,7 @@
   position: absolute;
   height: 6px;
   width: 100%;
-  background: #000;
+  background-color: c.$black;
   border-radius: 5px;
   opacity: 1;
   left: 0;

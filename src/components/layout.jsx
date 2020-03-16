@@ -3,7 +3,7 @@ import Header from "./header/header"
 // import Footer from "./footer"
 import "./styles/layout/normalize.css"
 import "./styles/layout/reset.css"
-import "./styles/layout/layout.css"
+import "./styles/layout/layout.scss"
 
 class Layout extends Component {
   render() {

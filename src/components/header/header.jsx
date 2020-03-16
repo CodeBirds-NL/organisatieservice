@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
 import Hamburger from "./hamburger"
-import "../styles/layout/header.css"
+import "../styles/layout/header.scss"
 
 class Header extends Component {
   state = { active: false }
