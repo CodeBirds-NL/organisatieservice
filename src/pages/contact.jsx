@@ -5,7 +5,9 @@ class ContactPage extends Component {
   render() {
     return (
       <Layout>
-        <h1>ContactPage</h1>
+        <div style={{ backgroundColor: "#2196f3" }}>
+          <h1>ContactPage</h1>
+        </div>
       </Layout>
     )
   }

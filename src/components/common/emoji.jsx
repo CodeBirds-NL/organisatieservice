@@ -1,14 +1,15 @@
 import React from "react"
 
-const Emoji = props => {
+const Emoji = ({ label, symbol = "" }) => {
+  if (!symbol) return null
   return (
     <span
       className="emoji"
       role="img"
-      aria-label={props.label ? props.label : ""}
-      aria-hidden={props.label ? "false" : "true"}
+      aria-label={label ? label : ""}
+      aria-hidden={label ? "false" : "true"}
     >
-      {props.symbol}
+      {symbol}
     </span>
   )
 }

@@ -7,73 +7,8 @@ import SEO from "../components/seo"
 import "../components/styles/pages/homePage.scss"
 
 class HomePage extends Component {
-  state = {
-    actionBarClicked: false,
-    action: null,
-    step: 1,
-  }
-
-  actions = [
-    {
-      id: 1,
-      name: "administration",
-      label: "Administratie",
-      options: [
-        "Terugbelverzoek",
-        "Afspraak op locatie",
-        "Mening/advies",
-        "Aanbieding",
-      ],
-    },
-    {
-      id: 2,
-      name: "copywriting",
-      label: "Tekst schrijven",
-      options: ["Aanbieding", "Opdracht"],
-    },
-    {
-      id: 3,
-      name: "website",
-      label: "Website",
-      options: [
-        "Terugbelverzoek",
-        "Afspraak op locatie",
-        "Mening/advies",
-        "Aanbieding",
-        "Designvoorstel",
-      ],
-    },
-    {
-      id: 4,
-      name: "marketing",
-      label: "Marketing",
-      options: [
-        "Terugbelverzoek",
-        "Afspraak op locatie",
-        "Mening/advies",
-        "Aanbieding",
-      ],
-    },
-    { id: 5, name: "contact", label: "Direct contact" },
-  ]
-
-  handleActionBarClick = () => {
-    this.setState(() => {
-      return { actionBarClicked: true }
-    })
-    // increase width action bar -> slide to left
-    // change state to actionSelected = true
-    // when state is selected render method should render a different hero section
-  }
-
-  handleActionSelect = actionId => {
-    const action = this.actions.find(action => action.id === actionId)
-    this.setState(() => ({ action, step: 2 }))
-  }
-
   render() {
     const { title, acf: data } = this.props.data.allWordpressPage.edges[0].node
-    const { actionBarClicked: active, action, step } = this.state
     return (
       <Layout>
         <SEO title={title} />
@@ -88,14 +23,7 @@ class HomePage extends Component {
               color="gray"
             />
           </div>
-          <ActionBar
-            actions={this.actions}
-            selectedAction={action}
-            active={active}
-            onActionBarClick={this.handleActionBarClick}
-            onActionSelect={this.handleActionSelect}
-            step={step}
-          />
+          <ActionBar />
         </section>
       </Layout>
     )
