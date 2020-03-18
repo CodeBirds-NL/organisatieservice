@@ -6,6 +6,8 @@ import Administratie from "./administratie"
 import CopyWriting from "./copywriting"
 import Website from "./website"
 import Marketing from "./marketing"
+import Button from "./common/button"
+import Arrow from "./common/arrow"
 
 class ActionBar extends Component {
   state = {
@@ -77,6 +79,8 @@ class ActionBar extends Component {
     this.setState(() => ({ action, step: 1 }))
   }
 
+  handleBackClick = () => {}
+
   renderSideBarView = () => {
     return (
       <ActionStep heading="Direct actie">
@@ -113,11 +117,18 @@ class ActionBar extends Component {
         className={active ? "actionBar active" : "actionBar"}
         role="Selecteer dienst"
       >
-        {active
-          ? action
-            ? this.renderActionTemplate()
-            : this.renderExpandedView()
-          : this.renderSideBarView()}
+        <div className="backArea">
+          <button onClick={this.handleBackClick} className="btn back">
+            <Arrow width="32px" />
+          </button>
+        </div>
+        <div className="viewArea">
+          {active
+            ? action
+              ? this.renderActionTemplate()
+              : this.renderExpandedView()
+            : this.renderSideBarView()}
+        </div>
       </div>
     )
   }

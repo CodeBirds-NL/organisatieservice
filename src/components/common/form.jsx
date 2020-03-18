@@ -18,10 +18,21 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+
+    if (!this.state.nextStep) return this.handleNextStep()
     console.log("form submitted!")
 
     // get formdata
     // call server
+  }
+
+  handleNextStep = _ => {
+    // check if contactOption is selected
+    const { contactOption } = this.state.data
+    if (!contactOption) return
+    // hide current form and show up next form
+    this.setState({ nextStep: true })
+    // this.setState({ step: 2 })
   }
 
   renderHeading = main => <div className="heading">{main}</div>
@@ -31,30 +42,50 @@ class Form extends Component {
     </div>
   )
 
-  renderForm = (detailsTitle = "", inputs, options, button) => {
+  renderForm = (detailsTitle = "", inputs, options, contactInputs, button) => {
+    const { nextStep } = this.state
     return (
-      <div className="actions">
+      <div className="form">
         <form onSubmit={this.handleSubmit}>
-          <div className="details">
-            <h3>{detailsTitle}</h3>
-            {/* check if inputs is an array or component defined render function*/}
-            {Array.isArray(inputs)
-              ? inputs.map(
-                  ({ type = "text", name, label, selectOptions = "" }) => (
-                    <Input
-                      key={name}
-                      name={name}
-                      type={type}
-                      label={label}
-                      onChange={this.handleChange}
-                      selectOptions={selectOptions}
-                    />
+          <div className={nextStep ? "actionData" : "show actionData"}>
+            <div className="details">
+              <h3>{detailsTitle}</h3>
+              {/* check if inputs is an array or component defined render function*/}
+              {Array.isArray(inputs)
+                ? inputs.map(
+                    ({ type = "text", name, label, selectOptions = "" }) => (
+                      <Input
+                        key={name}
+                        name={name}
+                        type={type}
+                        label={label}
+                        onChange={this.handleChange}
+                        selectOptions={selectOptions}
+                      />
+                    )
                   )
-                )
-              : inputs}
+                : inputs}
+            </div>
+            {options}
+            <div className="next right">
+              {this.renderButton("full", "Volgende")}
+            </div>
           </div>
-          {options}
-          <div className="submit right">{button}</div>
+          <div className={nextStep ? "show contactData" : "contactData"}>
+            <div className="details">
+              <h3> Uw Contactgegevens</h3>
+              {contactInputs.map(({ type = "text", name, label }) => (
+                <Input
+                  key={name}
+                  name={name}
+                  type={type}
+                  label={label}
+                  onChange={this.handleChange}
+                />
+              ))}
+            </div>
+            <div className="submit right">{button}</div>
+          </div>
         </form>
       </div>
     )
@@ -83,7 +114,7 @@ class Form extends Component {
   }
 
   renderButton = (type, label, color = "") => {
-    return <Button type={type} label={label} color={color} />
+    return <Button onClick type={type} label={label} color={color} />
   }
 }
 

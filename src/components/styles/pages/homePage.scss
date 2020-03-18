@@ -55,6 +55,9 @@ section.hero {
   background-color: c.$primary-color;
   padding: 30px 40px;
   overflow-y: auto;
+  & .backArea {
+    display: none;
+  }
 }
 
 .actionBar .heading {
@@ -79,6 +82,30 @@ section.hero {
 /* action bar ---- active styles */
 .actionBar.active {
   width: calc(100vw - 140px);
+  z-index: 9;
+  display: flex;
+  flex-direction: row;
+  & .backArea {
+    display: block;
+    padding-right: 40px;
+    & button.back {
+      border: 0;
+      width: 100%;
+      padding: 0;
+      height: 45px;
+      & .arrow {
+        margin: auto;
+        transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+      }
+    }
+  }
+  & .viewArea {
+    flex-grow: 1;
+  }
 }
 
 .active .actions {
