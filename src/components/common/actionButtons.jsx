@@ -3,17 +3,17 @@ import Arrow from "./arrow"
 
 const ActionButtons = ({ actions, onActionButtonClick, type }) => {
   return (
-    <React.Fragment>
+    <div className="actionButtons">
       {actions.map(action => (
         <button
           key={action.id}
-          onClick={() => onActionButtonClick(action)}
+          onClick={e => onActionButtonClick(e, action)}
           className={`btn ${type}`}
         >
           {action.label} {type === "withArrow" ? <Arrow width="24px" /> : null}
         </button>
       ))}
-    </React.Fragment>
+    </div>
   )
 }
 

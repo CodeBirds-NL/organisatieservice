@@ -1,9 +1,9 @@
 import React from "react"
 import Emoji from "./common/emoji"
 
-const ActionStep = ({ heading, subHeading, children, symbol }) => {
+const ActionStep = ({ heading, subHeading, children, symbol, active }) => {
   return (
-    <div>
+    <div className={active ? "actionStep active" : "actionStep"}>
       <div className="heading">{heading}</div>
       {subHeading ? (
         <div className="subHeading">

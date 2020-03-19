@@ -8,6 +8,26 @@ class Form extends Component {
     data: {},
   }
 
+  contactInputs = {
+    name: { name: "name", label: "Naam" },
+    companyName: { name: "companyName", label: "Bedrijfsnaam" },
+    phone: { type: "tel", name: "phone", label: "Telefoonnummer" },
+    email: { type: "email", name: "email", label: "Email" },
+    address: { name: "address", label: "Adres" },
+  }
+
+  getContactFields = contactOption => {
+    const { name, companyName, phone, email } = this.contactFields
+    switch (contactOption) {
+      case "Terugbelverzoek":
+        return [name, phone]
+        break
+      default:
+        return [companyName, email]
+        break
+    }
+  }
+
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data }
     data[input.name] = input.value
@@ -18,21 +38,13 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
+    const { nextStep, onNextStep } = this.props
 
-    if (!this.state.nextStep) return this.handleNextStep()
+    if (!nextStep) return onNextStep(this.state.data.contactOption)
     console.log("form submitted!")
 
     // get formdata
     // call server
-  }
-
-  handleNextStep = _ => {
-    // check if contactOption is selected
-    const { contactOption } = this.state.data
-    if (!contactOption) return
-    // hide current form and show up next form
-    this.setState({ nextStep: true })
-    // this.setState({ step: 2 })
   }
 
   renderHeading = main => <div className="heading">{main}</div>
@@ -43,7 +55,7 @@ class Form extends Component {
   )
 
   renderForm = (detailsTitle = "", inputs, options, contactInputs, button) => {
-    const { nextStep } = this.state
+    const { nextStep } = this.props
     return (
       <div className="form">
         <form onSubmit={this.handleSubmit}>

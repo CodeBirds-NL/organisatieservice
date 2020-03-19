@@ -3,11 +3,7 @@ import Form from "./common/form"
 
 class Website extends Form {
   state = {
-    data: {
-      websiteName: "",
-      websitePurpose: "",
-      contactOption: "",
-    },
+    data: {},
   }
 
   inputs = [
@@ -17,19 +13,21 @@ class Website extends Form {
 
   render() {
     const { id, options } = this.props.data
+    const { nextStep } = this.props
 
     return (
-      <div data-actionid={id}>
-        {this.renderHeading("1/2 Vertel ons iets meer")}
+      <div className="formWrapper" data-actionid={id}>
+        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel ons iets meer`)}
         {this.renderSubHeading(
-          "Probeer het formulier zo compleet mogelijk in te vullen, zodat wij u zo snel mogelijk kunnen helpen!",
+          "Don't worry, we will turn your website into a killer-website",
           "🎉"
         )}
         {this.renderForm(
           "Details",
           this.inputs,
           this.renderRadioOptions(options, "contactOption", "Contact Opties"),
-          this.renderButton("full", "Volgende")
+          Object.values(this.contactInputs),
+          this.renderButton("full", "Verstuur")
         )}
       </div>
     )

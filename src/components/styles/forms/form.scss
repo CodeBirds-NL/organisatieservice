@@ -160,48 +160,62 @@ form .right .btn.full {
     position: absolute;
     width: 100%;
     top: 0;
-    transform: translateX(calc(-100% - 40px));
-    -webkit-transform: translateX(calc(-100% - 40px));
-    -moz-transform: translateX(calc(-100% - 40px));
-    -ms-transform: translateX(calc(-100% - 40px));
-    -o-transform: translateX(calc(-100% - 40px));
-    transition: transform 0.5s ease-out;
-    -webkit-transition: transform 0.5s ease-out;
-    -moz-transition: transform 0.5s ease-out;
-    -ms-transition: transform 0.5s ease-out;
-    -o-transition: transform 0.5s ease-out;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -webkit-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -o-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    transform: translateX(-10%);
+    -webkit-transform: translateX(-10%);
+    -moz-transform: translateX(-10%);
+    -ms-transform: translateX(-10%);
+    -o-transform: translateX(-10%);
   }
   & .show.actionData {
-    transform: translateX(0);
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
+    z-index: 9;
+    opacity: 1;
+    transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -webkit-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -o-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
   }
 
   & .contactData {
     position: absolute;
     width: 100%;
     top: 0;
-    transform: translateX(calc(100% + 40px));
-    -webkit-transform: translateX(calc(100% + 40px));
-    -moz-transform: translateX(calc(100% + 40px));
-    -ms-transform: translateX(calc(100% + 40px));
-    -o-transform: translateX(calc(100% + 40px));
     opacity: 0;
-    transition: transform 0.5s ease-out;
-    -webkit-transition: transform 0.5s ease-out;
-    -moz-transition: transform 0.5s ease-out;
-    -ms-transition: transform 0.5s ease-out;
-    -o-transition: transform 0.5s ease-out;
+    will-change: transform;
+    transform: translateX(10%);
+    -webkit-transform: translateX(10%);
+    -moz-transform: translateX(10%);
+    -ms-transform: translateX(10%);
+    -o-transform: translateX(10%);
+    transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -webkit-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -o-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
   }
 
   & .show.contactData {
     opacity: 1;
-    transform: translateX(0);
-    -webkit-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -o-transform: translateX(0);
+    transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -webkit-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -moz-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -ms-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
+    -o-transition: all 0.6s cubic-bezier(0.74, 0, 0.2, 1);
   }
 }

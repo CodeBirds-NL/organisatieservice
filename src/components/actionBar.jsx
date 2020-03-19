@@ -13,7 +13,7 @@ class ActionBar extends Component {
   state = {
     actionBarClicked: false,
     action: null,
-    step: null,
+    nextStep: null,
   }
 
   actions = [
@@ -61,25 +61,81 @@ class ActionBar extends Component {
   ]
 
   templates = {
-    administratie: () => <Administratie data={this.state.action} />,
-    copywriting: () => <CopyWriting data={this.state.action} />,
-    website: () => <Website data={this.state.action} />,
-    marketing: () => <Marketing data={this.state.action} />,
+    administratie: () => (
+      <Administratie
+        onNextStep={this.handleNextStep}
+        data={this.state.action}
+        nextStep={this.state.nextStep}
+      />
+    ),
+    copywriting: () => (
+      <CopyWriting
+        onNextStep={this.handleNextStep}
+        data={this.state.action}
+        nextStep={this.state.nextStep}
+      />
+    ),
+    website: () => (
+      <Website
+        onNextStep={this.handleNextStep}
+        data={this.state.action}
+        nextStep={this.state.nextStep}
+      />
+    ),
+    marketing: () => (
+      <Marketing
+        onNextStep={this.handleNextStep}
+        data={this.state.action}
+        nextStep={this.state.nextStep}
+      />
+    ),
   }
 
-  renderActionTemplate() {
-    return this.templates[this.state.action.name]()
-  }
+  history = []
 
   handleActionBarClick = () => {
+    if (this.state.actionBarClicked) return
+    const arr = [...this.history]
+    arr.push({ ...this.state })
+    this.history = arr
     this.setState(() => ({ actionBarClicked: true }))
   }
 
-  handleActionButtonClick = action => {
-    this.setState(() => ({ action, step: 1 }))
+  handleBackClick = () => {
+    const { ...rest } = this.history[this.history.length - 1]
+    this.setState({ ...rest })
+    this.history.pop(this.history.length - 1)
   }
 
-  handleBackClick = () => {}
+  handleActionButtonClick = (e, action) => {
+    e.stopPropagation()
+
+    const { ...state } = this.state
+    const arr = [...this.history]
+    arr.push({ ...state })
+    this.history = arr
+    this.setState(() => {
+      return state.actionBarClicked
+        ? { action }
+        : { action, actionBarClicked: true }
+    })
+  }
+
+  handleNextStep = contactOption => {
+    if (!contactOption) return
+
+    const arr = [...this.history]
+    arr.push({ ...this.state })
+    this.history = arr
+    this.setState({ nextStep: true })
+  }
+
+  handleClosing = _ => {
+    //set state to first history item and then clear history array
+    const { ...firstState } = this.history[0]
+    this.setState({ ...firstState })
+    this.history.length = 0
+  }
 
   renderSideBarView = () => {
     return (
@@ -92,12 +148,14 @@ class ActionBar extends Component {
       </ActionStep>
     )
   }
+
   renderExpandedView = () => {
     return (
       <ActionStep
         heading="Waarmee kan ik je helpen?"
         subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken "
         symbol="✨"
+        active={this.state.actionBarClicked}
       >
         <ActionButtons
           onActionButtonClick={this.handleActionButtonClick}
@@ -108,8 +166,12 @@ class ActionBar extends Component {
     )
   }
 
+  renderActionTemplate() {
+    return this.templates[this.state.action.name]()
+  }
+
   render() {
-    const { actionBarClicked: active, action, step } = this.state
+    const { actionBarClicked: active, action } = this.state
 
     return (
       <div
@@ -123,6 +185,12 @@ class ActionBar extends Component {
           </button>
         </div>
         <div className="viewArea">
+          <button
+            onClick={this.handleClosing}
+            className={active ? "btn form-close" : "btn form-close hide"}
+          >
+            Close
+          </button>
           {active
             ? action
               ? this.renderActionTemplate()
