@@ -1,4 +1,5 @@
 @use 'colors';
+@use 'reset.css';
 
 // @mixin transparent-white($property, $alpha) {
 //   #{$property}: rgba(255, 255, 255, $alpha);
@@ -22,6 +23,7 @@
 }
 
 .btn {
+  @extend button;
   cursor: pointer;
   outline: 0;
   background-color: transparent;
@@ -99,4 +101,17 @@
   @extend .btn;
   @include colors.transparent-white(background-color, 0.2);
   border: 0;
+  &:hover {
+    box-shadow: 0 0 0 3px rgba($color: #ffffff, $alpha: 0.7);
+  }
+  transition: box-shadow 0.2s ease-out;
+  -webkit-transition: box-shadow 0.2s ease-out;
+  -moz-transition: box-shadow 0.2s ease-out;
+  -ms-transition: box-shadow 0.2s ease-out;
+  -o-transition: box-shadow 0.2s ease-out;
+}
+
+.contact .full {
+  margin: 0 24px 24px 0;
+  text-decoration: none;
 }

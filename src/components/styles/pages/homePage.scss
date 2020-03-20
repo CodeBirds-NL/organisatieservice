@@ -14,7 +14,7 @@ section.hero {
 }
 
 .hero .title {
-  font-size: 60px;
+  font-size: 72px;
   font-weight: 700;
   margin-bottom: 24px;
 }
@@ -189,15 +189,6 @@ section.hero {
 .active .actions .btn {
   margin-right: 24px;
   margin-bottom: 24px;
-}
-
-.active .actions .btn {
-  opacity: 0.6;
-}
-.active .actions .btn.full:first-of-type {
-  opacity: 1;
-  border: 3px solid currentColor;
-  @include c.transparent-white(border-color, 0.6);
 }
 
 @media only screen and (min-width: 900px) {

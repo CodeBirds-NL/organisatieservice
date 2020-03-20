@@ -6,7 +6,7 @@ import Administratie from "./administratie"
 import CopyWriting from "./copywriting"
 import Website from "./website"
 import Marketing from "./marketing"
-import Button from "./common/button"
+import DirectContact from "./directContact"
 import Arrow from "./common/arrow"
 
 class ActionBar extends Component {
@@ -89,6 +89,7 @@ class ActionBar extends Component {
         nextStep={this.state.nextStep}
       />
     ),
+    contact: () => <DirectContact data={this.state.action} />,
   }
 
   history = []
