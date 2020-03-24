@@ -9,7 +9,7 @@ class Layout extends Component {
   render() {
     return (
       <React.Fragment>
-        <Header />
+        <Header headerColor={this.props.headerColor} />
         <div className="contentWrapper">{this.props.children}</div>
         {/* <Footer /> */}
       </React.Fragment>

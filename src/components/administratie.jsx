@@ -17,15 +17,14 @@ class Administratie extends Form {
 
     return (
       <div className="formWrapper" data-actionid={id}>
-        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel ons iets meer`)}
+        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel meer...`)}
         {this.renderSubHeading(
-          "Probeer het formulier zo compleet mogelijk in te vullen, zodat wij u zo snel mogelijk kunnen helpen!",
-          "🎉"
+          "Vul hier het onderwerp in en geef aan wat je verwacht. Ik ga direct voor je aan de slag."
         )}
         {this.renderForm(
           "Details",
           this.inputs,
-          this.renderRadioOptions(options, "contactOption", "Contact Opties"),
+          this.renderRadioOptions(options, "contactOption", "Contactopties"),
           Object.values(this.contactInputs),
           this.renderButton("full", "Verstuur")
         )}

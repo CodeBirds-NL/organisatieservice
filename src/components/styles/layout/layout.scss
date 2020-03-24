@@ -13,13 +13,18 @@
   width: 100%;
   padding-right: 40px;
   padding-left: 40px;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 }
 @media (min-width: 1224px) {
   .container {
     width: 1184px;
   }
+}
+
+.text {
+  font-size: 20px;
+  line-height: 1.5em;
+  color: colors.$text-color;
 }
 
 .btn {
@@ -67,6 +72,7 @@
   font-size: 24px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   transition: background-color 0.25s ease-out;
   -webkit-transition: background-color 0.25s ease-out;
   -moz-transition: background-color 0.25s ease-out;
@@ -109,6 +115,28 @@
   -moz-transition: box-shadow 0.2s ease-out;
   -ms-transition: box-shadow 0.2s ease-out;
   -o-transition: box-shadow 0.2s ease-out;
+}
+
+.underline {
+  @extend .btn;
+  color: colors.$black;
+  font-weight: 600;
+  border: 0;
+  padding: 0;
+  & .content {
+    padding: 0 0 5px 0;
+    border-bottom: 3px solid colors.$primary-color;
+  }
+}
+
+a.underline {
+  @extend .underline;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.underline.withArrow {
+  font-size: 20px;
 }
 
 .contact .full {

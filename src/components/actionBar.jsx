@@ -22,28 +22,11 @@ class ActionBar extends Component {
       name: "administratie",
       label: "Administratie",
       options: [
+        "Opdracht",
+        "Aanbieding",
         "Terugbelverzoek",
         "Afspraak op locatie",
         "Mening/advies",
-        "Aanbieding",
-      ],
-    },
-    {
-      id: 2,
-      name: "copywriting",
-      label: "Tekst schrijven",
-      options: ["Aanbieding", "Opdracht"],
-    },
-    {
-      id: 3,
-      name: "website",
-      label: "Website",
-      options: [
-        "Terugbelverzoek",
-        "Afspraak op locatie",
-        "Mening/advies",
-        "Aanbieding",
-        "Designvoorstel",
       ],
     },
     {
@@ -51,12 +34,32 @@ class ActionBar extends Component {
       name: "marketing",
       label: "Marketing",
       options: [
+        "Opdracht",
+        "Aanbieding",
         "Terugbelverzoek",
         "Afspraak op locatie",
         "Mening/advies",
-        "Aanbieding",
       ],
     },
+    {
+      id: 3,
+      name: "website",
+      label: "Website",
+      options: [
+        "Opdracht",
+        "Aanbieding",
+        "Terugbelverzoek",
+        "Afspraak op locatie",
+        "Mening/advies",
+      ],
+    },
+    {
+      id: 2,
+      name: "copywriting",
+      label: "Tekst schrijven",
+      options: ["Opdracht", "Aanbieding"],
+    },
+
     { id: 5, name: "contact", label: "Direct contact" },
   ]
 

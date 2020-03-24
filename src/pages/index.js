@@ -15,7 +15,7 @@ class HomePage extends Component {
         <section className="hero">
           <div className="container wrapper">
             <h1 className="title">{data.hero_title}</h1>
-            <h2 className="subTitle">{data.hero_subtitle}</h2>
+            <h3 className="subTitle">{data.hero_subtitle}</h3>
             <p className="text">{data.hero_text}</p>
             <Button
               type="ghostery"

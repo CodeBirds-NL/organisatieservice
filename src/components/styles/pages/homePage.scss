@@ -26,9 +26,6 @@ section.hero {
 }
 
 .hero .text {
-  font-size: 20px;
-  line-height: 1.5em;
-  color: c.$text-color;
   /* text-align: justify; */
   width: 500px;
   margin-left: 30px;
@@ -52,7 +49,7 @@ section.hero {
   top: 0;
   bottom: 0;
   right: 0;
-  width: 315px;
+  width: 330px;
   background-color: c.$primary-color;
   padding: 30px 40px;
   transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
@@ -83,6 +80,9 @@ section.hero {
 .actionBar .actions {
   display: flex;
   flex-direction: column;
+  & .btn.withArrow {
+    width: 250px;
+  }
 }
 
 .actionBar .form-close {

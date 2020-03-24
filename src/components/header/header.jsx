@@ -12,7 +12,9 @@ class Header extends Component {
   }
 
   render() {
-    const { data } = this.props
+    // background-color of header is set using props
+    const { data, color = "white" } = this.props
+
     const { active } = this.state
     // get menu items
     const [...menuItems] = data.allWordpressMenusMenusItems.edges[0].node.items
@@ -30,7 +32,10 @@ class Header extends Component {
     } = data.allWordpressPage.edges[0].node.site_logo_src
 
     return (
-      <header className={active ? "header open" : "header"}>
+      <header
+        style={{ backgroundColor: `${color}` }}
+        className={active ? "header open" : "header"}
+      >
         <div className="left">
           <Hamburger onToggle={this.handleToggle} />
           <span className="brand">
@@ -107,6 +112,6 @@ export default props => (
         }
       }
     `}
-    render={data => <Header data={data} />}
+    render={data => <Header color={props.headerColor} data={data} />}
   />
 )
