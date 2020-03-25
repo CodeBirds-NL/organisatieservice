@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.header .left .brand {
+.brand {
   font-size: 24px;
   font-weight: 600;
 }
@@ -31,7 +31,7 @@
   left: 0;
   background-color: c.$light-gray;
   width: 400px;
-  z-index: 2;
+  z-index: 10;
   padding: 120px 40px;
   /* box-shadow: 5px 0px 25px 2px rgba(0, 0, 0, 0.06); */
   transform: translateX(-400px);

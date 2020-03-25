@@ -143,3 +143,18 @@ a.underline {
   margin: 0 24px 24px 0;
   text-decoration: none;
 }
+
+#contact .brand {
+  display: block;
+  margin: 115px 0 0 40px;
+  width: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform-origin: center;
+}

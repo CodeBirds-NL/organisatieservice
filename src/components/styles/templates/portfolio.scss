@@ -124,7 +124,123 @@
   }
 }
 
+// number styles for list
+.steps ul {
+  color: c.$black;
+  font-size: 20px;
+  & .step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+    line-height: 1em;
+    & span {
+      margin-right: 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: c.$primary-color;
+      color: c.$white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+}
+
+// card styles
+.cards {
+  background-color: c.$light-gray;
+  padding: 80px 0;
+}
+.cards .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-row-gap: 35px;
+  grid-column-gap: 35px;
+}
+
+.card {
+  background-color: c.$white;
+  & .link {
+    text-decoration: none;
+    display: block;
+    color: inherit;
+    & .upper {
+      & img {
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+      }
+    }
+    & .lower-1 {
+      padding: 30px;
+      & h5 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 1em;
+      }
+      & .description {
+        font-size: 18px;
+        color: c.$text-color;
+      }
+    }
+    & .lower-2 {
+      border-top: 1px solid #eeeeee;
+      padding: 15px 30px;
+      font-size: 14px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      & .tags {
+        & span {
+          text-transform: lowercase;
+          color: c.$light-gray;
+          background-color: c.$primary-color;
+          padding: 4px 8px;
+          border-radius: 36px;
+          -webkit-border-radius: 36px;
+          -moz-border-radius: 36px;
+          -ms-border-radius: 36px;
+          -o-border-radius: 36px;
+        }
+        & span:nth-of-type(n + 2) {
+          margin-left: 10px;
+        }
+        & .administratie {
+          background-color: c.$administratie;
+        }
+        & .website {
+          background-color: c.$website;
+        }
+        & .tekst {
+          background-color: c.$tekst;
+        }
+        & .marketing {
+          background-color: c.$marketing;
+        }
+      }
+    }
+  }
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
 // responsive styles
+@media (min-width: 728px) {
+  .cards .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 @media (min-width: 1224px) {
   #aanpak {
     display: flex;
@@ -158,77 +274,8 @@
       }
     }
   }
-}
-
-// number styles for list
-.steps ul {
-  color: c.$black;
-  font-size: 20px;
-  & .step {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 1em;
-    line-height: 1em;
-    & span {
-      margin-right: 0.5em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: c.$primary-color;
-      color: c.$white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
-    }
+  // cards responsive styles
+  .cards .container {
+    grid-template-columns: 1fr 1fr 1fr;
   }
-}
-
-.cards {
-  background-color: c.$light-gray;
-}
-.cards .container {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-row-gap: 30px;
-  grid-column-gap: 40px;
-}
-
-.card {
-  background-color: c.$white;
-  & .link {
-    text-decoration: none;
-    display: block;
-    color: inherit;
-    padding: 0 30px;
-    & .upper {
-      padding: 30px 0px;
-      & img {
-        margin: 0 auto;
-      }
-    }
-    & .lower {
-      padding-bottom: 30px;
-      & h5 {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 20px;
-      }
-      & .description {
-        font-size: 18px;
-        color: c.$text-color;
-        margin-bottom: 20px;
-      }
-    }
-  }
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
 }

@@ -3,7 +3,7 @@
 #nav-icon {
   width: 60px;
   height: 45px;
-  margin-right: 35px;
+  margin-right: 40px;
   position: relative;
   -webkit-transform: rotate(0deg);
   -moz-transform: rotate(0deg);
@@ -16,7 +16,7 @@
   cursor: pointer;
   -ms-transform: rotate(0deg);
   -ms-transition: 0.5s ease-in-out;
-  z-index: 3;
+  z-index: 11;
 }
 
 #nav-icon span {

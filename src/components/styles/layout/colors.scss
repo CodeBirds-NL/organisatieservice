@@ -5,6 +5,11 @@ $gray: #102b3f;
 $white: #fff;
 $text-color: #102b3f;
 $heading-color: $black;
+$card-white: #fcfcfc;
+$administratie: #ff4e4e;
+$marketing: #9fd2d6;
+$website: $primary-color;
+$tekst: #8154ef;
 
 @mixin transparent-white($property, $alpha) {
   #{$property}: rgba(255, 255, 255, $alpha);

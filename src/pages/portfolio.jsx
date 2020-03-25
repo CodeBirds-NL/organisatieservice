@@ -27,30 +27,46 @@ class PortfolioPage extends Component {
         <div className="cards">
           <div className="container">
             {items.map(item => {
-              const { title, acf, id, slug } = item.node
-              const { logo_klant = "", project_foto } = acf
+              const {
+                title,
+                acf,
+                id,
+                slug,
+                date,
+                tags = [{ name: "", id: "" }],
+              } = item.node
+              const { logo_klant = "", project_foto, resultaat } = acf
               return (
                 <div key={id} className="card">
                   <Link className="link" to={`portfolio/${slug}`}>
                     <div className="upper">
                       <img
-                        src={logo_klant.source_url}
-                        alt={logo_klant.alt_text}
+                        src={project_foto.source_url}
+                        alt={project_foto.alt_text}
                       />
                     </div>
-                    <div className="lower">
+                    <div className="lower-1">
                       <h5>{title}</h5>
-                      <p className="description">
-                        Nieuwe corporate website voor startup. Lorem ipsum dadkj
-                        sdafsaj lbalhd.
-                      </p>
-                      <button
-                        className="btn underline withArrow"
-                        to={`portfolio/${slug}`}
-                      >
-                        <span className="content">Lees meer</span>{" "}
-                        <Arrow width="18px" color="#001010" />
-                      </button>
+                      <p className="description">{`${resultaat.slice(
+                        0,
+                        55
+                      )}...`}</p>
+                    </div>
+                    <div className="lower-2">
+                      <div className="date">
+                        <span>
+                          {new Date(date)
+                            .toLocaleDateString()
+                            .replace(/\//g, "-")}
+                        </span>
+                      </div>
+                      <div className="tags">
+                        {tags.map(({ name, id }) => (
+                          <span key={id} className={name.toLowerCase()}>
+                            {name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </Link>
                 </div>
@@ -73,6 +89,11 @@ export default props => (
               id
               slug
               title
+              date
+              tags {
+                name
+                id
+              }
               acf {
                 aanpak
                 link_website

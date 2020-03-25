@@ -12,7 +12,7 @@ export default ({ pageContext }) => {
           <div className="contents">
             <div className="container">
               <div className="col1">
-                <h2 className="subHeading">{title}</h2>
+                <h2 className="subHeading">{acf.titel}</h2>
                 <p className="text">{acf.vraag}</p>
                 <a href="#aanpak" className="btn underline withArrow">
                   <span className="content">Lees meer</span>{" "}

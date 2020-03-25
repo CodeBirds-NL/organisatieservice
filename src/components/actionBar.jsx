@@ -10,10 +10,39 @@ import DirectContact from "./directContact"
 import Arrow from "./common/arrow"
 
 class ActionBar extends Component {
+  defaultState = {
+    actionBarClicked: false,
+    action: null,
+    nextStep: null,
+  }
+
   state = {
     actionBarClicked: false,
     action: null,
     nextStep: null,
+  }
+
+  componentWillMount() {
+    if (this.props.src === "home") {
+      this.setState({ actionBarClicked: false, action: null })
+    } else {
+      // the code that follows applies for the contact page that inializes the action bar straight to the contact level
+      const { ...state } = this.state
+      const arr = [...this.history]
+      arr.push({ ...state })
+      this.history = arr
+
+      this.setState({
+        actionBarClicked: true,
+        action: this.actions[this.actions.length - 1],
+      })
+    }
+  }
+
+  componentDidUpdate() {
+    if (JSON.stringify(this.state) === JSON.stringify(this.defaultState)) {
+      this.props.onActive(false)
+    }
   }
 
   actions = [
@@ -103,6 +132,8 @@ class ActionBar extends Component {
     arr.push({ ...this.state })
     this.history = arr
     this.setState(() => ({ actionBarClicked: true }))
+
+    this.props.onActive(true)
   }
 
   handleBackClick = () => {
@@ -183,18 +214,23 @@ class ActionBar extends Component {
         className={active ? "actionBar active" : "actionBar"}
         role="Selecteer dienst"
       >
+        {" "}
         <div className="backArea">
-          <button onClick={this.handleBackClick} className="btn back">
-            <Arrow width="32px" />
-          </button>
+          {this.props.src === "home" ? (
+            <button onClick={this.handleBackClick} className="btn back">
+              <Arrow width="32px" />
+            </button>
+          ) : null}
         </div>
         <div className="viewArea">
-          <button
-            onClick={this.handleClosing}
-            className={active ? "btn form-close" : "btn form-close hide"}
-          >
-            Close
-          </button>
+          {this.props.src === "home" ? (
+            <button
+              onClick={this.handleClosing}
+              className={active ? "btn form-close" : "btn form-close hide"}
+            >
+              Close
+            </button>
+          ) : null}
           {active
             ? action
               ? this.renderActionTemplate()

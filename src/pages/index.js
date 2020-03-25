@@ -7,6 +7,15 @@ import SEO from "../components/seo"
 import "../components/styles/pages/homePage.scss"
 
 class HomePage extends Component {
+  state = {
+    actionBarActive: false,
+  }
+
+  handleActive(condition) {
+    console.log(condition)
+    // this.setState(() => ({ actionBarActive: condition }))
+  }
+
   render() {
     const { title, acf: data } = this.props.data.allWordpressPage.edges[0].node
     return (
@@ -23,7 +32,7 @@ class HomePage extends Component {
               color="gray"
             />
           </div>
-          <ActionBar />
+          <ActionBar onActive={this.handleActive.bind(this)} src="home" />
         </section>
       </Layout>
     )
