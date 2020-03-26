@@ -1,29 +1,35 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import Arrow from "../components/common/arrow"
 import "../components/styles/templates/portfolio.scss"
+import ActionBar from "../components/actionBar"
+import Button from "../components/common/button"
 
 class PortfolioPage extends Component {
   render() {
-    const { data: items } = this.props
-    console.log(items)
+    const { data, items } = this.props
+    const { title, text, image, cta } = data.acf
 
     return (
       <Layout>
-        <div className="container">
-          <div className="portfolioWrapper">
-            <div className="contents">
-              <h1 className="heading">Projecten</h1>
-              <p className="text">
-                I'm baby cloud bread next level poutine street art. Sunt
-                excepteur quis squid truffaut do. Poutine culpa labore umami
-                schlitz shoreditch lorem banh mi bicycle rights. Irure
-                fingerstache raw denim meh.
-              </p>
+        <section className="hero">
+          <div className="wrapper container">
+            <div className="col-1">
+              <h1 className="heading">{title}</h1>
+              <p className="text">{text}</p>
+              <Button type="ghostery" label="Bekijk projecten" color="gray" />
+            </div>
+            <div className="col-2">
+              <img
+                className="portfolioHeroImage"
+                src={image.source_url}
+                alt={image.alt_text}
+              />
             </div>
           </div>
-        </div>
+          <div className="actionsBlob"></div>
+          <ActionBar src="home" />
+        </section>
         <div className="cards">
           <div className="container">
             {items.map(item => {
@@ -83,6 +89,21 @@ export default props => (
   <StaticQuery
     query={graphql`
       query {
+        allWordpressPage(filter: { slug: { eq: "portfolio" } }) {
+          edges {
+            node {
+              acf {
+                title
+                text
+                cta
+                image {
+                  alt_text
+                  source_url
+                }
+              }
+            }
+          }
+        }
         allWordpressPost {
           edges {
             node {
@@ -114,6 +135,11 @@ export default props => (
         }
       }
     `}
-    render={data => <PortfolioPage data={data.allWordpressPost.edges} />}
+    render={data => (
+      <PortfolioPage
+        data={data.allWordpressPage.edges[0].node}
+        items={data.allWordpressPost.edges}
+      />
+    )}
   />
 )

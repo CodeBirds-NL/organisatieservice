@@ -39,7 +39,7 @@ class Header extends Component {
         <div className="left">
           <Hamburger onToggle={this.handleToggle} />
           <span className="brand">
-            Organisatieservice
+            Organisatie<span className="bold">service</span>
             {/* <img src={logoUrl} alt={logoAlt} /> */}
           </span>
         </div>

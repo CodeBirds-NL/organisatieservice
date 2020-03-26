@@ -39,12 +39,6 @@ class ActionBar extends Component {
     }
   }
 
-  componentDidUpdate() {
-    if (JSON.stringify(this.state) === JSON.stringify(this.defaultState)) {
-      this.props.onActive(false)
-    }
-  }
-
   actions = [
     {
       id: 1,
@@ -132,8 +126,6 @@ class ActionBar extends Component {
     arr.push({ ...this.state })
     this.history = arr
     this.setState(() => ({ actionBarClicked: true }))
-
-    this.props.onActive(true)
   }
 
   handleBackClick = () => {
@@ -214,7 +206,7 @@ class ActionBar extends Component {
         className={active ? "actionBar active" : "actionBar"}
         role="Selecteer dienst"
       >
-        {" "}
+        {active && <span className="brand rotated">Organisatieservice</span>}
         <div className="backArea">
           {this.props.src === "home" ? (
             <button onClick={this.handleBackClick} className="btn back">

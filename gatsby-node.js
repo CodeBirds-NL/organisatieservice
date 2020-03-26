@@ -36,6 +36,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 alt_text
                 source_url
               }
+              highlights
             }
           }
         }

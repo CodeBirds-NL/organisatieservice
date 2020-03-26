@@ -7,32 +7,34 @@ import SEO from "../components/seo"
 import "../components/styles/pages/homePage.scss"
 
 class HomePage extends Component {
-  state = {
-    actionBarActive: false,
-  }
-
-  handleActive(condition) {
-    console.log(condition)
-    // this.setState(() => ({ actionBarActive: condition }))
-  }
-
   render() {
-    const { title, acf: data } = this.props.data.allWordpressPage.edges[0].node
+    const { title, acf } = this.props.data.allWordpressPage.edges[0].node
     return (
       <Layout>
         <SEO title={title} />
         <section className="hero">
           <div className="container wrapper">
-            <h1 className="title">{data.hero_title}</h1>
-            <h3 className="subTitle">{data.hero_subtitle}</h3>
-            <p className="text">{data.hero_text}</p>
-            <Button
-              type="ghostery"
-              label={data.hero_call_to_action}
-              color="gray"
-            />
+            <div className="col-1">
+              <h1 className="title">{acf.hero_title}</h1>
+              <h1 className="subTitle">{acf.hero_subtitle}</h1>
+              <p className="text">{acf.hero_text}</p>
+              <Button
+                type="ghostery"
+                label={acf.hero_call_to_action}
+                color="gray"
+              />
+            </div>
+            <div className="col-2">
+              <img
+                className="homeHeroImage"
+                src={acf.hero_image.source_url}
+                alt={acf.hero_image.alt_text}
+              />
+            </div>
+            <div className="actionsBlob"></div>
+            <ActionBar src="home" />
           </div>
-          <ActionBar onActive={this.handleActive.bind(this)} src="home" />
+          {/* <ActionBar onActive={this.handleActive.bind(this)} src="home" /> */}
         </section>
       </Layout>
     )
@@ -51,6 +53,10 @@ export const query = graphql`
             hero_subtitle
             hero_text
             hero_title
+            hero_image {
+              source_url
+              alt_text
+            }
           }
           title
         }

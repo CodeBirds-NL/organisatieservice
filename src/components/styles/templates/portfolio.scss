@@ -1,97 +1,61 @@
 @use '../layout/colors.scss' as c;
 
-// partials
+#portfolioSingle.intro {
+  background-color: c.$light-gray;
+  width: 100%;
+  height: auto;
+  & .heading {
+    font-size: 48px;
+  }
+}
+
 .heading {
   font-size: 72px;
-  margin-bottom: 0.5em;
+  line-height: 1em;
+  margin-bottom: 32px;
 }
 
 .subHeading {
   font-size: 48px;
   margin-bottom: 0.5em;
+  line-height: 1em;
 }
 
-.text {
-  margin-bottom: 1.5em;
+.portfolioHeroImage {
+  margin-left: -80px;
+  margin-top: -40px;
 }
 
-// container for all sections
-.portfolioWrapper {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  & .contents {
-    padding: 105px 0 80px 0;
+.highlights {
+  color: c.$white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 30px 40px;
+  font-size: 20px;
+  & h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 1em;
   }
-}
-
-// sections
-.intro {
-  background-color: c.$light-gray;
-  width: 100%;
-  height: auto;
-  transform-origin: 0;
-  & .contents {
-    transform: skewY(6deg);
-    -webkit-transform: skewY(6deg);
-    -moz-transform: skewY(6deg);
-    -ms-transform: skewY(6deg);
-    -o-transform: skewY(6deg);
-    transform-origin: 0;
+  & ul li {
     position: relative;
-    padding-bottom: 205px;
-    & .container {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      & .col1 {
-        width: 60%;
-        & .text {
-          max-width: 450px;
-        }
-      }
-      & .col2 {
-        width: 30%;
-        & .highlights {
-          background-color: c.$primary-color;
-          color: c.$light-gray;
-          position: absolute;
-          bottom: 0;
-          padding: 30px 40px;
-          font-size: 20px;
-          & h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 1em;
-          }
-          & ul .listItem {
-            position: relative;
-            padding-left: 30px;
-            padding-right: 30px;
-            margin-bottom: 0.75em;
-            line-height: 1em;
-            &:before {
-              content: "";
-              width: 20px;
-              height: 20px;
-              position: absolute;
-              left: 0px;
-              background: url(../../../images/check.svg);
-              background-position: 50%;
-              background-repeat: no-repeat;
-            }
-          }
-          box-shadow: 5px 5px 32px 5px rgba(0, 0, 0, 0.08);
-        }
-      }
+    padding-left: 30px;
+
+    margin-bottom: 1.5em;
+    line-height: 1em;
+    width: 230px;
+    &:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 0px;
+      background: url(../../../images/check.svg);
+      background-position: 50%;
+      background-repeat: no-repeat;
     }
   }
-  transform: skewY(-6deg);
-  -webkit-transform: skewY(-6deg);
-  -moz-transform: skewY(-6deg);
-  -ms-transform: skewY(-6deg);
-  -o-transform: skewY(-6deg);
 }
 
 .body {

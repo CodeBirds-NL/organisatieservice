@@ -7,7 +7,7 @@ class ContactPage extends Component {
     return (
       <Layout>
         <div id="contact">
-          <span className="brand">Organisatieservice</span>
+          <span className="brand rotated">Organisatieservice</span>
           <ActionBar src="contact" />
         </div>
       </Layout>
