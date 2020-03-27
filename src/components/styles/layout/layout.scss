@@ -16,8 +16,17 @@
 }
 @media (min-width: 1224px) {
   .container {
-    padding: 140px;
+    padding: 0 140px;
     // width: 1184px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    padding: 0;
+    max-width: 1240px;
+  }
+  .container .wrapper {
+    padding-top: 150px;
   }
 }
 

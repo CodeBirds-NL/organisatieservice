@@ -251,3 +251,13 @@ section.hero {
     margin-bottom: 24px;
   }
 }
+
+@media (min-width: 1600px) {
+  .hero .container.wrapper {
+    padding-top: 150px;
+  }
+  .homeHeroImage {
+    margin-left: -80px;
+    margin-top: -40px;
+  }
+}
