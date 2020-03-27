@@ -1,102 +1,46 @@
 @use '../layout/colors.scss' as c;
 
-section.hero {
-  // height: calc(100vh - 105px);
-  display: flex;
-  flex-direction: column;
-  color: c.$black;
-}
-
-.hero .wrapper {
-  padding-top: 120px;
-  padding-bottom: 100px;
-  display: flex;
-  flex-direction: column;
-  & .col-1 {
-    width: 100%;
-    z-index: 2;
-  }
-  & .col-2 {
-    width: 0%;
-  }
-}
-
 .homeHeroImage {
   margin-left: -100px;
   margin-top: -20px;
 }
 
-.hero .title {
-  font-size: 64px;
-  font-weight: 700;
-  margin-bottom: 18px;
-  line-height: 1em;
-}
-
-.hero .subTitle {
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 1em;
-  margin-bottom: 32px;
-}
-
-.hero .text {
-  width: 450px;
-}
-
-// .hero .text::before {
-//   content: "''";
-//   font-size: 48px;
-//   font-weight: 700;
-//   position: absolute;
-//   top: 3px;
-//   left: -30px;
-// }
-
-.actionsBlob {
-  display: none;
-  overflow: hidden;
-  position: absolute;
-  top: -250px;
-  right: -100px;
-  background-image: url(../../../images/blob.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 800px;
-  width: 600px;
-}
-
 /* action bar styles */
 .actionBar {
   color: c.$white;
-  position: absolute;
-  top: 0;
-  right: -15px;
-  width: 330px;
-  padding: 30px 40px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  height: 60px;
+  width: 250px;
+  background-color: c.$primary-color;
   //transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  //-webkit-transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  //-moz-transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  //-ms-transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  //-o-transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  overflow-y: auto;
+  overflow-y: hidden;
+  overflow-x: hidden;
   & .backArea {
     display: none;
   }
+  &:hover {
+    cursor: pointer;
+  }
+  border-top-left-radius: 200px;
+  box-shadow: 0 0 15px 5px rgba($color: c.$black, $alpha: 0.1);
 }
 
 .actionBar .heading {
-  font-size: 32px;
-  font-weight: 600;
-  height: 45px;
+  font-size: 28px;
+  font-weight: 500;
+  height: 64px;
   display: flex;
   align-items: center;
-  margin-bottom: 17px;
+  justify-content: center;
 }
 
 .actionBar .subHeading {
   font-size: 20px;
   margin-bottom: 2em;
+  line-height: 1.5em;
 }
 
 .actionBar .actions {
@@ -112,7 +56,7 @@ section.hero {
   width: 48px;
   height: 48px;
   position: absolute;
-  right: 0px;
+  right: -20px;
   top: 0px;
   overflow: hidden;
   border: none;
@@ -127,7 +71,6 @@ section.hero {
   -ms-transition: visibility 0s 0.4s ease-out;
   -o-transition: visibility 0s 0.4s ease-out;
   &.hide {
-    //display: none;
     visibility: hidden;
     transition-delay: 0s;
   }
@@ -139,22 +82,16 @@ section.hero {
   bottom: 0;
   background-color: c.$primary-color;
   width: calc(100vw);
-  padding-left: 140px;
-  z-index: 9;
+  height: 100%;
+  padding: 30px 40px;
+  padding-left: 0;
+  z-index: 15;
   display: flex;
   flex-direction: row;
-  &::before {
-    content: "";
-    height: 100%;
-    width: 140px;
-    background-color: c.$white;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  overflow-y: auto;
   & .backArea {
     display: block;
-    padding: 0 40px;
+    padding: 0 20px;
     & button.back {
       border: 0;
       width: 100%;
@@ -173,9 +110,17 @@ section.hero {
   & .viewArea {
     flex-grow: 1;
     position: relative;
-    // & .actionButtons {
-    //   opacity: 0;
-    // }
+    & .heading {
+      font-size: 32px;
+      font-weight: 600;
+      width: 90%;
+      height: auto;
+      display: block;
+      margin-bottom: 17px;
+    }
+    & .next {
+      margin-bottom: 30px;
+    }
   }
   //transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
   //-webkit-transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
@@ -187,6 +132,12 @@ section.hero {
   -moz-transform: none;
   -ms-transform: none;
   -o-transform: none;
+  border-radius: unset;
+  -webkit-border-radius: unset;
+  -moz-border-radius: unset;
+  -ms-border-radius: unset;
+  -o-border-radius: unset;
+  box-shadow: unset;
 }
 
 /* Step transitions in ActionBar - styles */
@@ -231,24 +182,70 @@ section.hero {
   margin-bottom: 24px;
 }
 
+@media (min-width: 768px) {
+  .actionBar {
+    width: 330px;
+    height: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 30px 40px;
+    padding-right: 20px;
+    border-radius: unset;
+    -webkit-border-radius: unset;
+    -moz-border-radius: unset;
+    -ms-border-radius: unset;
+    -o-border-radius: unset;
+    overflow-y: auto;
+    & .form-close {
+      right: 0;
+    }
+    & .heading {
+      font-size: 32px;
+      font-weight: 600;
+      width: 100%;
+      height: 45px;
+      display: block;
+      margin-bottom: 17px;
+    }
+    &.active {
+      padding-left: 140px;
+      z-index: 9;
+      &::before {
+        content: "";
+        height: 100%;
+        width: 140px;
+        background-color: c.$white;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      & .brand.rotated {
+        display: block;
+      }
+      & .backArea {
+        padding: 0 40px;
+      }
+    }
+    box-shadow: unset;
+  }
+}
+
 @media only screen and (min-width: 1068px) {
-  .actionsBlob {
-    display: block;
-  }
-  .hero .wrapper {
-    flex-direction: row;
-    & .col-1 {
-      width: 50%;
-    }
-    & .col-2 {
-      width: 50%;
-    }
-  }
   .active .subHeading {
     max-width: 500px;
   }
   .active .actions {
     margin-bottom: 24px;
+  }
+}
+
+@media (min-width: 1168px) {
+  .actionBar {
+    width: auto;
+    position: absolute;
+    bottom: unset;
+    background-color: transparent;
+    top: 0;
   }
 }
 

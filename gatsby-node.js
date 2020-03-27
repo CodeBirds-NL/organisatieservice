@@ -37,6 +37,9 @@ exports.createPages = async ({ graphql, actions }) => {
                 source_url
               }
               highlights
+              steps {
+                stap
+              }
             }
           }
         }

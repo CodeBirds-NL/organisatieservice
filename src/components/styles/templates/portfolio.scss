@@ -1,125 +1,19 @@
 @use '../layout/colors.scss' as c;
+@use '../layout/layout.scss' as l;
 
-#portfolioSingle.intro {
-  background-color: c.$light-gray;
-  width: 100%;
-  height: auto;
-  & .heading {
-    font-size: 48px;
-  }
-}
-
-.heading {
-  font-size: 72px;
-  line-height: 1em;
-  margin-bottom: 32px;
-}
-
-.subHeading {
-  font-size: 48px;
-  margin-bottom: 0.5em;
-  line-height: 1em;
-}
+/* =============================
+PORTFOLIO ARCHIVE STYLES
+================================ */
 
 .portfolioHeroImage {
   margin-left: -80px;
   margin-top: -40px;
 }
 
-.highlights {
-  color: c.$white;
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 30px 40px;
-  font-size: 20px;
-  & h3 {
-    font-size: 32px;
-    font-weight: 600;
-    margin-bottom: 1em;
-  }
-  & ul li {
-    position: relative;
-    padding-left: 30px;
-
-    margin-bottom: 1.5em;
-    line-height: 1em;
-    width: 230px;
-    &:before {
-      content: "";
-      width: 20px;
-      height: 20px;
-      position: absolute;
-      left: 0px;
-      background: url(../../../images/check.svg);
-      background-position: 50%;
-      background-repeat: no-repeat;
-    }
-  }
-}
-
-.body {
-  margin-top: 80px;
-  & #aanpak {
-    text-align: center;
-    & .subHeading {
-      width: 100%;
-    }
-  }
-  & #resultaat {
-    margin-top: 80px;
-    background-color: c.$light-gray;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    padding: 30px 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    & .col2 {
-      margin-top: 10px;
-      margin-bottom: 60px;
-      & img {
-        box-shadow: 20px 20px 32px 0px rgba(0, 0, 0, 0.1);
-      }
-    }
-  }
-}
-
-// number styles for list
-.steps ul {
-  color: c.$black;
-  font-size: 20px;
-  & .step {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 1em;
-    line-height: 1em;
-    & span {
-      margin-right: 0.5em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: c.$primary-color;
-      color: c.$white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
-    }
-  }
-}
-
 // card styles
-.cards {
+section.cards {
   background-color: c.$light-gray;
-  padding: 80px 0;
+  padding: l.$sectionST 0;
 }
 .cards .container {
   display: grid;
@@ -199,14 +93,163 @@
   -o-border-radius: 5px;
 }
 
-// responsive styles
+/* =============================
+PORTFOLIO SINGLE STYLES
+================================ */
+
+.highlights {
+  position: absolute;
+  bottom: -130px;
+  left: 40px;
+  right: 40px;
+  color: c.$white;
+  padding: 30px 40px;
+  font-size: 20px;
+  background-color: c.$primary-color;
+  & h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 1em;
+  }
+  & ul li {
+    position: relative;
+    padding-left: 30px;
+
+    margin-bottom: 1.5em;
+    line-height: 1em;
+    width: 230px;
+    &:before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      left: 0px;
+      background: url(../../../images/check.svg);
+      background-position: 50%;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.clientLogo {
+  max-width: 300px;
+  // hide on mobile
+}
+
+.body {
+  margin-top: l.$sectionST + 130px;
+  & #aanpak {
+    text-align: center;
+    & .subHeading {
+      width: 100%;
+    }
+    & a.btn.underline {
+      display: none;
+    }
+    & .col-2 .steps {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  & #resultaat {
+    background-color: c.$light-gray;
+    margin-top: l.$sectionST;
+    margin-bottom: l.$sectionSB;
+    & .container .inner {
+      background-color: c.$light-gray;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      padding: 80px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      & .col-2 {
+        margin-top: 10px;
+        margin-bottom: 60px;
+        & img {
+          box-shadow: 20px 20px 32px 0px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+// number styles for list
+.steps ul {
+  color: c.$black;
+  font-size: 20px;
+  & .step {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1em;
+    line-height: 1em;
+    & span {
+      margin-right: 0.5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: c.$primary-color;
+      color: c.$white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+    }
+  }
+}
+
+/* =============================
+RESPONSIVE STYLES
+================================ */
+
 @media (min-width: 728px) {
   .cards .container {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+@media (min-width: 800px) {
+  .clientLogo {
+    margin-top: 48px;
+  }
+  .highlights {
+    bottom: -100px;
+    left: unset;
+    right: 40px;
+  }
+  .body {
+    margin-top: 180px;
+  }
+}
+
+@media (min-width: 1168px) {
+  .highlights {
+    background-color: transparent;
+    right: 0;
+    bottom: unset;
+    top: 0;
+  }
+  .clientLogo {
+    margin-top: 96px;
+  }
+  .body {
+    margin-top: l.$sectionST;
+  }
+}
+
 @media (min-width: 1224px) {
-  #aanpak {
+  .cards .container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  #aanpak .container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -214,32 +257,34 @@
     & .subHeading {
       text-align: left;
     }
-    & .col1 {
+    & .col-1 {
       padding-right: 80px;
       width: 60%;
       & .text {
         max-width: 550px;
         text-align: left;
       }
+      & a.btn.underline {
+        display: block;
+      }
     }
-    & .col2 {
+    & .col-2 {
       flex-grow: 1;
     }
   }
-  #resultaat {
-    text-align: center;
-    & .col1 {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      & .text {
-        max-width: 760px;
+  .body #resultaat {
+    background-color: transparent;
+    & .container {
+      text-align: center;
+      & .col-1 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & .text {
+          max-width: 760px;
+        }
       }
     }
-  }
-  // cards responsive styles
-  .cards .container {
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }

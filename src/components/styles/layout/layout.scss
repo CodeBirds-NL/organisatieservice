@@ -1,12 +1,25 @@
-@use 'colors';
+@use 'colors' as c;
 @use 'reset.css';
 
-// @mixin transparent-white($property, $alpha) {
-//   #{$property}: rgba(255, 255, 255, $alpha);
-// }
+$sectionST: 80px;
+$sectionSB: 80px;
+$heroST: 80px;
+$heroSB: 80px;
+
+@media (min-width: 800px) {
+  $heroST: 120px;
+  $heroSB: 100px;
+}
 
 :root {
   font-family: "Gilroy", sans-serif;
+}
+
+/* =============================
+DEFAULT PAGE CONFIG
+================================ */
+body {
+  overflow-x: hidden;
 }
 
 .container {
@@ -14,12 +27,119 @@
   padding: 0 40px;
   margin: 0 auto;
 }
+
+section.hero {
+  display: flex;
+  flex-direction: column;
+  color: c.$black;
+}
+
+.hero .wrapper {
+  padding-top: $heroST;
+  padding-bottom: $heroSB;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  & .col-1 {
+    width: 100%;
+    z-index: 2;
+    margin-bottom: 50px;
+  }
+  & .col-2 {
+    width: 0%;
+  }
+}
+
+.hero .title {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 18px;
+  line-height: 1em;
+}
+
+.hero .post.title {
+  font-size: 32px;
+  word-wrap: break-word;
+  font-weight: 700;
+  line-height: 1em;
+  margin-bottom: 18px;
+}
+
+.hero .subTitle {
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1em;
+  margin-bottom: 32px;
+}
+
+.hero .text {
+  width: auto;
+}
+
+.actionsBlob {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-image: url(../../../images/blob.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 800px;
+  width: 600px;
+  transform: translate(100px, -250px);
+  -webkit-transform: translate(100px, -250px);
+  -moz-transform: translate(100px, -250px);
+  -ms-transform: translate(100px, -250px);
+  -o-transform: translate(100px, -250px);
+}
+
+// RESPONSIVE STYLES
+@media (min-width: 800px) {
+  .hero .wrapper {
+    flex-direction: row;
+    & .col-1 {
+      width: 60%;
+      & .title,
+      & .subTitle {
+        font-size: 64px;
+      }
+      & .post.title {
+        font-size: 48px;
+      }
+      .text {
+        width: 450px;
+      }
+    }
+    & .col-2 {
+      width: 40%;
+      // display: flex;
+      // align-items: center;
+    }
+  }
+}
+
+@media (min-width: 1168px) {
+  .hero .wrapper {
+    position: unset;
+    & .col-1 {
+      width: 50%;
+    }
+    & .col-2 {
+      width: 50%;
+    }
+    & .actionsBlob {
+      display: block;
+    }
+  }
+}
+
 @media (min-width: 1224px) {
   .container {
     padding: 0 140px;
     // width: 1184px;
   }
 }
+
 @media (min-width: 1600px) {
   .container {
     padding: 0;
@@ -30,13 +150,25 @@
   }
 }
 
-.text {
+/* =============================
+COMPONENTS
+================================ */
+
+/* 1. Text and Headings */
+h2.subHeading {
+  font-size: 36px;
+  margin-bottom: 0.5em;
+  line-height: 1em;
+}
+
+p.text {
   font-size: 20px;
   line-height: 1.5em;
-  color: colors.$text-color;
+  color: c.$text-color;
   margin-bottom: 1.5em;
 }
 
+/* 1. Buttons */
 .btn {
   @extend button;
   cursor: pointer;
@@ -52,7 +184,7 @@
 
 .ghostery {
   @extend .btn;
-  border: 3px solid colors.$black;
+  border: 3px solid c.$black;
   box-shadow: 0px 0px 22px 0px rgba(0, 0, 0, 0.05);
   transition: background-color 0.25s ease-out, color 0.25s ease-out;
   -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
@@ -62,16 +194,16 @@
 }
 
 .ghostery:hover {
-  background-color: colors.$black;
-  color: colors.$white;
+  background-color: c.$black;
+  color: c.$white;
 }
 
 .gray {
   @extend .ghostery;
-  border-color: colors.$gray;
+  border-color: c.$gray;
 }
 .gray:hover {
-  background-color: colors.$gray;
+  background-color: c.$gray;
 }
 
 .withArrow {
@@ -99,7 +231,7 @@
 }
 
 .withArrow:hover {
-  @include colors.transparent-white(background-color, 0.2);
+  @include c.transparent-white(background-color, 0.2);
 }
 
 .arrow {
@@ -115,7 +247,7 @@
 
 .full {
   @extend .btn;
-  @include colors.transparent-white(background-color, 0.2);
+  @include c.transparent-white(background-color, 0.2);
   border: 0;
   &:hover {
     box-shadow: 0 0 0 3px rgba($color: #ffffff, $alpha: 0.7);
@@ -129,13 +261,13 @@
 
 .underline {
   @extend .btn;
-  color: colors.$black;
+  color: c.$black;
   font-weight: 600;
   border: 0;
   padding: 0;
   & .content {
     padding: 0 0 5px 0;
-    border-bottom: 3px solid colors.$primary-color;
+    border-bottom: 3px solid c.$primary-color;
   }
 }
 
@@ -158,7 +290,7 @@ a.underline {
   position: absolute;
   top: 335px;
   left: 56.5px;
-  display: block;
+  display: none;
   transform: rotate(-90deg);
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
@@ -166,5 +298,11 @@ a.underline {
   -o-transform: rotate(-90deg);
   transform-origin: left top;
   z-index: 10;
-  color: colors.$black;
+  color: c.$black;
+}
+
+@media (min-width: 600px) {
+  h2.subHeading {
+    font-size: 48px;
+  }
 }

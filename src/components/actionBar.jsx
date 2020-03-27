@@ -23,7 +23,7 @@ class ActionBar extends Component {
   }
 
   componentWillMount() {
-    if (this.props.src === "home") {
+    if (this.props.src !== "contact") {
       this.setState({ actionBarClicked: false, action: null })
     } else {
       // the code that follows applies for the contact page that inializes the action bar straight to the contact level
@@ -208,14 +208,14 @@ class ActionBar extends Component {
       >
         {active && <span className="brand rotated">Organisatieservice</span>}
         <div className="backArea">
-          {this.props.src === "home" ? (
+          {this.props.src !== "contact" ? (
             <button onClick={this.handleBackClick} className="btn back">
               <Arrow width="32px" />
             </button>
           ) : null}
         </div>
         <div className="viewArea">
-          {this.props.src === "home" ? (
+          {this.props.src !== "contact" ? (
             <button
               onClick={this.handleClosing}
               className={active ? "btn form-close" : "btn form-close hide"}

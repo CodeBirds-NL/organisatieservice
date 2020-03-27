@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import "../components/styles/templates/portfolio.scss"
 import ActionBar from "../components/actionBar"
 import Button from "../components/common/button"
+import Hero from "../components/common/hero"
 
 class PortfolioPage extends Component {
   render() {
@@ -12,25 +13,21 @@ class PortfolioPage extends Component {
 
     return (
       <Layout>
-        <section className="hero">
-          <div className="wrapper container">
-            <div className="col-1">
-              <h1 className="heading">{title}</h1>
-              <p className="text">{text}</p>
-              <Button type="ghostery" label="Bekijk projecten" color="gray" />
-            </div>
-            <div className="col-2">
-              <img
-                className="portfolioHeroImage"
-                src={image.source_url}
-                alt={image.alt_text}
-              />
-            </div>
-          </div>
-          <div className="actionsBlob"></div>
-          <ActionBar src="home" />
-        </section>
-        <div className="cards">
+        <Hero
+          buttonLabel={cta}
+          image={
+            <img
+              className="portfolioHeroImage"
+              src={image.source_url}
+              alt={image.alt_text}
+            />
+          }
+          blobContent={<ActionBar src="portfolio" />}
+        >
+          <h1 className="title">{title}</h1>
+          <p className="text">{text}</p>
+        </Hero>
+        <section className="cards">
           <div className="container">
             {items.map(item => {
               const {
@@ -79,7 +76,7 @@ class PortfolioPage extends Component {
               )
             })}
           </div>
-        </div>
+        </section>
       </Layout>
     )
   }
