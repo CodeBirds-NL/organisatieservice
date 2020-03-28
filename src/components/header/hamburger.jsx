@@ -3,7 +3,7 @@ import "./hamburger.scss"
 
 const Hamburger = ({ onToggle }) => {
   return (
-    <div onClick={onToggle} id="nav-icon" role="toggle menu">
+    <div role="toggle" onClick={onToggle} id="nav-icon">
       <span></span>
       <span></span>
       <span></span>

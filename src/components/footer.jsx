@@ -1,8 +1,27 @@
 import React from "react"
-import "./styles/layout/footer.css"
+import "./styles/layout/footer.scss"
 
 const Footer = () => {
-  return <h1>Footer Here!</h1>
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="copyright">
+          <p>
+            ©<span>{new Date().getFullYear()} </span> Organisatie
+            <span className="bold">service</span>
+          </p>
+          <div className="vendor">
+            Realisatie: <a href="https://codebirds.nl">CodeBirds</a>
+          </div>
+        </div>
+        <div className="social">
+          <span className="linkedin"></span>
+          <span className="facebook"></span>
+          <span className="twitter"></span>
+        </div>
+      </div>
+    </footer>
+  )
 }
 
 export default Footer

@@ -33,26 +33,26 @@ section.cards {
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
-        border-top-right-radius: 5px;
-        border-top-left-radius: 5px;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
       }
     }
     & .lower-1 {
       padding: 30px;
       & h5 {
-        font-size: 18px;
+        font-size: 24px;
         font-weight: 600;
         margin-bottom: 1em;
       }
       & .description {
-        font-size: 18px;
+        font-size: 20px;
         color: c.$text-color;
       }
     }
     & .lower-2 {
       border-top: 1px solid #eeeeee;
       padding: 15px 30px;
-      font-size: 14px;
+      font-size: 16px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -62,11 +62,11 @@ section.cards {
           color: c.$light-gray;
           background-color: c.$primary-color;
           padding: 4px 8px;
-          border-radius: 36px;
-          -webkit-border-radius: 36px;
-          -moz-border-radius: 36px;
-          -ms-border-radius: 36px;
-          -o-border-radius: 36px;
+          border-radius: 32px;
+          -webkit-border-radius: 32px;
+          -moz-border-radius: 32px;
+          -ms-border-radius: 32px;
+          -o-border-radius: 32px;
         }
         & span:nth-of-type(n + 2) {
           margin-left: 10px;
@@ -86,11 +86,11 @@ section.cards {
       }
     }
   }
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 /* =============================

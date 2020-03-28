@@ -1,10 +1,17 @@
 import React from "react"
 import Button from "./button"
 
-const Hero = ({ background, image, children, buttonLabel, blobContent }) => {
+const Hero = ({
+  minHeight = "auto",
+  background,
+  image,
+  children,
+  buttonLabel,
+  blobContent,
+}) => {
   return (
     <section
-      style={{ backgroundColor: background || "white" }}
+      style={{ backgroundColor: background || "white", minHeight }}
       className="hero"
     >
       <div className="container wrapper">

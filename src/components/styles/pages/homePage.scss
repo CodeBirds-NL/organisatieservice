@@ -1,9 +1,159 @@
 @use '../layout/colors.scss' as c;
+@use '../layout/layout.scss' as l;
 
 .homeHeroImage {
   margin-left: -100px;
   margin-top: -20px;
 }
+
+/* =============================
+2. REFERENCE SECTION STYLES
+================================ */
+#references {
+  background-color: c.$white;
+  padding: l.$sectionST 0;
+  & .text {
+    max-width: 550px;
+  }
+  & .btn {
+    margin-bottom: 50px;
+  }
+  & .gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 50px;
+    grid-row-gap: 30px;
+    & .logo {
+      display: flex;
+      align-items: center;
+      & img {
+        width: 100%;
+        height: 100%;
+        // align logo's with different dimensions
+        max-height: 120px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+/* =============================
+3. ABOUT SECTION STYLES
+================================ */
+
+//laptop colors
+$base: #e6e8e7;
+$screen: #89c9e5;
+$frame: #3f3f41;
+$open: #bcbdc1;
+$base2: #d1d2d4;
+
+//mixin
+@mixin align-horizontal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#about {
+  padding: l.$sectionST 0 20px 0;
+  background-color: rgba($color: c.$primary-color, $alpha: 1);
+  color: c.$white;
+  & .container {
+    display: flex;
+    // flex-wrap: wrap-reverse;
+    & .col-1 {
+      width: 50%;
+      //the laptop
+      & .laptop {
+        position: relative;
+        width: 450px;
+        height: 278px;
+        margin: 0 auto;
+        background: $screen;
+        border: 15px solid $frame;
+        border-top: 20px solid $frame;
+        border-radius: 14px 14px 0 0;
+        margin: 0 0 90px 0;
+        box-shadow: 0 0 0 1px $base2;
+        &:before {
+          content: "";
+          bottom: -35px;
+          background: $base;
+          height: 20px;
+          width: 573px;
+          border-radius: 0 0 10px 10px;
+          @include align-horizontal;
+        }
+        &:after {
+          content: "";
+          top: -12px;
+          width: 3px;
+          height: 3px;
+          background: $base;
+          border-radius: 50%;
+          @include align-horizontal;
+        }
+        & .video-bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        & .base {
+          bottom: -25px;
+          background: $base2;
+          height: 10px;
+          width: 573px;
+          @include align-horizontal;
+          &:before {
+            content: "";
+            border-radius: 0 0 10px 10px;
+            height: 10px;
+            width: 80px;
+            background: $open;
+            @include align-horizontal;
+          }
+          &:after {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 573px;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0px 10px 36px -2px rgba(0, 0, 0, 0.4);
+            -webkit-border-radius: 0 0 10px 10px;
+            -moz-border-radius: 0 0 10px 10px;
+            -ms-border-radius: 0 0 10px 10px;
+            -o-border-radius: 0 0 10px 10px;
+          }
+        }
+      }
+    }
+    & .col-2 {
+      width: 50%;
+      & .text {
+        color: c.$white;
+      }
+      & a.btn {
+        // text-decoration: none;
+        // display: block;
+        color: c.$white;
+        &.withArrow:hover {
+          background-color: transparent;
+        }
+        .content {
+          border-color: c.$white;
+        }
+      }
+    }
+  }
+}
+
+/* =============================
+ACTIONBAR STYLES
+================================ */
 
 /* action bar styles */
 .actionBar {
@@ -182,7 +332,16 @@
   margin-bottom: 24px;
 }
 
+/* =============================
+RESPONSIVE STYLES
+================================ */
+
 @media (min-width: 768px) {
+  #references {
+    & .gallery {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
   .actionBar {
     width: 330px;
     height: 100%;

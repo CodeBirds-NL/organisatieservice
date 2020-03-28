@@ -1,0 +1,44 @@
+@use './colors.scss' as c;
+
+.footer {
+  background-color: c.$light-gray;
+  padding: 20px 0;
+  font-size: 20px;
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .copyright {
+      display: flex;
+      width: 50%;
+      .vendor {
+        display: none;
+        margin-left: 50px;
+      }
+    }
+    .social {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+      .linkedin,
+      .facebook,
+      .twitter {
+        display: block;
+        background-repeat: no-repeat;
+        height: 36px;
+        width: 36px;
+        margin-left: 15px;
+      }
+      .linkedin {
+        background-image: url(../../../images/social/linkedin.svg);
+      }
+      .facebook {
+        background-image: url(../../../images/social/facebook.svg);
+      }
+      .twitter {
+        background-image: url(../../../images/social/twitter.svg);
+      }
+    }
+  }
+}

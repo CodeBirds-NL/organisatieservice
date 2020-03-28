@@ -1,10 +1,9 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import "../components/styles/templates/portfolio.scss"
 import ActionBar from "../components/actionBar"
-import Button from "../components/common/button"
 import Hero from "../components/common/hero"
+import "../components/styles/templates/portfolio.scss"
 
 class PortfolioPage extends Component {
   render() {
@@ -38,7 +37,7 @@ class PortfolioPage extends Component {
                 date,
                 tags = [{ name: "", id: "" }],
               } = item.node
-              const { logo_klant = "", project_foto, resultaat } = acf
+              const { project_foto, resultaat } = acf
               return (
                 <div key={id} className="card">
                   <Link className="link" to={`portfolio/${slug}`}>

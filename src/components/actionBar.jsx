@@ -22,7 +22,8 @@ class ActionBar extends Component {
     nextStep: null,
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    // inialize actionbar dependent on src (the page it is loaded on)
     if (this.props.src !== "contact") {
       this.setState({ actionBarClicked: false, action: null })
     } else {
@@ -204,9 +205,13 @@ class ActionBar extends Component {
       <div
         onClick={this.handleActionBarClick}
         className={active ? "actionBar active" : "actionBar"}
-        role="Selecteer dienst"
+        role="Actie"
       >
-        {active && <span className="brand rotated">Organisatieservice</span>}
+        {active && (
+          <span className="brand rotated">
+            Organisatie<span className="bold">service</span>
+          </span>
+        )}
         <div className="backArea">
           {this.props.src !== "contact" ? (
             <button onClick={this.handleBackClick} className="btn back">

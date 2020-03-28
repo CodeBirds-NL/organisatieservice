@@ -2,7 +2,7 @@
 
 /* HEADER STYLES */
 .bold {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .header {
@@ -24,7 +24,23 @@
 
 .brand {
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 400;
+  // line-height: 1em;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 4px;
+    right: -11px;
+    width: 9px;
+    height: 9px;
+    background-color: c.$primary-color;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
 }
 
 /* OFF-CANVAS MENU */

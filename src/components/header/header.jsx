@@ -26,10 +26,10 @@ class Header extends Component {
       email,
     } = data.allWordpressPage.edges[0].node.acf.contactgegevens
     // get logo details
-    const {
-      source_url: logoUrl,
-      alt_text: logoAlt,
-    } = data.allWordpressPage.edges[0].node.site_logo_src
+    // const {
+    //   source_url: logoUrl,
+    //   alt_text: logoAlt,
+    // } = data.allWordpressPage.edges[0].node.site_logo_src
 
     return (
       <header
@@ -44,7 +44,7 @@ class Header extends Component {
           </span>
         </div>
         <div className="offCanvasMenu">
-          <nav className="nav" role="nav">
+          <nav className="nav" role="navigation">
             <ul>
               {menuItems.map(item => (
                 <li key={item.wordpress_id} className="menuItem">

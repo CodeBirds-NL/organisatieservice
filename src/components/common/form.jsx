@@ -16,17 +16,17 @@ class Form extends Component {
     address: { name: "address", label: "Adres" },
   }
 
-  getContactFields = contactOption => {
-    const { name, companyName, phone, email } = this.contactFields
-    switch (contactOption) {
-      case "Terugbelverzoek":
-        return [name, phone]
-        break
-      default:
-        return [companyName, email]
-        break
-    }
-  }
+  // getContactFields = contactOption => {
+  //   const { name, companyName, phone, email } = this.contactFields
+  //   switch (contactOption) {
+  //     case "Terugbelverzoek":
+  //       return [name, phone]
+  //       break
+  //     default:
+  //       return [companyName, email]
+  //       break
+  //   }
+  // }
 
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data }

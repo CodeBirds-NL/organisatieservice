@@ -1,16 +1,29 @@
-$primary-color: #2196f3;
-$light-gray: #f8f8f8;
+$primary-color: #007be0;
+$light-gray: #f5f5f5;
 $black: #001010;
 $gray: #102b3f;
 $white: #fff;
 $text-color: #102b3f;
 $heading-color: $black;
 $card-white: #fcfcfc;
-$administratie: #ff4e4e;
-$marketing: #9fd2d6;
+$administratie: #ff715b;
+$marketing: #ffba08;
 $website: $primary-color;
-$tekst: #8154ef;
+$tekst: #6457a6;
 
 @mixin transparent-white($property, $alpha) {
   #{$property}: rgba(255, 255, 255, $alpha);
 }
+
+// #2196f3 original blue
+//1A936F emerald
+//D9E5D6 graya
+//FF715B red
+// 6457A6 purple
+// 17BEBB tiffany blue
+// FFBA08 yellow
+// D00000 bright red
+// ECE4B7 dutch wine
+// D9DD92 soft yellow
+// 558B6E beatiful green
+// F8F8F8

@@ -4,12 +4,6 @@ import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
 
-function renderSteps() {
-  renderSteps = () => {
-    // select each li and map it to an array with class + span with index
-  }
-}
-
 export default ({ pageContext }) => {
   const { title, acf } = pageContext
 
@@ -70,7 +64,7 @@ export default ({ pageContext }) => {
               <div className="col-2">
                 <img
                   src={acf.project_foto.source_url}
-                  alt="project resultaat"
+                  alt={`${title} resultaat`}
                 />
               </div>
               <a href={acf.link_website} className="btn underline withArrow">
