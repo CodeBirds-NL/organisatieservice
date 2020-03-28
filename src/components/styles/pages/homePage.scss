@@ -11,7 +11,7 @@
 ================================ */
 #references {
   background-color: c.$white;
-  padding: l.$sectionST 0;
+  padding: 120px 0;
   & .text {
     max-width: 550px;
   }
@@ -56,8 +56,8 @@ $base2: #d1d2d4;
 }
 
 #about {
-  padding: l.$sectionST 0 20px 0;
-  background-color: rgba($color: c.$primary-color, $alpha: 1);
+  padding: l.$sectionST 0 60px 0;
+  background-color: c.$primary-color;
   color: c.$white;
   & .container {
     display: flex;
