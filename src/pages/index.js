@@ -61,7 +61,7 @@ class HomePage extends Component {
                   muted
                   loop
                   type="video/mp4"
-                  src={acf.about.video.source_url}
+                  src={acf.about.video}
                 ></video>
                 <div className="base"></div>
               </div>
@@ -120,9 +120,7 @@ export const query = graphql`
             about {
               title
               text
-              video {
-                source_url
-              }
+              video
             }
           }
           title
