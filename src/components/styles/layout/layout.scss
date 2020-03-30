@@ -154,7 +154,12 @@ section.hero {
 COMPONENTS
 ================================ */
 
-/* 1. Text and Headings */
+/* 1. Margins and paddings */
+.ml-2 {
+  margin-left: 2rem;
+}
+
+/* 2. Text and Headings */
 h2.subHeading {
   font-size: 36px;
   margin-bottom: 0.5em;
@@ -168,7 +173,7 @@ p.text {
   margin-bottom: 1.5em;
 }
 
-/* 1. Buttons */
+/* 3. Buttons */
 .btn {
   @extend button;
   cursor: pointer;
@@ -186,11 +191,16 @@ p.text {
 .ghostery {
   @extend .btn;
   border: 3px solid c.$primary-color;
-  transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  -moz-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  -ms-transition: background-color 0.25s ease-out, color 0.25s ease-out;
-  -o-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+  transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border-color 0.25s ease-out;
+  -webkit-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border-color 0.25s ease-out;
+  -moz-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border-color 0.25s ease-out;
+  -ms-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border-color 0.25s ease-out;
+  -o-transition: background-color 0.25s ease-out, color 0.25s ease-out,
+    border-color 0.25s ease-out;
   color: c.$black;
   text-transform: capitalize;
   letter-spacing: 1px;
@@ -204,9 +214,12 @@ p.text {
 
 .gray {
   @extend .ghostery;
-  border-color: c.$gray;
+  border-color: c.$primary-color;
+  background-color: c.$primary-color;
+  color: c.$white;
 }
 .gray:hover {
+  border-color: c.$gray;
   background-color: c.$gray;
 }
 

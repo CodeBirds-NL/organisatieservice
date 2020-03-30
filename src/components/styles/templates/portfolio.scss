@@ -139,7 +139,6 @@ PORTFOLIO SINGLE STYLES
 }
 
 .body {
-  margin-top: l.$sectionST + 130px;
   & #aanpak {
     text-align: center;
     & .subHeading {
@@ -242,7 +241,7 @@ RESPONSIVE STYLES
     margin-top: 96px;
   }
   .body {
-    margin-top: l.$sectionST;
+    margin-top: 0;
   }
 }
 

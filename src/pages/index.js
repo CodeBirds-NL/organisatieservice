@@ -46,7 +46,13 @@ class HomePage extends Component {
         <TopWave fill="#f1f1f1" />
         <section id="services">
           <div className="container">
-            <h2 className="subHeading">I can help with</h2>
+            <div className="upper">
+              <h2 className="subHeading">I can help with</h2>
+              <p className="text">
+                Tumblr selvage ugh yr man braid hella roof party migas aesthetic
+                hoodie poke ramps copper mug.
+              </p>
+            </div>
             <div className="servicesGrid">
               {acf.services.map((i, index) => (
                 <div key={index} className="service">

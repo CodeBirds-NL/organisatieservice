@@ -220,6 +220,9 @@ class ActionBarParent extends Component {
           handleToggle={this.handleActionBarClick}
           label={acf.hero_call_to_action}
         />
+        <a href="#services" className="btn underline ml-2">
+          Bekijk diensten
+        </a>
       </Hero>
     ) : src === "contact" ? (
       <ActionBar

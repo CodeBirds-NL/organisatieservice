@@ -154,9 +154,12 @@ SERVICES STYLES
   padding: 40px 0;
   background-color: c.$light-gray;
 
-  h2.subHeading {
-    text-align: center;
-    margin-bottom: 60px;
+  & .upper {
+    text-align: left;
+    .text {
+      max-width: 550px;
+      margin-bottom: 64px;
+    }
   }
 
   .servicesGrid {

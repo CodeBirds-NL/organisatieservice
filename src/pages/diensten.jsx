@@ -1,8 +1,9 @@
 import React, { Component } from "react"
 import Hero from "../components/common/hero"
 import Layout from "../components/layout"
-import { StaticQuery } from "gatsby"
+import { StaticQuery, Link } from "gatsby"
 import ActionBarParent from "../components/actionBar"
+import "../components/styles/pages/diensten.scss"
 
 class Diensten extends Component {
   render() {
@@ -22,9 +23,14 @@ class Diensten extends Component {
         >
           <h1 className="title">{title}</h1>
           <p className="text">{text}</p>
-          <a href="#" className="btn ghostery gray">
-            {cta}
-          </a>
+          <div className="buttonGroup">
+            <a href="#" className="btn ghostery gray">
+              {cta}
+            </a>
+            <Link to="/contact" className="btn underline ml-2">
+              Contact
+            </Link>
+          </div>
         </Hero>
       </Layout>
     )
@@ -46,6 +52,15 @@ export default props => (
                   image {
                     source_url
                     alt_text
+                  }
+                  services {
+                    cta
+                    text
+                    title
+                    image {
+                      alt_text
+                      source_url
+                    }
                   }
                 }
               }
