@@ -64,6 +64,7 @@ $base2: #d1d2d4;
     // flex-wrap: wrap-reverse;
     & .col-1 {
       width: 50%;
+      // display: none; // on mobile hide laptop with video
       //the laptop
       & .laptop {
         position: relative;
@@ -228,10 +229,11 @@ ACTIONBAR STYLES
 
 /* action bar ---- active styles */
 .actionBar.active {
+  visibility: visible;
   right: 0;
   bottom: 0;
   background-color: c.$primary-color;
-  width: calc(100vw);
+  width: 100vw;
   height: 100%;
   padding: 30px 40px;
   padding-left: 0;
@@ -239,7 +241,6 @@ ACTIONBAR STYLES
   display: flex;
   flex-direction: row;
   overflow-y: auto;
-  visibility: visible;
   & .backArea {
     display: block;
     padding: 0 20px;

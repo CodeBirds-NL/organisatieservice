@@ -146,7 +146,7 @@ class ActionBarParent extends Component {
   handleClosing = _ => {
     // set state to first history item and then clear history array
     // const { ...firstState } = this.history[0]
-    this.setState({ ...this.defaultState })
+    this.setState({ ...this.history[0] })
     this.history.length = 0
   }
 
@@ -189,7 +189,7 @@ class ActionBarParent extends Component {
 
     return src === "home" ? (
       <Hero
-        minHeight="calc(100vh - 105px)"
+        minHeight="100%"
         image={
           <img
             className="homeHeroImage"
