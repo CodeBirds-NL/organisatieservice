@@ -69,7 +69,7 @@ class HomePage extends Component {
             <div className="col-2">
               <h2 className="subHeading">{acf.about.title}</h2>
               <p className="text">{acf.about.text}</p>
-              <Link to="/about" className="btn underline withArrow">
+              <Link to="/over-mij" className="btn underline withArrow">
                 <span className="content">Meer informatie</span>{" "}
                 <Arrow width="18px" color="#fff" />
               </Link>
