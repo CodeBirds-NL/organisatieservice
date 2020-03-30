@@ -4,6 +4,7 @@ import Layout from "../components/layout"
 import ActionBarParent from "../components/actionBar"
 import Hero from "../components/common/hero"
 import "../components/styles/templates/portfolio.scss"
+import TopWave from "../components/common/topWave"
 
 class PortfolioPage extends Component {
   render() {
@@ -29,6 +30,7 @@ class PortfolioPage extends Component {
             {cta}
           </a>
         </Hero>
+        <TopWave />
         <section className="cards">
           <div className="container">
             {items.map(item => {

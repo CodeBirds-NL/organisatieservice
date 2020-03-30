@@ -3,14 +3,15 @@ import Layout from "../components/layout"
 import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
+import BottomWave from "../components/common/bottomWave"
 
 export default ({ pageContext }) => {
   const { title, acf } = pageContext
 
   return (
-    <Layout headerColor="#f8f8f8">
+    <Layout headerColor="#f1f1f1">
       <Hero
-        background="#f8f8f8"
+        background="#f1f1f1"
         image={
           <img
             className="clientLogo"
@@ -28,7 +29,11 @@ export default ({ pageContext }) => {
       >
         <h1 className="title post">{acf.titel}</h1>
         <p className="text">{acf.vraag}</p>
+        <a className="btn ghostery gray" href="#aanpak">
+          Bekijk aanpak
+        </a>
       </Hero>
+      <BottomWave />
       <div className="body">
         <div id="aanpak">
           <div className="container">

@@ -1,17 +1,12 @@
 @use '../layout/colors.scss' as c;
 @use '../layout/layout.scss' as l;
 
-.homeHeroImage {
-  margin-left: -100px;
-  margin-top: -20px;
-}
-
 /* =============================
 2. REFERENCE SECTION STYLES
 ================================ */
 #references {
   background-color: c.$white;
-  padding: 120px 0;
+  padding-bottom: l.$sectionSB;
   & .text {
     max-width: 550px;
   }
@@ -30,7 +25,7 @@
         width: 100%;
         height: 100%;
         // align logo's with different dimensions
-        max-height: 120px;
+        max-height: 180px;
         object-fit: contain;
       }
     }
@@ -147,6 +142,68 @@ $base2: #d1d2d4;
         .content {
           border-color: c.$white;
         }
+      }
+    }
+  }
+}
+
+/* =============================
+SERVICES STYLES
+================================ */
+#services {
+  padding: 40px 0;
+  background-color: c.$light-gray;
+
+  h2.subHeading {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-column-gap: 35px;
+    grid-row-gap: 60px;
+    .service {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      .imageBox {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 36px;
+        img {
+          max-width: 96px;
+          text-align: center;
+        }
+      }
+      h5 {
+        font-size: 24px;
+        margin-bottom: 1em;
+        text-transform: capitalize;
+        width: fit-content;
+        position: relative;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 4px;
+          right: -11px;
+          width: 9px;
+          height: 9px;
+          background-color: #007be0;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+        }
+      }
+      h6 {
+        display: none;
+        font-size: 20px;
+        color: rgba(52, 61, 72, 0.5);
+        font-weight: 400;
       }
     }
   }
@@ -344,6 +401,13 @@ RESPONSIVE STYLES
       grid-template-columns: repeat(4, 1fr);
     }
   }
+
+  #services {
+    .servicesGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   .actionBar {
     width: 330px;
     height: 100%;
@@ -393,6 +457,10 @@ RESPONSIVE STYLES
 }
 
 @media only screen and (min-width: 1068px) {
+  .homeHeroImage {
+    margin-left: -100px;
+    margin-top: -20px;
+  }
   .active .subHeading {
     max-width: 500px;
   }
@@ -402,6 +470,11 @@ RESPONSIVE STYLES
 }
 
 @media (min-width: 1168px) {
+  #services {
+    .servicesGrid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
   .actionBar {
     width: auto;
     position: absolute;

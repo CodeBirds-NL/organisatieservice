@@ -100,13 +100,14 @@ PORTFOLIO SINGLE STYLES
 
 .highlights {
   position: absolute;
-  bottom: -130px;
+  bottom: -210px;
   left: 40px;
   right: 40px;
   color: c.$white;
   padding: 30px 40px;
   font-size: 20px;
   background-color: c.$primary-color;
+  z-index: 2;
   & h3 {
     font-size: 32px;
     font-weight: 600;
@@ -221,7 +222,7 @@ RESPONSIVE STYLES
     margin-top: 48px;
   }
   .highlights {
-    bottom: -100px;
+    bottom: -180px;
     left: unset;
     right: 40px;
   }

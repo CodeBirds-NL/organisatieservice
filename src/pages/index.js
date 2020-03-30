@@ -5,6 +5,8 @@ import ActionBarParent from "../components/actionBar"
 import SEO from "../components/seo"
 import "../components/styles/pages/homePage.scss"
 import Arrow from "../components/common/arrow"
+import TopWave from "../components/common/topWave"
+import BottomWave from "../components/common/bottomWave"
 
 class HomePage extends Component {
   state = {
@@ -41,13 +43,32 @@ class HomePage extends Component {
           active={this.state.heroBtnClicked}
           src="home"
         />
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-          <path
-            fill="#007be0"
-            d="M0,256L60,240C120,224,240,192,360,176C480,160,600,160,720,176C840,192,960,224,1080,234.7C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
-          ></path>
-        </svg>
-        <section id="about">
+        <TopWave fill="#f1f1f1" />
+        <section id="services">
+          <div className="container">
+            <h2 className="subHeading">I can help with</h2>
+            <div className="servicesGrid">
+              {acf.services.map((i, index) => (
+                <div key={index} className="service">
+                  <div className="imageBox">
+                    <img src={i.icon.source_url} alt={i.icon.alt_text} />
+                  </div>
+                  <h5>{i.title}</h5>
+                  <h6>{i.subTitle}</h6>
+                  <p className="text">{i.text}</p>
+                  <Link
+                    to={`/diensten/#${i.title.toLowerCase()}`}
+                    className="btn underline withArrow"
+                  >
+                    {i.cta} <Arrow width="18px" color="#001010" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        <BottomWave fill="#f1f1f1" />
+        {/* <section id="about">
           <div className="container">
             <div className="col-1">
               <div className="laptop">
@@ -71,7 +92,7 @@ class HomePage extends Component {
               </Link>
             </div>
           </div>
-        </section>
+        </section> */}
         <section id="references">
           <div className="container">
             <h2 className="subHeading">{acf.references.title}</h2>
@@ -117,6 +138,16 @@ export const query = graphql`
               title
               text
               video {
+                source_url
+              }
+            }
+            services {
+              cta
+              text
+              title
+              subTitle
+              icon {
+                alt_text
                 source_url
               }
             }
