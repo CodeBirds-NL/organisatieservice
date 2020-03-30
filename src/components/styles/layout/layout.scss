@@ -281,6 +281,13 @@ a.underline {
   width: fit-content;
 }
 
+a.ghostery.gray {
+  @extend .gray;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+}
+
 .underline.withArrow {
   font-size: 20px;
 }

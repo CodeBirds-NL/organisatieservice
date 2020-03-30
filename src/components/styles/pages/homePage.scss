@@ -239,6 +239,7 @@ ACTIONBAR STYLES
   display: flex;
   flex-direction: row;
   overflow-y: auto;
+  visibility: visible;
   & .backArea {
     display: block;
     padding: 0 20px;
@@ -347,6 +348,7 @@ RESPONSIVE STYLES
     height: 100%;
     position: fixed;
     bottom: 0;
+    visibility: hidden;
     padding: 30px 40px;
     padding-right: 20px;
     border-radius: unset;
@@ -355,7 +357,7 @@ RESPONSIVE STYLES
     -ms-border-radius: unset;
     -o-border-radius: unset;
     overflow-y: auto;
-    & .form-close {
+    &.form-close {
       right: 0;
     }
     & .heading {
@@ -405,6 +407,7 @@ RESPONSIVE STYLES
     bottom: unset;
     background-color: transparent;
     top: 0;
+    visibility: visible;
   }
 }
 

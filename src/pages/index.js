@@ -1,13 +1,20 @@
 import React, { Component } from "react"
 import { graphql, Link } from "gatsby"
-import ActionBar from "../components/actionBar"
 import Layout from "../components/layout"
-import Hero from "../components/common/hero"
+import ActionBarParent from "../components/actionBar"
 import SEO from "../components/seo"
 import "../components/styles/pages/homePage.scss"
 import Arrow from "../components/common/arrow"
 
 class HomePage extends Component {
+  state = {
+    heroBtnClicked: false,
+  }
+
+  handleHeroBtnClick = () => {
+    this.setState({ heroBtnClicked: true })
+  }
+
   showLogos = range => {
     const { edges: posts } = this.props.data.allWordpressPost
     const ids = range.map(i => i.wordpress_id)
@@ -28,26 +35,15 @@ class HomePage extends Component {
     return (
       <Layout>
         <SEO title={title} />
-        <Hero
-          minHeight="calc(100vh - 105px)"
-          buttonLabel={acf.hero_call_to_action}
-          image={
-            <img
-              className="homeHeroImage"
-              src={acf.hero_image.source_url}
-              alt={acf.hero_image.alt_text}
-            />
-          }
-          blobContent={<ActionBar src="home" />}
-        >
-          <h1 className="title">{acf.hero_title}</h1>
-          <h1 className="subTitle">{acf.hero_subtitle}</h1>
-          <p className="text">{acf.hero_text}</p>
-        </Hero>
+        <ActionBarParent
+          // this template component includes the hero section
+          acf={acf}
+          active={this.state.heroBtnClicked}
+          src="home"
+        />
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
           <path
             fill="#007be0"
-            fill-opacity="1"
             d="M0,256L60,240C120,224,240,192,360,176C480,160,600,160,720,176C840,192,960,224,1080,234.7C1200,245,1320,235,1380,229.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
           ></path>
         </svg>
@@ -61,7 +57,7 @@ class HomePage extends Component {
                   muted
                   loop
                   type="video/mp4"
-                  src={acf.about.video}
+                  src={acf.about.video.source_url}
                 ></video>
                 <div className="base"></div>
               </div>
@@ -120,7 +116,9 @@ export const query = graphql`
             about {
               title
               text
-              video
+              video {
+                source_url
+              }
             }
           }
           title

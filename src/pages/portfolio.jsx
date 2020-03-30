@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import Layout from "../components/layout"
-import ActionBar from "../components/actionBar"
+import ActionBarParent from "../components/actionBar"
 import Hero from "../components/common/hero"
 import "../components/styles/templates/portfolio.scss"
 
@@ -21,10 +21,13 @@ class PortfolioPage extends Component {
               alt={image.alt_text}
             />
           }
-          blobContent={<ActionBar src="portfolio" />}
+          blobContent={<ActionBarParent src="portfolio" />}
         >
           <h1 className="title">{title}</h1>
           <p className="text">{text}</p>
+          <a href="#projecten" className="btn ghostery gray">
+            {cta}
+          </a>
         </Hero>
         <section className="cards">
           <div className="container">

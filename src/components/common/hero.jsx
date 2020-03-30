@@ -1,12 +1,10 @@
 import React from "react"
-import Button from "./button"
 
 const Hero = ({
   minHeight = "auto",
   background,
   image,
   children,
-  buttonLabel,
   blobContent,
 }) => {
   return (
@@ -15,10 +13,7 @@ const Hero = ({
       className="hero"
     >
       <div className="container wrapper">
-        <div className="col-1">
-          {children}
-          <Button type="ghostery" label={buttonLabel} color="gray" />
-        </div>
+        <div className="col-1">{children}</div>
         <div className="col-2">{image}</div>
         <div className="actionsBlob"></div>
         {blobContent}

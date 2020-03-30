@@ -59,7 +59,7 @@ section.cards {
       & .tags {
         & span {
           text-transform: lowercase;
-          color: c.$light-gray;
+          color: c.$white;
           background-color: c.$primary-color;
           padding: 4px 8px;
           border-radius: 32px;
@@ -67,6 +67,7 @@ section.cards {
           -moz-border-radius: 32px;
           -ms-border-radius: 32px;
           -o-border-radius: 32px;
+          font-size: 14px;
         }
         & span:nth-of-type(n + 2) {
           margin-left: 10px;

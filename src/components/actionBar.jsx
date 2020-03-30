@@ -8,16 +8,11 @@ import Website from "./website"
 import Marketing from "./marketing"
 import DirectContact from "./directContact"
 import Arrow from "./common/arrow"
+import Hero from "./common/hero"
 
-class ActionBar extends Component {
-  defaultState = {
-    actionBarClicked: false,
-    action: null,
-    nextStep: null,
-  }
-
+class ActionBarParent extends Component {
   state = {
-    actionBarClicked: false,
+    actionBarClicked: this.props.active || false,
     action: null,
     nextStep: null,
   }
@@ -28,11 +23,7 @@ class ActionBar extends Component {
       this.setState({ actionBarClicked: false, action: null })
     } else {
       // the code that follows applies for the contact page that inializes the action bar straight to the contact level
-      const { ...state } = this.state
-      const arr = [...this.history]
-      arr.push({ ...state })
-      this.history = arr
-
+      // this.history = [...this.history, { ...this.state }]
       this.setState({
         actionBarClicked: true,
         action: this.actions[this.actions.length - 1],
@@ -123,9 +114,8 @@ class ActionBar extends Component {
 
   handleActionBarClick = () => {
     if (this.state.actionBarClicked) return
-    const arr = [...this.history]
-    arr.push({ ...this.state })
-    this.history = arr
+
+    this.history = [...this.history, { ...this.state }]
     this.setState(() => ({ actionBarClicked: true }))
   }
 
@@ -138,12 +128,9 @@ class ActionBar extends Component {
   handleActionButtonClick = (e, action) => {
     e.stopPropagation()
 
-    const { ...state } = this.state
-    const arr = [...this.history]
-    arr.push({ ...state })
-    this.history = arr
+    this.history = [...this.history, { ...this.state }]
     this.setState(() => {
-      return state.actionBarClicked
+      return this.state.actionBarClicked
         ? { action }
         : { action, actionBarClicked: true }
     })
@@ -152,16 +139,14 @@ class ActionBar extends Component {
   handleNextStep = contactOption => {
     if (!contactOption) return
 
-    const arr = [...this.history]
-    arr.push({ ...this.state })
-    this.history = arr
+    this.history = [...this.history, { ...this.state }]
     this.setState({ nextStep: true })
   }
 
   handleClosing = _ => {
-    //set state to first history item and then clear history array
-    const { ...firstState } = this.history[0]
-    this.setState({ ...firstState })
+    // set state to first history item and then clear history array
+    // const { ...firstState } = this.history[0]
+    this.setState({ ...this.defaultState })
     this.history.length = 0
   }
 
@@ -200,10 +185,117 @@ class ActionBar extends Component {
 
   render() {
     const { actionBarClicked: active, action } = this.state
+    const { src, acf } = this.props
+
+    return src === "home" ? (
+      <Hero
+        minHeight="calc(100vh - 105px)"
+        image={
+          <img
+            className="homeHeroImage"
+            src={acf.hero_image.source_url}
+            alt={acf.hero_image.alt_text}
+          />
+        }
+        blobContent={
+          <ActionBar
+            data={{
+              active,
+              action,
+              actions: this.actions,
+              handleActionBarClick: this.handleActionBarClick,
+              src,
+              handleBackClick: this.handleBackClick,
+              handleClosing: this.handleClosing,
+              handleActionButtonClick: this.handleActionButtonClick,
+              renderActionTemplate: this.renderActionTemplate.bind(this),
+            }}
+          />
+        }
+      >
+        <h1 className="title">{acf.hero_title}</h1>
+        <h1 className="subTitle">{acf.hero_subtitle}</h1>
+        <p className="text">{acf.hero_text}</p>
+        <ToggleButton
+          handleToggle={this.handleActionBarClick}
+          label={acf.hero_call_to_action}
+        />
+      </Hero>
+    ) : src === "contact" ? (
+      <ActionBar
+        data={{
+          active,
+          action,
+          src,
+          renderActionTemplate: this.renderActionTemplate.bind(this),
+        }}
+      />
+    ) : (
+      <ActionBar
+        data={{
+          active,
+          action,
+          actions: this.actions,
+          handleActionBarClick: this.handleActionBarClick,
+          src,
+          handleBackClick: this.handleBackClick,
+          handleClosing: this.handleClosing,
+          handleActionButtonClick: this.handleActionButtonClick,
+          renderActionTemplate: this.renderActionTemplate.bind(this),
+        }}
+      />
+    )
+  }
+}
+
+export default ActionBarParent
+
+class ActionBar extends Component {
+  renderSideBarView = () => {
+    const { actions, handleActionButtonClick, src } = this.props.data
+
+    return src !== "contact" ? (
+      <ActionStep heading="Direct actie">
+        <ActionButtons
+          onActionButtonClick={handleActionButtonClick}
+          actions={actions}
+          type="withArrow"
+        />
+      </ActionStep>
+    ) : null
+  }
+
+  renderExpandedView = () => {
+    const { active, actions, handleActionButtonClick, src } = this.props.data
+    return src !== "contact" ? (
+      <ActionStep
+        heading="Waarmee kan ik je helpen?"
+        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken "
+        symbol="✨"
+        active={active}
+      >
+        <ActionButtons
+          onActionButtonClick={handleActionButtonClick}
+          actions={actions}
+          type="full"
+        />
+      </ActionStep>
+    ) : null
+  }
+  render() {
+    const {
+      active,
+      action,
+      handleActionBarClick,
+      src,
+      handleBackClick,
+      handleClosing,
+      renderActionTemplate,
+    } = this.props.data
 
     return (
       <div
-        onClick={this.handleActionBarClick}
+        onClick={handleActionBarClick}
         className={active ? "actionBar active" : "actionBar"}
         role="Actie"
       >
@@ -213,16 +305,16 @@ class ActionBar extends Component {
           </span>
         )}
         <div className="backArea">
-          {this.props.src !== "contact" ? (
-            <button onClick={this.handleBackClick} className="btn back">
+          {src !== "contact" ? (
+            <button onClick={handleBackClick} className="btn back">
               <Arrow width="32px" />
             </button>
           ) : null}
         </div>
         <div className="viewArea">
-          {this.props.src !== "contact" ? (
+          {src !== "contact" ? (
             <button
-              onClick={this.handleClosing}
+              onClick={handleClosing}
               className={active ? "btn form-close" : "btn form-close hide"}
             >
               Close
@@ -230,7 +322,7 @@ class ActionBar extends Component {
           ) : null}
           {active
             ? action
-              ? this.renderActionTemplate()
+              ? renderActionTemplate()
               : this.renderExpandedView()
             : this.renderSideBarView()}
         </div>
@@ -239,4 +331,10 @@ class ActionBar extends Component {
   }
 }
 
-export default ActionBar
+const ToggleButton = ({ label = "Click me", handleToggle }) => {
+  return (
+    <button onClick={handleToggle} className="btn ghostery gray">
+      {label}
+    </button>
+  )
+}
