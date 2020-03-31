@@ -15,20 +15,21 @@ class ActionBarParent extends Component {
     actionBarClicked: false,
     action: null,
     nextStep: null,
+    scrollY: 0,
   }
 
   componentDidMount() {
-    // inialize actionbar dependent on src (the page it is loaded on)
-    if (this.props.src !== "contact") {
-      this.setState({ actionBarClicked: false, action: null })
-    } else {
-      // the code that follows applies for the contact page that inializes the action bar straight to the contact level
-      // this.history = [...this.history, { ...this.state }]
-      this.setState({
-        actionBarClicked: true,
-        action: this.actions[this.actions.length - 1],
-      })
-    }
+    if (!this.props.action) return
+
+    const action = this.actions.find(({ name }) => name === this.props.action)
+    this.history = [...this.history, { ...this.state }]
+    const scrollY = window.pageYOffset
+    this.setState({ action, actionBarClicked: true, scrollY })
+    document.body.style.position = "fixed"
+  }
+
+  componentWillUnmount() {
+    document.body.style.position = "unset"
   }
 
   actions = [
@@ -70,7 +71,7 @@ class ActionBarParent extends Component {
     },
     {
       id: 2,
-      name: "copywriting",
+      name: "tekstschrijven",
       label: "Tekst schrijven",
       options: ["Opdracht", "Aanbieding"],
     },
@@ -86,7 +87,7 @@ class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
       />
     ),
-    copywriting: () => (
+    tekstschrijven: () => (
       <CopyWriting
         onNextStep={this.handleNextStep}
         data={this.state.action}
@@ -116,25 +117,48 @@ class ActionBarParent extends Component {
     if (this.state.actionBarClicked) return
 
     this.history = [...this.history, { ...this.state }]
-    this.setState(() => ({ actionBarClicked: true }))
+    // store scroll position since position fixed on body reset scroll position
+    const scrollY = window.pageYOffset
+    this.setState(() => ({
+      actionBarClicked: true,
+      scrollY,
+    }))
+
     document.body.style.position = "fixed"
   }
 
   handleBackClick = () => {
+    const { unmountMe = "" } = this.props
     const { ...rest } = this.history[this.history.length - 1]
     this.setState({ ...rest })
     this.history.pop(this.history.length - 1)
     // if actionbar is clicked back to initial state, unset body position
     if (this.history.length < 1) {
       document.body.style.position = "unset"
+
+      // this will make the document scroll to the original position when the actionbar modal opened
+      window.scrollTo(0, this.state.scrollY)
+      if (unmountMe) {
+        //this method calls an unmount callback from the parent passed via props
+        unmountMe()
+      }
     }
   }
 
-  handleActionButtonClick = (e, action) => {
+  handleActionButtonClick = (action, e) => {
+    e.stopPropagation()
+
     this.history = [...this.history, { ...this.state }]
-    this.setState(() => {
-      return { action }
-    })
+    const { actionBarClicked, scrollY } = this.state
+
+    // check if click comes from modal or from sidebar
+    if (actionBarClicked) return this.setState({ action })
+    else {
+      const scrollPosition = window.pageYOffset
+      this.setState({ actionBarClicked: true, action, scrollY: scrollPosition })
+    }
+
+    document.body.style.position = "fixed"
   }
 
   handleNextStep = contactOption => {
@@ -145,11 +169,18 @@ class ActionBarParent extends Component {
   }
 
   handleClosing = _ => {
+    const { unmountMe = "" } = this.props
     // set state to first history item and then clear history array
-    // const { ...firstState } = this.history[0]
     this.setState({ ...this.history[0] })
     this.history.length = 0
     document.body.style.position = "unset"
+
+    // this will make the document scroll to the original position when the actionbar modal opened
+    window.scrollTo(0, this.state.scrollY)
+    //this method calls an unmount callback from the parent passed via props
+    if (unmountMe) {
+      unmountMe()
+    }
   }
 
   renderSideBarView = () => {
@@ -300,7 +331,7 @@ class ActionBar extends Component {
 
     return (
       <div
-        onClickCapture={handleActionBarClick}
+        onClick={handleActionBarClick}
         // onClick={handleActionBarClick}
         className={active ? "actionBar active" : "actionBar"}
         role="Actie"
@@ -344,3 +375,13 @@ const ToggleButton = ({ label = "Click me", handleToggle }) => {
     </button>
   )
 }
+
+/* TODOS:
+- Optimize diensten pagina actionbar activation and deactivation
+  Right now, the parent (Diensten) calls on btn click the actionbar Component 
+  which gets rendered with the specified action selected. However, when
+  the modal is closed, a callback (passed as prop) from parent is used to unmounts
+  the actionBar by changing the state (selectedAction) on parent.
+- Clean up render code for homepage, possibly using portals for the cta activating the modal
+- Extract methods and clean up file to max 100 lines
+*/

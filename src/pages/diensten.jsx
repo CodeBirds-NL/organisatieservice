@@ -8,9 +8,52 @@ import Arrow from "../components/common/arrow"
 import TopWave from "../components/common/topWave"
 
 class Diensten extends Component {
-  handleDienstCTA = () => {
-    // get service from button
+  state = {
+    selectedAction: null,
+  }
+
+  handleDienstCTA = action => {
+    const { selectedAction } = this.state
+    if (selectedAction !== action) this.setState({ selectedAction: action })
     // render actionbar with specified action prop
+  }
+
+  handleActionBarUnmount() {
+    this.setState({ selectedAction: null })
+  }
+
+  renderService = (data, index) => {
+    return (
+      <div
+        key={index}
+        id={data.title
+          .toLowerCase()
+          .split(" ")
+          .join("")}
+        className="service"
+      >
+        <div className="col-1">
+          <h2 className="subHeading">{data.title}</h2>
+          <p className="text">{data.text}</p>
+          <button
+            onClick={() =>
+              this.handleDienstCTA(
+                data.title
+                  .toLowerCase()
+                  .split(" ")
+                  .join("")
+              )
+            }
+            className="btn ghostery gray"
+          >
+            {data.cta}
+          </button>
+        </div>
+        <div className="col-2">
+          <img src={data.image.source_url} alt={data.image.alt_text} />
+        </div>
+      </div>
+    )
   }
 
   render() {
@@ -22,9 +65,17 @@ class Diensten extends Component {
       services,
     } = this.props.data.acf.services_page
     const { logos } = this.props
+    const { selectedAction } = this.state
 
     return (
       <Layout>
+        {selectedAction ? (
+          <ActionBarParent
+            action={selectedAction}
+            src="diensten"
+            unmountMe={this.handleActionBarUnmount.bind(this)}
+          />
+        ) : null}
         <Hero
           image={
             <img
@@ -65,26 +116,8 @@ class Diensten extends Component {
           <div className="container">
             <div className="upper">
               {services.map((i, index) => {
-                if (index >= 2) return
-                return (
-                  <div
-                    key={index}
-                    id={i.title
-                      .toLowerCase()
-                      .split(" ")
-                      .join("")}
-                    className="service"
-                  >
-                    <div className="col-1">
-                      <h2 className="subHeading">{i.title}</h2>
-                      <p className="text">{i.text}</p>
-                      <button className="btn ghostery gray">{i.cta}</button>
-                    </div>
-                    <div className="col-2">
-                      <img src={i.image.source_url} alt={i.image.alt_text} />
-                    </div>
-                  </div>
-                )
+                if (index >= 2) return null
+                return this.renderService(i, index)
               })}
             </div>
           </div>
@@ -110,26 +143,8 @@ class Diensten extends Component {
           <div className="container">
             <div className="lower">
               {services.map((i, index) => {
-                if (index < 2) return
-                return (
-                  <div
-                    key={index}
-                    id={i.title
-                      .toLowerCase()
-                      .split(" ")
-                      .join("")}
-                    className="service"
-                  >
-                    <div className="col-1">
-                      <h2 className="subHeading">{i.title}</h2>
-                      <p className="text">{i.text}</p>
-                      <button className="btn ghostery gray">{i.cta}</button>
-                    </div>
-                    <div className="col-2">
-                      <img src={i.image.source_url} alt={i.image.alt_text} />
-                    </div>
-                  </div>
-                )
+                if (index < 2) return null
+                return this.renderService(i, index)
               })}
             </div>
           </div>

@@ -7,7 +7,7 @@ const ActionButtons = ({ actions, onActionButtonClick, type }) => {
       {actions.map(action => (
         <button
           key={action.id}
-          onClick={e => onActionButtonClick(e, action)}
+          onClick={e => onActionButtonClick(action, e)}
           className={`btn ${type}`}
         >
           {action.label} {type === "withArrow" ? <Arrow width="24px" /> : null}

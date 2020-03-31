@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Layout from "../components/layout"
-import ActionBar from "../components/actionBar"
+import ActionBarParent from "../components/actionBar"
 
 class ContactPage extends Component {
   render() {
@@ -8,7 +8,7 @@ class ContactPage extends Component {
       <Layout>
         <div id="contact">
           <span className="brand rotated">Organisatieservice</span>
-          <ActionBar src="contact" />
+          <ActionBarParent action="contact" src="contact" />
         </div>
       </Layout>
     )
