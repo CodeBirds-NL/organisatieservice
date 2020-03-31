@@ -7,8 +7,11 @@ const Footer = () => {
       <div className="container">
         <div className="copyright">
           <p>
-            ©<span>{new Date().getFullYear()} </span> Organisatie
-            <span className="bold">service</span>
+            ©<span>{new Date().getFullYear()} </span>{" "}
+            <span style={{ fontSize: 20 }} className="brand">
+              Organisatie
+              <span className="bold">service</span>
+            </span>
           </p>
           <div className="vendor">
             Realisatie: <a href="https://codebirds.nl">CodeBirds</a>

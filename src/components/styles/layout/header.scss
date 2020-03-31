@@ -1,4 +1,5 @@
 @use '../layout/colors.scss' as c;
+@use '../layout/layout.scss' as l;
 
 /* HEADER STYLES */
 .bold {
@@ -28,18 +29,7 @@
   // line-height: 1em;
   position: relative;
   &::after {
-    content: "";
-    position: absolute;
-    bottom: 4px;
-    right: -11px;
-    width: 9px;
-    height: 9px;
-    background-color: c.$primary-color;
-    border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+    @extend %dot;
   }
 }
 

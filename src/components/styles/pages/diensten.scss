@@ -1,5 +1,185 @@
-.buttonGroup {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+@use '../layout/colors.scss' as c;
+@use '../layout/layout.scss' as l;
+
+/* =============================
+HERO STYLES
+================================ */
+.servicesNavigation {
+  display: none; // on mobile
+  padding: 30px 20px 30px 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  .heading {
+    font-size: 32px;
+    font-weight: 600;
+    width: 100%;
+    height: 45px;
+    display: block;
+    margin-bottom: 17px;
+    color: c.$white;
+  }
+  & .inner {
+    display: flex;
+    flex-direction: column;
+    & a.btn.withArrow {
+      width: 250px;
+      text-decoration: none;
+      color: c.$white;
+    }
+  }
+}
+
+/* =============================
+SERVICES STYLES
+================================ */
+#services {
+  background-color: c.$light-gray;
+  & .upper,
+  & .lower {
+    display: flex;
+    flex-direction: column;
+
+    & .service {
+      padding: 48px 0;
+      display: flex;
+      flex-direction: column;
+      .col-1 {
+        .subHeading {
+          margin-bottom: 36px;
+          position: relative;
+          width: fit-content;
+          &::after {
+            @extend %dot;
+          }
+        }
+        .text {
+          margin-bottom: 36px;
+        }
+        .btn {
+          margin-bottom: 36px;
+        }
+      }
+    }
+  }
+  & .testimonials {
+    & .inner {
+      background-color: c.$white;
+      padding: 60px 30px;
+    }
+    & h5 {
+      font-size: 32px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 50px;
+      grid-row-gap: 30px;
+      & .logo {
+        display: flex;
+        align-items: center;
+        & img {
+          width: 100%;
+          height: 100%;
+          // align logo's with different dimensions
+          max-height: 180px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+/* =============================
+RESPONSIVE STYLES
+================================ */
+@media (min-width: 768px) {
+  #services {
+    & .testimonials .gallery {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
+
+@media (min-width: 800px) {
+  #services {
+    & .upper .service,
+    & .lower .service {
+      flex-direction: row;
+      & .col-1,
+      & .col-2 {
+        width: 50%;
+      }
+      & .col-2 {
+        display: flex;
+        align-items: center;
+      }
+      & .col-1 {
+        .btn {
+          margin-bottom: 0;
+        }
+      }
+      &:nth-of-type(2n + 1) {
+        flex-direction: row-reverse;
+        & .col-2 {
+          padding-right: 36px;
+        }
+      }
+      &:nth-of-type(2n + 2) {
+        & .col-1 {
+          padding-right: 36px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .servicesNavigation {
+    display: block;
+    position: absolute;
+    top: -105px;
+    height: 105px;
+    .heading {
+      display: none;
+    }
+    & .inner {
+      display: flex;
+      flex-direction: row;
+
+      height: 100%;
+      align-items: center;
+      & a.btn.withArrow {
+        color: c.$black;
+        width: fit-content;
+        .arrow {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1168px) {
+  .servicesNavigation {
+    position: absolute;
+    height: unset;
+    right: 0;
+    top: 0;
+    .heading {
+      display: block;
+    }
+    & .inner {
+      flex-direction: column;
+      & a.btn.withArrow {
+        color: c.$white;
+        width: 250px;
+        .arrow {
+          display: inline-block;
+        }
+      }
+    }
+  }
 }

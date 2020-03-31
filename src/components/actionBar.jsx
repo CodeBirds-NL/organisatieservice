@@ -12,7 +12,7 @@ import Hero from "./common/hero"
 
 class ActionBarParent extends Component {
   state = {
-    actionBarClicked: this.props.active || false,
+    actionBarClicked: false,
     action: null,
     nextStep: null,
   }
@@ -117,22 +117,23 @@ class ActionBarParent extends Component {
 
     this.history = [...this.history, { ...this.state }]
     this.setState(() => ({ actionBarClicked: true }))
+    document.body.style.position = "fixed"
   }
 
   handleBackClick = () => {
     const { ...rest } = this.history[this.history.length - 1]
     this.setState({ ...rest })
     this.history.pop(this.history.length - 1)
+    // if actionbar is clicked back to initial state, unset body position
+    if (this.history.length < 1) {
+      document.body.style.position = "unset"
+    }
   }
 
   handleActionButtonClick = (e, action) => {
-    e.stopPropagation()
-
     this.history = [...this.history, { ...this.state }]
     this.setState(() => {
-      return this.state.actionBarClicked
-        ? { action }
-        : { action, actionBarClicked: true }
+      return { action }
     })
   }
 
@@ -148,6 +149,7 @@ class ActionBarParent extends Component {
     // const { ...firstState } = this.history[0]
     this.setState({ ...this.history[0] })
     this.history.length = 0
+    document.body.style.position = "unset"
   }
 
   renderSideBarView = () => {
@@ -298,7 +300,8 @@ class ActionBar extends Component {
 
     return (
       <div
-        onClick={handleActionBarClick}
+        onClickCapture={handleActionBarClick}
+        // onClick={handleActionBarClick}
         className={active ? "actionBar active" : "actionBar"}
         role="Actie"
       >

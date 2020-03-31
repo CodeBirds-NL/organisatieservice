@@ -330,3 +330,19 @@ a.ghostery.gray {
     font-size: 48px;
   }
 }
+
+/* 4. DOT */
+%dot {
+  content: "";
+  position: absolute;
+  bottom: 4px;
+  right: -11px;
+  width: 9px;
+  height: 9px;
+  background-color: c.$primary-color;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}

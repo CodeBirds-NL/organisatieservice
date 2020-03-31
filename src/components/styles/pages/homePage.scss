@@ -4,7 +4,7 @@
 /* =============================
 2. REFERENCE SECTION STYLES
 ================================ */
-#references {
+.home #references {
   background-color: c.$white;
   padding-bottom: l.$sectionSB;
   & .text {
@@ -50,7 +50,7 @@ $base2: #d1d2d4;
   transform: translateX(-50%);
 }
 
-#about {
+.home #about {
   padding: l.$sectionST 0 60px 0;
   background-color: c.$primary-color;
   color: c.$white;
@@ -150,7 +150,7 @@ $base2: #d1d2d4;
 /* =============================
 SERVICES STYLES
 ================================ */
-#services {
+.home #services {
   padding: 40px 0;
   background-color: c.$light-gray;
 
@@ -188,18 +188,7 @@ SERVICES STYLES
         width: fit-content;
         position: relative;
         &::after {
-          content: "";
-          position: absolute;
-          bottom: 4px;
-          right: -11px;
-          width: 9px;
-          height: 9px;
-          background-color: #007be0;
-          border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
+          @extend %dot;
         }
       }
       h6 {
@@ -289,11 +278,13 @@ ACTIONBAR STYLES
 
 /* action bar ---- active styles */
 .actionBar.active {
+  position: fixed;
   visibility: visible;
   right: 0;
   bottom: 0;
   background-color: c.$primary-color;
   width: 100vw;
+  min-height: 100vh;
   height: 100%;
   padding: 30px 40px;
   padding-left: 0;
@@ -399,13 +390,13 @@ RESPONSIVE STYLES
 ================================ */
 
 @media (min-width: 768px) {
-  #references {
+  .home #references {
     & .gallery {
       grid-template-columns: repeat(4, 1fr);
     }
   }
 
-  #services {
+  .home #services {
     .servicesGrid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -473,7 +464,7 @@ RESPONSIVE STYLES
 }
 
 @media (min-width: 1168px) {
-  #services {
+  .home #services {
     .servicesGrid {
       grid-template-columns: repeat(4, 1fr);
     }
