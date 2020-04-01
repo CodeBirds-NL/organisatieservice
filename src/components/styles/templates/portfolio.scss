@@ -99,15 +99,15 @@ PORTFOLIO SINGLE STYLES
 ================================ */
 
 .highlights {
+  display: none;
   position: absolute;
-  bottom: -210px;
-  left: 40px;
-  right: 40px;
   color: c.$white;
   padding: 30px 40px;
-  font-size: 20px;
-  background-color: c.$primary-color;
+  font-size: 24px;
   z-index: 2;
+  background-color: transparent;
+  right: 0;
+  top: 0;
   & h3 {
     font-size: 32px;
     font-weight: 600;
@@ -133,50 +133,89 @@ PORTFOLIO SINGLE STYLES
   }
 }
 
-.clientLogo {
-  max-width: 300px;
-  // hide on mobile
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  .btn:nth-of-type(n + 2) {
+    margin-left: 32px;
+  }
 }
 
 .body {
-  & #aanpak {
-    text-align: center;
-    & .subHeading {
-      width: 100%;
-    }
-    & a.btn.underline {
-      display: none;
-    }
-    & .col-2 .steps {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  & #resultaat {
-    background-color: c.$light-gray;
-    margin-top: l.$sectionST;
-    margin-bottom: l.$sectionSB;
-    & .container .inner {
-      background-color: c.$light-gray;
-      border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -ms-border-radius: 5px;
-      -o-border-radius: 5px;
-      padding: 80px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      & .col-2 {
-        margin-top: 10px;
-        margin-bottom: 60px;
-        & img {
-          box-shadow: 20px 20px 32px 0px rgba(0, 0, 0, 0.1);
-        }
+  background-color: c.$light-gray;
+}
+#aanpak {
+  padding: 48px 0;
+  & .inner {
+    display: flex;
+    & .col-1 {
+      width: 60%;
+      & .text {
+        max-width: 550px;
       }
+    }
+    & .col-2 {
+      width: 40%;
+      padding-left: 48px;
+      display: flex;
+      align-items: center;
     }
   }
 }
+#resultaat {
+  padding: 48px 0;
+  & .inner {
+    background-color: c.$white;
+    display: flex;
+    & .col-1 {
+      width: 60%;
+    }
+    & .col-2 {
+      width: 40%;
+      padding: 48px;
+    }
+  }
+}
+
+// .body {
+//   & #aanpak {
+//     text-align: center;
+//     & .subHeading {
+//       width: 100%;
+//     }
+//     & a.btn.underline {
+//       display: none;
+//     }
+//     & .col-2 .steps {
+//       display: flex;
+//       justify-content: center;
+//     }
+//   }
+//   & #resultaat {
+//     background-color: c.$light-gray;
+//     margin-top: l.$sectionST;
+//     margin-bottom: l.$sectionSB;
+//     & .container .inner {
+//       background-color: c.$light-gray;
+//       border-radius: 5px;
+//       -webkit-border-radius: 5px;
+//       -moz-border-radius: 5px;
+//       -ms-border-radius: 5px;
+//       -o-border-radius: 5px;
+//       padding: 80px 0;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: center;
+//       & .col-2 {
+//         margin-top: 10px;
+//         margin-bottom: 60px;
+//         & img {
+//           box-shadow: 20px 20px 32px 0px rgba(0, 0, 0, 0.1);
+//         }
+//       }
+//     }
+//   }
+// }
 
 // number styles for list
 .steps ul {
@@ -216,76 +255,17 @@ RESPONSIVE STYLES
   }
 }
 
-@media (min-width: 800px) {
-  .clientLogo {
-    margin-top: 48px;
-  }
-  .highlights {
-    bottom: -180px;
-    left: unset;
-    right: 40px;
-  }
-  .body {
-    margin-top: 180px;
-  }
-}
-
 @media (min-width: 1168px) {
   .highlights {
-    background-color: transparent;
-    right: 0;
-    bottom: unset;
-    top: 0;
+    display: block;
   }
   .clientLogo {
     margin-top: 96px;
-  }
-  .body {
-    margin-top: 0;
   }
 }
 
 @media (min-width: 1224px) {
   .cards .container {
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  #aanpak .container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    & .subHeading {
-      text-align: left;
-    }
-    & .col-1 {
-      padding-right: 80px;
-      width: 60%;
-      & .text {
-        max-width: 550px;
-        text-align: left;
-      }
-      & a.btn.underline {
-        display: block;
-      }
-    }
-    & .col-2 {
-      flex-grow: 1;
-    }
-  }
-  .body #resultaat {
-    background-color: transparent;
-    & .container {
-      text-align: center;
-      & .col-1 {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        & .text {
-          max-width: 760px;
-        }
-      }
-    }
   }
 }

@@ -4,19 +4,22 @@ import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
 import BottomWave from "../components/common/bottomWave"
+import TopWave from "../components/common/topWave"
+import { Link } from "gatsby"
+import Star from "../components/common/star"
 
 export default ({ pageContext }) => {
   const { title, acf } = pageContext
 
   return (
-    <Layout headerColor="#f1f1f1">
+    <Layout>
       <Hero
-        background="#f1f1f1"
+        background="#fff"
         image={
           <img
-            className="clientLogo"
-            src={acf.logo_klant.source_url}
-            alt={acf.logo_klant.alt_text}
+            className="projectfoto"
+            src={acf.project_foto.source_url}
+            alt={acf.project_foto.alt_text}
           />
         }
         buttonLabel="Lees meer"
@@ -27,58 +30,80 @@ export default ({ pageContext }) => {
           ></div>
         }
       >
-        <h1 className="title post">{acf.titel}</h1>
+        <h1 className="title">{acf.titel}</h1>
         <p className="text">{acf.vraag}</p>
-        <a className="btn ghostery gray" href="#aanpak">
-          Bekijk aanpak
-        </a>
-      </Hero>
-      <BottomWave />
-      <div className="body">
-        <div id="aanpak">
-          <div className="container">
-            <h2 className="subHeading">Aanpak</h2>
-            <div className="col-1">
-              <p className="text">{acf.aanpak}</p>
-              <a href="#resultaat" className="btn underline withArrow">
-                <span className="content">Resultaat</span>{" "}
-                <Arrow width="18px" color="#001010" />
-              </a>
-            </div>
-            <div className="col-2">
-              <div className="steps">
-                <ul>
-                  {acf.steps.map((item, index) => (
-                    <li key={index} className="step">
-                      <span>{index + 1}</span>
-                      {item.stap}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+        <div className="buttonGroup">
+          <a className="btn ghostery gray" href="#aanpak">
+            Bekijk aanpak
+          </a>
+          <Link to="/portfolio" className="btn underline">
+            Alle projecten
+          </Link>
         </div>
-        <div id="resultaat">
+      </Hero>
+      <TopWave />
+      <div className="body">
+        <section id="aanpak">
           <div className="container">
             <div className="inner">
               <div className="col-1">
-                <h2 className="subHeading">Resultaat</h2>
-                <p className="text">{acf.resultaat}</p>
+                <h2 className="subHeading">Aanpak</h2>
+                <p className="text">{acf.aanpak}</p>
               </div>
               <div className="col-2">
-                <img
-                  src={acf.project_foto.source_url}
-                  alt={`${title} resultaat`}
-                />
+                <div className="steps">
+                  <ul>
+                    {acf.steps.map((item, index) => (
+                      <li key={index} className="step">
+                        <span>{index + 1}</span>
+                        {item.stap}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <a href={acf.link_website} className="btn underline withArrow">
-                <span className="content">Bekijk live resultaat</span>{" "}
-                <Arrow width="18px" color="#001010" />
-              </a>
             </div>
           </div>
-        </div>
+        </section>
+        <section id="resultaat">
+          <div className="container">
+            <div className="inner">
+              <div className="col-1">
+                <img
+                  src={acf.project_foto.source_url}
+                  alt={acf.project_foto.alt_text}
+                />
+              </div>
+              <div className="col-2">
+                <h2 className="subHeading">Resultaat</h2>
+                <p className="text">{acf.resultaat}</p>
+                <a href={acf.link_website} className="btn underline withArrow">
+                  <span className="content">Bekijk live resultaat</span>{" "}
+                  <Arrow width="18px" color="#001010" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* <section className="testimonial">
+          <div className="container">
+            <div className="inner">
+              <div className="stars"></div>
+              <div className="message">
+                <p className="text"></p>
+                <p className="name"></p>
+              </div>
+            </div>
+          </div>
+        </section> */}
+        {/* <section id="projects">
+          <div className="container">
+            <div className="inner">
+              <h2 className="subHeading">Bekijk meer projecten</h2>
+
+            </div>
+          </div>
+        </section> */}
       </div>
     </Layout>
   )

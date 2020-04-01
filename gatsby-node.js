@@ -40,6 +40,11 @@ exports.createPages = async ({ graphql, actions }) => {
               steps {
                 stap
               }
+              testimonial {
+                text
+                name
+                stars
+              }
             }
           }
         }
