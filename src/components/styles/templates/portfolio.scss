@@ -5,10 +5,10 @@
 PORTFOLIO ARCHIVE STYLES
 ================================ */
 
-.portfolioHeroImage {
-  margin-left: -80px;
-  margin-top: -40px;
-}
+// .portfolioHeroImage {
+//   margin-left: -80px;
+//   margin-top: -40px;
+// }
 
 // card styles
 section.cards {
@@ -18,80 +18,109 @@ section.cards {
 .cards .container {
   display: grid;
   grid-template-columns: 1fr;
-  grid-row-gap: 35px;
-  grid-column-gap: 35px;
+  grid-row-gap: 48px;
+  grid-column-gap: 48px;
 }
 
 .card {
-  background-color: c.$white;
   & .link {
     text-decoration: none;
     display: block;
     color: inherit;
-    & .upper {
+    position: relative;
+    min-height: 400px;
+    overflow: hidden;
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+    }
+
+    & .logo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       & img {
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position: center;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
+        position: relative;
+        max-width: 200px;
+        height: auto;
+        margin: 96px auto;
+        z-index: 2;
+        transition: transform 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -webkit-transition: transform 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -moz-transition: transform 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -ms-transition: transform 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -o-transition: transform 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
       }
-    }
-    & .lower-1 {
-      padding: 30px;
-      & h5 {
-        font-size: 24px;
-        font-weight: 600;
-        margin-bottom: 1em;
+      & .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        background-color: c.$gray;
+        z-index: 1;
+        opacity: 0.4;
+        transition: opacity 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -webkit-transition: opacity 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -moz-transition: opacity 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -ms-transition: opacity 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -o-transition: opacity 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
       }
-      & .description {
-        font-size: 20px;
-        color: c.$text-color;
-      }
-    }
-    & .lower-2 {
-      border-top: 1px solid #eeeeee;
-      padding: 15px 30px;
-      font-size: 16px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      & .tags {
-        & span {
-          text-transform: lowercase;
+      & .info {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        color: #fff;
+        z-index: 2;
+        opacity: 0;
+        transition: all 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -webkit-transition: all 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -moz-transition: all 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -ms-transition: all 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        -o-transition: all 0.6s cubic-bezier(0.25, 0.69, 0.6, 1);
+        & h3 {
+          text-align: center;
+          width: 100%;
+          padding: 48px 24px 24px 24px;
+          font-size: 32px;
+          & span {
+            font-weight: 400;
+          }
+        }
+        & .btn.ghostery.white {
+          border-color: c.$white;
           color: c.$white;
-          background-color: c.$primary-color;
-          padding: 4px 8px;
-          border-radius: 32px;
-          -webkit-border-radius: 32px;
-          -moz-border-radius: 32px;
-          -ms-border-radius: 32px;
-          -o-border-radius: 32px;
-          font-size: 14px;
+          &:hover {
+            background-color: c.$white;
+            color: c.$black;
+          }
         }
-        & span:nth-of-type(n + 2) {
-          margin-left: 10px;
-        }
-        & .administratie {
-          background-color: c.$administratie;
-        }
-        & .website {
-          background-color: c.$website;
-        }
-        & .tekst {
-          background-color: c.$tekst;
-        }
-        & .marketing {
-          background-color: c.$marketing;
-        }
+      }
+    }
+    &:hover {
+      .logo img {
+        transform: translateY(-72px);
+        -webkit-transform: translateY(-72px);
+        -moz-transform: translateY(-72px);
+        -ms-transform: translateY(-72px);
+        -o-transform: translateY(-72px);
+      }
+      .overlay {
+        opacity: 0.7;
+      }
+      .info {
+        opacity: 1;
+        transform: translateY(-24px);
+        -webkit-transform: translateY(-24px);
+        -moz-transform: translateY(-24px);
+        -ms-transform: translateY(-24px);
+        -o-transform: translateY(-24px);
       }
     }
   }
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
 }
 
 /* =============================
@@ -265,7 +294,7 @@ RESPONSIVE STYLES
 }
 
 @media (min-width: 1224px) {
-  .cards .container {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+  // .cards .container {
+  //   grid-template-columns: 1fr 1fr 1fr;
+  // }
 }

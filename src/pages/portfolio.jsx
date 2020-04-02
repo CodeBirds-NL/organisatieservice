@@ -5,6 +5,7 @@ import ActionBarParent from "../components/actionBar"
 import Hero from "../components/common/hero"
 import "../components/styles/templates/portfolio.scss"
 import TopWave from "../components/common/topWave"
+import Arrow from "../components/common/arrow"
 
 class PortfolioPage extends Component {
   render() {
@@ -26,8 +27,8 @@ class PortfolioPage extends Component {
         >
           <h1 className="title">{title}</h1>
           <p className="text">{text}</p>
-          <a href="#projecten" className="btn ghostery gray">
-            {cta}
+          <a href="#projecten" className="btn underline withArrow">
+            {cta} <Arrow width="18px" color="#001010" />
           </a>
         </Hero>
         <TopWave />
@@ -46,33 +47,21 @@ class PortfolioPage extends Component {
               return (
                 <div key={id} className="card">
                   <Link className="link" to={`portfolio/${slug}`}>
-                    <div className="upper">
+                    <img
+                      src={acf.project_foto.source_url}
+                      alt={acf.project_foto.alt_text}
+                    />
+                    <div className="logo">
                       <img
-                        src={project_foto.source_url}
-                        alt={project_foto.alt_text}
+                        src={acf.logo_klant_white.source_url}
+                        alt={acf.logo_klant_white.alt_text}
                       />
-                    </div>
-                    <div className="lower-1">
-                      <h5>{title}</h5>
-                      <p className="description">{`${resultaat.slice(
-                        0,
-                        55
-                      )}...`}</p>
-                    </div>
-                    <div className="lower-2">
-                      <div className="date">
-                        <span>
-                          {new Date(date)
-                            .toLocaleDateString()
-                            .replace(/\//g, "-")}
-                        </span>
-                      </div>
-                      <div className="tags">
-                        {tags.map(({ name, id }) => (
-                          <span key={id} className={name.toLowerCase()}>
-                            {name}
-                          </span>
-                        ))}
+                      <div className="overlay"></div>
+                      <div className="info">
+                        <h3>
+                          Project: <span>{acf.titel}</span>
+                        </h3>
+                        <button className="btn ghostery white">Bekijk</button>
                       </div>
                     </div>
                   </Link>
@@ -122,7 +111,7 @@ export default props => (
                 resultaat
                 titel
                 vraag
-                logo_klant {
+                logo_klant_white {
                   alt_text
                   source_url
                 }

@@ -32,6 +32,10 @@ exports.createPages = async ({ graphql, actions }) => {
                 alt_text
                 source_url
               }
+              logo_klant_white {
+                alt_text
+                source_url
+              }
               project_foto {
                 alt_text
                 source_url
