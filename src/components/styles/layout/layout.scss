@@ -286,6 +286,9 @@ p.text {
     padding: 0 0 5px 0;
     // border-bottom: 3px solid c.$primary-color;
   }
+  &.white {
+    color: white;
+  }
 }
 
 a.underline {

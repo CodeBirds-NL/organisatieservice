@@ -292,6 +292,7 @@ ACTIONBAR STYLES
   display: flex;
   flex-direction: row;
   overflow-y: auto;
+  cursor: auto;
   & .backArea {
     display: block;
     padding: 0 20px;

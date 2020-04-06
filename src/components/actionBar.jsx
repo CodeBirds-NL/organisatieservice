@@ -108,7 +108,16 @@ class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
       />
     ),
-    contact: () => <DirectContact data={this.state.action} />,
+    contact: () => (
+      <DirectContact
+        onNextStep={this.handleNextStep}
+        data={this.state.action}
+        nextStep={this.state.nextStep}
+        onCustomBackClick={
+          this.props.src === "contact" ? this.handleBackClick : null
+        }
+      />
+    ),
   }
 
   history = []
@@ -128,10 +137,13 @@ class ActionBarParent extends Component {
   }
 
   handleBackClick = () => {
+    // unmountMe is a callback passed from the parent that applies to diensten page
     const { unmountMe = "" } = this.props
+
     const { ...rest } = this.history[this.history.length - 1]
     this.setState({ ...rest })
     this.history.pop(this.history.length - 1)
+
     // if actionbar is clicked back to initial state, unset body position
     if (this.history.length < 1) {
       document.body.style.position = "unset"
