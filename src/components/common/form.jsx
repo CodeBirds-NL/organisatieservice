@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Input from "./input"
 import Button from "./button"
 import Emoji from "./emoji"
+import axios from "axios"
 
 class Form extends Component {
   state = {
@@ -36,15 +37,24 @@ class Form extends Component {
     })
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault()
-    const { nextStep, onNextStep } = this.props
+    const { nextStep, onNextStep, data } = this.props
 
     if (!nextStep) return onNextStep(this.state.data.contactOption)
-    console.log("form submitted!")
 
-    // get formdata
-    // call server
+    // handle form submission
+    try {
+      const res = await axios.post("http://vantuijl.uk:6003/directactie", {
+        ...this.state.data,
+        dienst: data.label,
+      })
+      if (res.data !== "success") return
+      // tell parent that we need a new screen with data => text
+      this.props.onSuccessfulSubmit()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   renderHeading = main => <div className="heading">{main}</div>

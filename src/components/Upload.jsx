@@ -5,7 +5,7 @@ import axios from "axios"
 function Upload(props) {
   const [files, setFiles] = useState()
   const [name, setName] = useState("")
-  const api = "http://localhost:3001"
+  const api = "http://vantuijl.uk:6003"
 
   function handleFileUpload({ target: input }) {
     const fileList = input.files

@@ -3,6 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import axios from "axios"
 import Emoji from "./common/emoji"
 import "./styles/forms/form.scss"
+import ProgressCircle from "./common/ProgressCircle"
 
 class DirectContact extends Component {
   defaultState = {
@@ -10,7 +11,6 @@ class DirectContact extends Component {
     dragEnter: false,
     files: null,
     name: "",
-    uploadSucceeded: false,
   }
 
   state = {
@@ -18,7 +18,6 @@ class DirectContact extends Component {
     dragEnter: false,
     files: null,
     name: "",
-    uploadSucceeded: false,
   }
 
   contactOptions = {
@@ -53,7 +52,7 @@ class DirectContact extends Component {
     e.preventDefault()
 
     const { name, files } = this.state
-    const api = "http://localhost:3001"
+    const api = "http://vantuijl.uk:6003"
 
     if (!files) return console.error("Please select 1 or more files")
 
@@ -79,20 +78,22 @@ class DirectContact extends Component {
         },
       })
       const data = res.data
-      if (data) this.setState({ uploadSucceeded: true })
+      if (data !== "success") return
+      console.log("success!")
     } catch (err) {
       console.log(err)
     }
   }
 
   render() {
-    const { uploadPercentage, dragEnter, files, uploadSucceeded } = this.state
+    const { uploadPercentage, dragEnter, files, name } = this.state
 
     const {
       data,
       nextStep,
       onNextStep,
       onCustomBackClick = "",
+      submitted,
     } = this.props.inheritedProps
 
     const {
@@ -143,70 +144,79 @@ class DirectContact extends Component {
               Je kunt hier meerdere foto's uploaden zonder kwaliteitsverlies.
               Pdf's en andere files behoren ook to de mogelijkheden.
             </div>
-            <div className="uploadWrapper">
-              <form onSubmit={e => this.handleSubmit(e)}>
-                <div className="form-group">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="name"
-                    placeholder="Naam/bedrijfsnaam"
-                    onChange={e => this.setState({ name: e.target.value })}
-                  />
+            {uploadPercentage ? (
+              <div className="animation">
+                <ProgressCircle percentage={uploadPercentage} />
+                <div className="chartInfo">
+                  <span className={uploadPercentage == 100 ? "success" : null}>
+                    {uploadPercentage}%
+                  </span>
                 </div>
-                <div
-                  onDragEnter={this.handleDragEnter}
-                  onDragLeave={this.handleDragLeave}
-                  onDragOverCapture={e => e.preventDefault()}
-                  onDrop={e => this.handleUpload(e, "drop")}
-                  className="area"
-                >
+              </div>
+            ) : (
+              <div className="uploadWrapper">
+                <form onSubmit={e => this.handleSubmit(e)}>
                   <div className="form-group">
                     <input
-                      type="file"
-                      name="images"
-                      id="images"
-                      multiple
-                      className="fileInput"
-                      onChange={e => this.handleUpload(e, "click")}
+                      className="form-control"
+                      type="text"
+                      name="name"
+                      placeholder="Naam/bedrijfsnaam"
+                      onChange={e => this.setState({ name: e.target.value })}
                     />
-                    <label
-                      className={dragEnter ? "enter" : ""}
-                      htmlFor="images"
-                    >
-                      <div className="icon"></div>
-                      <div className="text">
-                        {files
-                          ? uploadSucceeded
-                            ? "Je bestanden werden succesvol verstuurd!"
-                            : files.length + " bestanden geselecteerd"
-                          : "Klik of sleep je files op dit veld"}
-                      </div>
-                    </label>
                   </div>
-                </div>
-                {uploadPercentage && (
-                  <div className="progressBar form-group">
-                    <div
-                      style={{ width: uploadPercentage + "%" }}
-                      className="fill"
-                    >{`${uploadPercentage}%`}</div>
+                  <div
+                    onDragEnter={this.handleDragEnter}
+                    onDragLeave={this.handleDragLeave}
+                    onDragOverCapture={e => e.preventDefault()}
+                    onDrop={e => this.handleUpload(e, "drop")}
+                    className="area"
+                  >
+                    <div className="form-group">
+                      <input
+                        type="file"
+                        name="images"
+                        id="images"
+                        multiple
+                        className="fileInput"
+                        onChange={e => this.handleUpload(e, "click")}
+                      />
+                      <label
+                        className={dragEnter ? "enter" : ""}
+                        htmlFor="images"
+                      >
+                        <div className="icon"></div>
+                        <div className="text">
+                          {files
+                            ? files.length + " bestanden geselecteerd"
+                            : "Klik of sleep je files op dit veld"}
+                        </div>
+                      </label>
+                    </div>
                   </div>
-                )}
-                <div className="buttonGroup" style={{ marginBottom: 30 }}>
-                  <input className="btn full" type="submit" value="Upload" />
-                  {/* render go back button only on contactpage */}
-                  {onCustomBackClick && (
-                    <button
-                      onClick={onCustomBackClick}
-                      className="btn underline white"
-                    >
-                      Ga terug
-                    </button>
+                  {uploadPercentage && (
+                    <div className="progressBar form-group">
+                      <div
+                        style={{ width: uploadPercentage + "%" }}
+                        className="fill"
+                      >{`${uploadPercentage}%`}</div>
+                    </div>
                   )}
-                </div>
-              </form>
-            </div>
+                  <div className="buttonGroup" style={{ marginBottom: 30 }}>
+                    <input className="btn full" type="submit" value="Upload" />
+                    {/* render go back button only on contactpage */}
+                    {onCustomBackClick && (
+                      <button
+                        onClick={onCustomBackClick}
+                        className="btn underline white"
+                      >
+                        Ga terug
+                      </button>
+                    )}
+                  </div>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       </div>

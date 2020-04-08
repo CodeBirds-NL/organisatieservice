@@ -302,3 +302,101 @@ form .right .btn.full {
   font-weight: 400;
   font-size: 20px;
 }
+
+// circle and checkmark animation styles on form submit
+.animation {
+  width: 100%;
+  max-width: 500px;
+  margin: 80px 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  & svg.circle {
+    transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform-origin: center;
+    & .fill {
+      transition: stroke-dashoffset 2s ease;
+      -webkit-transition: stroke-dashoffset 2s ease;
+      -moz-transition: stroke-dashoffset 2s ease;
+      -ms-transition: stroke-dashoffset 2s ease;
+      -o-transition: stroke-dashoffset 2s ease;
+    }
+    & .fill.animated {
+      stroke-dashoffset: 609;
+      animation: drawCircle 2s forwards;
+      -webkit-animation: drawCircle 2s forwards;
+    }
+  }
+  & .checkmark {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & span {
+      width: 108px;
+      height: 72px;
+      background-color: transparent;
+      border-left: 4px solid c.$white;
+      border-bottom: 4px solid c.$white;
+      display: block;
+      transform-origin: center;
+      margin: 46px 0 84px 0;
+      opacity: 0;
+      animation: showCheckmark 1s ease-out 1.5s forwards;
+      -webkit-animation: showCheckmark 1s ease-out 1.5s forwards;
+    }
+  }
+  & .chartInfo {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    & span::after {
+      opacity: 0;
+      display: none;
+    }
+    & span.success::after {
+      display: block;
+      content: "Het is gelukt!";
+      width: 100%;
+      font-size: 16px;
+      margin: 5px 0;
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes showCheckmark {
+  from {
+    opacity: 0;
+    transform: scale(0.5) rotate(-45deg);
+    -webkit-transform: scale(0.5) rotate(-45deg);
+    -moz-transform: scale(0.5) rotate(-45deg);
+    -ms-transform: scale(0.5) rotate(-45deg);
+    -o-transform: scale(0.5) rotate(-45deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-45deg);
+    -webkit-transform: scale(1) rotate(-45deg);
+    -moz-transform: scale(1) rotate(-45deg);
+    -ms-transform: scale(1) rotate(-45deg);
+    -o-transform: scale(1) rotate(-45deg);
+  }
+}

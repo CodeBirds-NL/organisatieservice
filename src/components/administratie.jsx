@@ -1,5 +1,6 @@
-import React from "react"
+import React, { Fragment } from "react"
 import Form from "./common/form"
+import SuccessMessage from "./common/successMessage"
 
 class Administratie extends Form {
   state = {
@@ -13,22 +14,34 @@ class Administratie extends Form {
 
   render() {
     const { id, options } = this.props.data
-    const { nextStep } = this.props
+    const { nextStep, submitted } = this.props
+    const { name } = this.state.data
+    if (submitted) console.log("Yeah man! You submitted the form!")
 
     return (
-      <div className="formWrapper" data-actionid={id}>
-        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel meer...`)}
-        {this.renderSubHeading(
-          "Vul hier het onderwerp in en geef aan wat je verwacht. Ik ga direct voor je aan de slag."
+      <Fragment>
+        {submitted ? (
+          <SuccessMessage name={name} />
+        ) : (
+          <div className="formWrapper" data-actionid={id}>
+            {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel meer...`)}
+            {this.renderSubHeading(
+              "Vul hier het onderwerp in en geef aan wat je verwacht. Ik ga direct voor je aan de slag."
+            )}
+            {this.renderForm(
+              "Details",
+              this.inputs,
+              this.renderRadioOptions(
+                options,
+                "contactOption",
+                "Contactopties"
+              ),
+              Object.values(this.contactInputs),
+              this.renderButton("full", "Verstuur")
+            )}
+          </div>
         )}
-        {this.renderForm(
-          "Details",
-          this.inputs,
-          this.renderRadioOptions(options, "contactOption", "Contactopties"),
-          Object.values(this.contactInputs),
-          this.renderButton("full", "Verstuur")
-        )}
-      </div>
+      </Fragment>
     )
   }
 }

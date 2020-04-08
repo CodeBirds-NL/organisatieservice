@@ -16,6 +16,7 @@ class ActionBarParent extends Component {
     action: null,
     nextStep: null,
     scrollY: 0,
+    submitted: false,
   }
 
   componentDidMount() {
@@ -85,6 +86,8 @@ class ActionBarParent extends Component {
         onNextStep={this.handleNextStep}
         data={this.state.action}
         nextStep={this.state.nextStep}
+        onSuccessfulSubmit={this.handleSuccessfulSubmit}
+        submitted={this.state.submitted}
       />
     ),
     tekstschrijven: () => (
@@ -92,6 +95,8 @@ class ActionBarParent extends Component {
         onNextStep={this.handleNextStep}
         data={this.state.action}
         nextStep={this.state.nextStep}
+        onSuccessfulSubmit={this.handleSuccessfulSubmit}
+        submitted={this.state.submitted}
       />
     ),
     website: () => (
@@ -99,6 +104,8 @@ class ActionBarParent extends Component {
         onNextStep={this.handleNextStep}
         data={this.state.action}
         nextStep={this.state.nextStep}
+        onSuccessfulSubmit={this.handleSuccessfulSubmit}
+        submitted={this.state.submitted}
       />
     ),
     marketing: () => (
@@ -106,6 +113,8 @@ class ActionBarParent extends Component {
         onNextStep={this.handleNextStep}
         data={this.state.action}
         nextStep={this.state.nextStep}
+        onSuccessfulSubmit={this.handleSuccessfulSubmit}
+        submitted={this.state.submitted}
       />
     ),
     contact: () => (
@@ -116,6 +125,8 @@ class ActionBarParent extends Component {
         onCustomBackClick={
           this.props.src === "contact" ? this.handleBackClick : null
         }
+        onSuccessfulSubmit={this.handleSuccessfulSubmit}
+        submitted={this.state.submitted}
       />
     ),
   }
@@ -180,6 +191,10 @@ class ActionBarParent extends Component {
     this.setState({ nextStep: true })
   }
 
+  handleSuccessfulSubmit = _ => {
+    this.setState({ submitted: true })
+  }
+
   handleClosing = _ => {
     const { unmountMe = "" } = this.props
     // set state to first history item and then clear history array
@@ -229,7 +244,7 @@ class ActionBarParent extends Component {
   }
 
   render() {
-    const { actionBarClicked: active, action } = this.state
+    const { actionBarClicked: active, action, submitted } = this.state
     const { src, acf } = this.props
 
     return src === "home" ? (
@@ -250,6 +265,7 @@ class ActionBarParent extends Component {
               actions: this.actions,
               handleActionBarClick: this.handleActionBarClick,
               src,
+              submitted,
               handleBackClick: this.handleBackClick,
               handleClosing: this.handleClosing,
               handleActionButtonClick: this.handleActionButtonClick,
@@ -275,6 +291,7 @@ class ActionBarParent extends Component {
           active,
           action,
           src,
+          submitted,
           renderActionTemplate: this.renderActionTemplate.bind(this),
         }}
       />
@@ -286,6 +303,7 @@ class ActionBarParent extends Component {
           actions: this.actions,
           handleActionBarClick: this.handleActionBarClick,
           src,
+          submitted,
           handleBackClick: this.handleBackClick,
           handleClosing: this.handleClosing,
           handleActionButtonClick: this.handleActionButtonClick,
@@ -336,6 +354,7 @@ class ActionBar extends Component {
       action,
       handleActionBarClick,
       src,
+      submitted,
       handleBackClick,
       handleClosing,
       renderActionTemplate,
@@ -354,7 +373,8 @@ class ActionBar extends Component {
           </span>
         )}
         <div className="backArea">
-          {src !== "contact" ? (
+          {/* render back button only when we're not on the contactpage and when the form isn't submitted yet */}
+          {src !== "contact" && !submitted ? (
             <button onClick={handleBackClick} className="btn back">
               <Arrow width="32px" />
             </button>
