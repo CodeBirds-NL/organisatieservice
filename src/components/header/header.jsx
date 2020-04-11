@@ -9,12 +9,6 @@ class Header extends Component {
   handleToggle = _ => {
     this.setState(() => ({ active: !this.state.active }))
     // document.body.style.transfrom = "translateX(400px)"
-
-    if (window.innerWidth <= 500) {
-      !this.state.active // weirdly enough this does work
-        ? (document.body.style.position = "fixed")
-        : (document.body.style.position = "unset")
-    }
   }
 
   render() {
@@ -36,6 +30,11 @@ class Header extends Component {
     //   source_url: logoUrl,
     //   alt_text: logoAlt,
     // } = data.allWordpressPage.edges[0].node.site_logo_src
+    if (window.innerWidth <= 500) {
+      active
+        ? (document.body.style.position = "fixed")
+        : (document.body.style.position = "unset")
+    }
 
     return (
       <header
