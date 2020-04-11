@@ -277,13 +277,15 @@ class ActionBarParent extends Component {
         <h1 className="title">{acf.hero_title}</h1>
         <h1 className="subTitle">{acf.hero_subtitle}</h1>
         <p className="text">{acf.hero_text}</p>
-        <ToggleButton
-          handleToggle={this.handleActionBarClick}
-          label={acf.hero_call_to_action}
-        />
-        <a href="#services" className="btn underline ml-2">
-          Bekijk diensten
-        </a>
+        <div className="buttonGroup">
+          <ToggleButton
+            handleToggle={this.handleActionBarClick}
+            label={acf.hero_call_to_action}
+          />
+          <a href="#services" className="btn underline">
+            Bekijk diensten
+          </a>
+        </div>
       </Hero>
     ) : src === "contact" ? (
       <ActionBar

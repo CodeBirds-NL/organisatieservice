@@ -93,71 +93,9 @@ section.hero {
   -o-transform: translate(100px, -250px);
 }
 
-// RESPONSIVE STYLES
-@media (min-width: 800px) {
-  .hero .wrapper {
-    flex-direction: row;
-    & .col-1 {
-      width: 60%;
-      & .title,
-      & .subTitle {
-        font-size: 64px;
-      }
-      & .post.title {
-        font-size: 48px;
-      }
-      .text {
-        width: 450px;
-      }
-    }
-    & .col-2 {
-      width: 40%;
-      // display: flex;
-      // align-items: center;
-    }
-  }
-}
-
-@media (min-width: 1168px) {
-  .hero .wrapper {
-    position: unset;
-    & .col-1 {
-      width: 50%;
-    }
-    & .col-2 {
-      width: 50%;
-    }
-    & .actionsBlob {
-      display: block;
-    }
-  }
-}
-
-@media (min-width: 1224px) {
-  .container {
-    padding: 0 140px;
-    // width: 1184px;
-  }
-}
-
-@media (min-width: 1600px) {
-  .container {
-    padding: 0;
-    max-width: 1240px;
-  }
-  .container .wrapper {
-    padding-top: 150px;
-  }
-}
-
 /* =============================
 COMPONENTS
 ================================ */
-
-/* 1. Margins and paddings */
-.ml-2 {
-  margin-left: 2rem;
-}
 
 /* 2. Text and Headings */
 h2.subHeading {
@@ -186,6 +124,7 @@ p.text {
   -moz-border-radius: 32px;
   -ms-border-radius: 32px;
   -o-border-radius: 32px;
+  width: fit-content;
 }
 
 .ghostery {
@@ -313,6 +252,16 @@ a.ghostery.gray {
   text-decoration: none;
 }
 
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  .btn {
+    margin-bottom: 32px;
+    display: block;
+  }
+}
+
+/* Logo styles */
 .brand.rotated {
   position: absolute;
   top: 335px;
@@ -332,6 +281,16 @@ a.ghostery.gray {
   h2.subHeading {
     font-size: 48px;
   }
+  .buttonGroup {
+    flex-direction: row;
+    align-items: center;
+    .btn {
+      margin-bottom: 0;
+    }
+    .underline {
+      margin-left: 32px;
+    }
+  }
 }
 
 /* 4. DOT */
@@ -348,4 +307,96 @@ a.ghostery.gray {
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+
+// RESPONSIVE STYLES
+
+//iphone 5 styles
+@media (max-width: 330px) {
+  .container {
+    padding: 0 20px;
+  }
+  .hero .wrapper {
+    padding-top: 40px;
+    .title,
+    .subTitle {
+      font-size: 36px;
+    }
+  }
+
+  h2.subHeading {
+    font-size: 28px;
+  }
+
+  p.text {
+    font-size: 20px;
+    line-height: 1.5em;
+  }
+
+  .actionBar {
+    height: 0;
+  }
+}
+
+// iphone 6,7,8 styles
+@media (min-width: 330px) and (max-width: 380px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 800px) {
+  .hero .wrapper {
+    flex-direction: row;
+    & .col-1 {
+      width: 60%;
+      & .title,
+      & .subTitle {
+        font-size: 64px;
+      }
+      & .post.title {
+        font-size: 48px;
+      }
+      .text {
+        width: 450px;
+      }
+    }
+    & .col-2 {
+      width: 40%;
+      // display: flex;
+      // align-items: center;
+    }
+  }
+}
+
+@media (min-width: 1168px) {
+  .hero .wrapper {
+    position: unset;
+    & .col-1 {
+      width: 50%;
+    }
+    & .col-2 {
+      width: 50%;
+    }
+    & .actionsBlob {
+      display: block;
+    }
+  }
+}
+
+@media (min-width: 1224px) {
+  .container {
+    padding: 0 140px;
+    // width: 1184px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    padding: 0;
+    max-width: 1240px;
+  }
+  .container .wrapper {
+    padding-top: 150px;
+  }
 }

@@ -319,11 +319,11 @@ form .right .btn.full {
     -o-transform: rotate(-90deg);
     transform-origin: center;
     & .fill {
-      transition: stroke-dashoffset 2s ease;
-      -webkit-transition: stroke-dashoffset 2s ease;
-      -moz-transition: stroke-dashoffset 2s ease;
-      -ms-transition: stroke-dashoffset 2s ease;
-      -o-transition: stroke-dashoffset 2s ease;
+      transition: stroke-dashoffset 0.6s linear;
+      -webkit-transition: stroke-dashoffset 0.6s linear;
+      -moz-transition: stroke-dashoffset 0.6s linear;
+      -ms-transition: stroke-dashoffset 0.6s linear;
+      -o-transition: stroke-dashoffset 0.6s linear;
     }
     & .fill.animated {
       stroke-dashoffset: 609;

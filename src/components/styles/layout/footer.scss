@@ -21,9 +21,7 @@
       width: 50%;
       display: flex;
       justify-content: flex-end;
-      .linkedin,
-      .facebook,
-      .twitter {
+      span {
         display: block;
         background-repeat: no-repeat;
         height: 36px;
@@ -38,6 +36,25 @@
       }
       .twitter {
         background-image: url(../../../images/social/twitter.svg);
+      }
+      .instagram {
+        background-image: url(../../../images/social/instagram.svg);
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .footer {
+    .container {
+      flex-direction: column;
+      .copyright,
+      .social {
+        width: 100%;
+        justify-content: start;
+      }
+      .social {
+        margin-top: 15px;
       }
     }
   }

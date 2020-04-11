@@ -13,21 +13,22 @@
   & .btn {
     margin-bottom: 50px;
   }
-  & .gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-column-gap: 50px;
-    grid-row-gap: 30px;
-    & .logo {
-      display: flex;
-      align-items: center;
-      & img {
-        width: 100%;
-        height: 100%;
-        // align logo's with different dimensions
-        max-height: 180px;
-        object-fit: contain;
-      }
+}
+
+#references .gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 50px;
+  grid-row-gap: 30px;
+  & .logo {
+    display: flex;
+    align-items: center;
+    & img {
+      width: 100%;
+      height: 100%;
+      // align logo's with different dimensions
+      max-height: 180px;
+      object-fit: contain;
     }
   }
 }
@@ -210,9 +211,9 @@ ACTIONBAR STYLES
   color: c.$white;
   position: fixed;
   right: 0;
-  bottom: 0;
+  bottom: -50px;
   z-index: 5;
-  height: 60px;
+  height: 50px;
   width: 250px;
   background-color: c.$primary-color;
   //transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
@@ -294,6 +295,7 @@ ACTIONBAR STYLES
   overflow-y: auto;
   cursor: auto;
   & .backArea {
+    z-index: 15;
     display: block;
     padding: 0 20px;
     & button.back {
@@ -391,7 +393,7 @@ RESPONSIVE STYLES
 ================================ */
 
 @media (min-width: 768px) {
-  .home #references {
+  #references {
     & .gallery {
       grid-template-columns: repeat(4, 1fr);
     }

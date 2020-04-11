@@ -15,7 +15,6 @@ class PortfolioPage extends Component {
     return (
       <Layout>
         <Hero
-          buttonLabel={cta}
           image={
             <img
               className="portfolioHeroImage"
@@ -35,33 +34,27 @@ class PortfolioPage extends Component {
         <section className="cards">
           <div className="container">
             {items.map(item => {
-              const {
-                title,
-                acf,
-                id,
-                slug,
-                date,
-                tags = [{ name: "", id: "" }],
-              } = item.node
-              const { project_foto, resultaat } = acf
+              const { project_foto, logo_klant_white, titel } = item.node.acf
               return (
-                <div key={id} className="card">
-                  <Link className="link" to={`portfolio/${slug}`}>
+                <div key={item.node.id} className="card">
+                  <Link className="link" to={`portfolio/${item.node.slug}`}>
                     <img
-                      src={acf.project_foto.source_url}
-                      alt={acf.project_foto.alt_text}
+                      src={project_foto.source_url}
+                      alt={project_foto.alt_text}
                     />
                     <div className="logo">
                       <img
-                        src={acf.logo_klant_white.source_url}
-                        alt={acf.logo_klant_white.alt_text}
+                        src={logo_klant_white.source_url}
+                        alt={logo_klant_white.alt_text}
                       />
                       <div className="overlay"></div>
                       <div className="info">
                         <h3>
-                          Project: <span>{acf.titel}</span>
+                          Project: <span>{titel}</span>
                         </h3>
-                        <button className="btn ghostery white">Bekijk</button>
+                        <button className="btn ghostery white">
+                          Bekijk project
+                        </button>
                       </div>
                     </div>
                   </Link>

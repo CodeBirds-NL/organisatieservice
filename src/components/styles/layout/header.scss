@@ -42,7 +42,7 @@
   background-color: c.$light-gray;
   width: 400px;
   z-index: 11;
-  padding: 120px 40px;
+  padding: 120px 40px 30px 40px;
   /* box-shadow: 5px 0px 25px 2px rgba(0, 0, 0, 0.06); */
   transform: translateX(-400px);
   -webkit-transform: translateX(-400px);
@@ -54,6 +54,11 @@
   -moz-transition: transform 0.3s ease-out;
   -ms-transition: transform 0.3s ease-out;
   -o-transition: transform 0.3s ease-out;
+  // space out nav and contact sections
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
 }
 
 .open .offCanvasMenu {
@@ -76,9 +81,8 @@
 }
 
 .offCanvasMenu .contactInfo {
-  margin: 30px 0;
-  position: absolute;
-  bottom: 0;
+  margin-top: 48px;
+  position: relative;
 }
 
 .offCanvasMenu .contactInfo li {
@@ -91,4 +95,27 @@
   text-decoration: none;
   border-bottom: 3px solid currentColor;
   border-color: c.$primary-color;
+}
+
+//iphone 5 styles
+@media (max-width: 330px) {
+  .header {
+    padding: 30px 20px;
+  }
+  #nav-icon {
+    margin-right: 20px;
+  }
+  .brand {
+    font-size: 21px;
+  }
+}
+
+// iphone 6,7,8 styles
+@media (min-width: 330px) and (max-width: 380px) {
+  .header {
+    padding: 30px;
+  }
+  .offCanvasMenu {
+    padding: 120px 30px 30px 30px;
+  }
 }

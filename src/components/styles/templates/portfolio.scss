@@ -5,11 +5,6 @@
 PORTFOLIO ARCHIVE STYLES
 ================================ */
 
-// .portfolioHeroImage {
-//   margin-left: -80px;
-//   margin-top: -40px;
-// }
-
 // card styles
 section.cards {
   background-color: c.$light-gray;
@@ -84,8 +79,8 @@ section.cards {
         & h3 {
           text-align: center;
           width: 100%;
-          padding: 48px 24px 24px 24px;
-          font-size: 32px;
+          padding: 48px 24px 32px 24px;
+          font-size: 24px;
           & span {
             font-weight: 400;
           }
@@ -113,11 +108,11 @@ section.cards {
       }
       .info {
         opacity: 1;
-        transform: translateY(-24px);
-        -webkit-transform: translateY(-24px);
-        -moz-transform: translateY(-24px);
-        -ms-transform: translateY(-24px);
-        -o-transform: translateY(-24px);
+        transform: translateY(-32px);
+        -webkit-transform: translateY(-32px);
+        -moz-transform: translateY(-32px);
+        -ms-transform: translateY(-32px);
+        -o-transform: translateY(-32px);
       }
     }
   }
@@ -162,14 +157,6 @@ PORTFOLIO SINGLE STYLES
   }
 }
 
-.buttonGroup {
-  display: flex;
-  align-items: center;
-  .btn:nth-of-type(n + 2) {
-    margin-left: 32px;
-  }
-}
-
 .body {
   background-color: c.$light-gray;
 }
@@ -196,8 +183,20 @@ PORTFOLIO SINGLE STYLES
   & .inner {
     background-color: c.$white;
     display: flex;
+    height: 100%;
+    position: relative;
     & .col-1 {
       width: 60%;
+      height: 100%;
+      img {
+        // make image take up all the white space in the left column
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        max-width: 60%;
+        object-fit: cover;
+      }
     }
     & .col-2 {
       width: 40%;
@@ -205,46 +204,6 @@ PORTFOLIO SINGLE STYLES
     }
   }
 }
-
-// .body {
-//   & #aanpak {
-//     text-align: center;
-//     & .subHeading {
-//       width: 100%;
-//     }
-//     & a.btn.underline {
-//       display: none;
-//     }
-//     & .col-2 .steps {
-//       display: flex;
-//       justify-content: center;
-//     }
-//   }
-//   & #resultaat {
-//     background-color: c.$light-gray;
-//     margin-top: l.$sectionST;
-//     margin-bottom: l.$sectionSB;
-//     & .container .inner {
-//       background-color: c.$light-gray;
-//       border-radius: 5px;
-//       -webkit-border-radius: 5px;
-//       -moz-border-radius: 5px;
-//       -ms-border-radius: 5px;
-//       -o-border-radius: 5px;
-//       padding: 80px 0;
-//       display: flex;
-//       flex-direction: column;
-//       align-items: center;
-//       & .col-2 {
-//         margin-top: 10px;
-//         margin-bottom: 60px;
-//         & img {
-//           box-shadow: 20px 20px 32px 0px rgba(0, 0, 0, 0.1);
-//         }
-//       }
-//     }
-//   }
-// }
 
 // number styles for list
 .steps ul {
@@ -291,10 +250,4 @@ RESPONSIVE STYLES
   .clientLogo {
     margin-top: 96px;
   }
-}
-
-@media (min-width: 1224px) {
-  // .cards .container {
-  //   grid-template-columns: 1fr 1fr 1fr;
-  // }
 }

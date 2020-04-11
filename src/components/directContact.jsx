@@ -79,7 +79,7 @@ class DirectContact extends Component {
       })
       const data = res.data
       if (data !== "success") return
-      console.log("success!")
+      console.log("succesfully uploaded!")
     } catch (err) {
       console.log(err)
     }

@@ -78,31 +78,6 @@ class HomePage extends Component {
             </div>
           </section>
           <BottomWave fill="#f1f1f1" />
-          {/* <section id="about">
-          <div className="container">
-            <div className="col-1">
-              <div className="laptop">
-                <video
-                  className="video-bg"
-                  autoPlay
-                  muted
-                  loop
-                  type="video/mp4"
-                  src={acf.about.video.source_url}
-                ></video>
-                <div className="base"></div>
-              </div>
-            </div>
-            <div className="col-2">
-              <h2 className="subHeading">{acf.about.title}</h2>
-              <p className="text">{acf.about.text}</p>
-              <Link to="/over-mij" className="btn underline withArrow">
-                <span className="content">Meer informatie</span>{" "}
-                <Arrow width="18px" color="#fff" />
-              </Link>
-            </div>
-          </div>
-        </section> */}
           <section id="references">
             <div className="container">
               <h2 className="subHeading">{acf.references.title}</h2>
