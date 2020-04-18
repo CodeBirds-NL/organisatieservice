@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { StaticQuery, Link } from "gatsby"
+import { StaticQuery, Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Hero from "../components/common/hero"
 import "../components/styles/pages/about.scss"

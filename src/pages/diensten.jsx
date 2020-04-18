@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Hero from "../components/common/hero"
 import Layout from "../components/layout"
-import { StaticQuery, Link } from "gatsby"
+import { StaticQuery, Link, graphql } from "gatsby"
 import ActionBarParent from "../components/actionBar"
 import "../components/styles/pages/diensten.scss"
 import Arrow from "../components/common/arrow"
