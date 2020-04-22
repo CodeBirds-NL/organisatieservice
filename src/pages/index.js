@@ -48,11 +48,8 @@ class HomePage extends Component {
           <section id="services">
             <div className="container">
               <div className="upper">
-                <h2 className="subHeading">I can help with</h2>
-                <p className="text">
-                  Tumblr selvage ugh yr man braid hella roof party migas
-                  aesthetic hoodie poke ramps copper mug.
-                </p>
+                <h2 className="subHeading">{acf.services_title}</h2>
+                <p className="text">{acf.services_text}</p>
               </div>
               <div className="servicesGrid">
                 {acf.services.map((i, index) => (
@@ -127,6 +124,8 @@ export const query = graphql`
                 source_url
               }
             }
+            services_title
+            services_text
             services {
               cta
               text

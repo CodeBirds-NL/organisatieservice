@@ -1,16 +1,17 @@
 import React, { Component } from "react"
+import { graphql } from "gatsby"
 import ActionStep from "./actionStep"
 import ActionButtons from "./common/actionButtons"
-import "./styles/forms/form.scss"
 import Administratie from "./administratie"
 import CopyWriting from "./copywriting"
 import Website from "./website"
 import Marketing from "./marketing"
 import DirectContact from "./directContact"
-import Arrow from "./common/arrow"
 import Hero from "./common/hero"
+import Arrow from "./common/arrow"
+import "./styles/forms/form.scss"
 
-class ActionBarParent extends Component {
+export default class ActionBarParent extends Component {
   state = {
     actionBarClicked: false,
     action: null,
@@ -226,8 +227,7 @@ class ActionBarParent extends Component {
     return (
       <ActionStep
         heading="Waarmee kan ik je helpen?"
-        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken "
-        symbol="✨"
+        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken."
         active={this.state.actionBarClicked}
       >
         <ActionButtons
@@ -244,6 +244,7 @@ class ActionBarParent extends Component {
   }
 
   render() {
+    console.log(this.props)
     const { actionBarClicked: active, action, submitted } = this.state
     const { src, acf } = this.props
 
@@ -282,7 +283,7 @@ class ActionBarParent extends Component {
             handleToggle={this.handleActionBarClick}
             label={acf.hero_call_to_action}
           />
-          <a href="#services" className="btn underline">
+          <a href="#services" className="btn ghostery right">
             Bekijk diensten
           </a>
         </div>
@@ -316,7 +317,44 @@ class ActionBarParent extends Component {
   }
 }
 
-export default ActionBarParent
+export const query = graphql`
+  query actionBarQuery {
+    allWordpressPage(filter: { slug: { eq: "direct-actie" } }) {
+      edges {
+        node {
+          acf {
+            actionbar {
+              main {
+                title
+                text
+              }
+              administratie {
+                text
+                title
+              }
+              marketing {
+                text
+                title
+              }
+              website {
+                text
+                title
+              }
+              copy {
+                text
+                title
+              }
+              contact {
+                text
+                title
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`
 
 class ActionBar extends Component {
   renderSideBarView = () => {
@@ -338,8 +376,7 @@ class ActionBar extends Component {
     return src !== "contact" ? (
       <ActionStep
         heading="Waarmee kan ik je helpen?"
-        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken "
-        symbol="✨"
+        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken."
         active={active}
       >
         <ActionButtons

@@ -95,7 +95,7 @@ class Form extends Component {
           </div>
           <div className={nextStep ? "show contactData" : "contactData"}>
             <div className="details">
-              <h3> Uw Contactgegevens</h3>
+              <h3>Jouw gegevens</h3>
               {contactInputs.map(({ type = "text", name, label }) => (
                 <Input
                   key={name}

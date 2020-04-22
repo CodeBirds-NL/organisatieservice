@@ -62,6 +62,7 @@ class Diensten extends Component {
       text,
       image,
       cta,
+      references_title,
       services,
     } = this.props.data.acf.services_page
     const { logos } = this.props
@@ -124,18 +125,22 @@ class Diensten extends Component {
           <div className="testimonials">
             <div className="container">
               <div className="inner">
-                <h5>Wij werken o.a. voor:</h5>
+                <h5>{references_title}</h5>
                 <div className="gallery">
-                  {logos.map(({ node: i }) => (
-                    <div key={i.slug} className="logo">
-                      <Link to={`/portfolio/${i.slug}`}>
-                        <img
-                          src={i.acf.logo_klant.source_url}
-                          alt={i.acf.logo_klant.alt_text}
-                        />
-                      </Link>
-                    </div>
-                  ))}
+                  {logos.map(({ node: i }, index) => {
+                    if (index < 4) {
+                      return (
+                        <div key={i.slug} className="logo">
+                          <Link to={`/portfolio/${i.slug}`}>
+                            <img
+                              src={i.acf.logo_klant.source_url}
+                              alt={i.acf.logo_klant.alt_text}
+                            />
+                          </Link>
+                        </div>
+                      )
+                    }
+                  })}
                 </div>
               </div>
             </div>
@@ -170,6 +175,7 @@ export default props => (
                     source_url
                     alt_text
                   }
+                  references_title
                   services {
                     cta
                     text

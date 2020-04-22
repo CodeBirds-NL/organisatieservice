@@ -2,7 +2,7 @@ import React from "react"
 import "./styles/layout/footer.scss"
 import { StaticQuery, graphql } from "gatsby"
 
-const Footer = ({ data }) => {
+const Footer = ({ socials }) => {
   return (
     <footer className="footer">
       <div className="container">
@@ -19,10 +19,10 @@ const Footer = ({ data }) => {
           </div>
         </div>
         <div className="social">
-          {Object.keys(data).map(i => {
+          {Object.keys(socials).map(i => {
             const className = i.split("_")[0]
             return (
-              <a key={i} href={data[i]} className="link">
+              <a key={i} href={socials[i]} className="link">
                 <span className={className}></span>
               </a>
             )
@@ -41,16 +41,18 @@ export default props => (
           edges {
             node {
               acf {
-                instagram_link
-                facebook_link
-                twitter_link
                 linkedin_link
+                facebook_link
+                instagram_link
+                twitter_link
               }
             }
           }
         }
       }
     `}
-    render={data => <Footer data={data.allWordpressPage.edges[0].node.acf} />}
+    render={data => (
+      <Footer socials={data.allWordpressPage.edges[0].node.acf} />
+    )}
   />
 )

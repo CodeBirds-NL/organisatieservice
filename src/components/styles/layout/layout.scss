@@ -144,6 +144,11 @@ p.text {
   text-transform: capitalize;
   letter-spacing: 1px;
   box-shadow: 5px 5px 22px 0 rgba(0, 0, 0, 0.06);
+  text-decoration: none;
+}
+
+.ghostery.right {
+  box-shadow: none;
 }
 
 .ghostery:hover {
@@ -153,9 +158,10 @@ p.text {
 
 .gray {
   @extend .ghostery;
-  border-color: c.$primary-color;
   background-color: c.$primary-color;
   color: c.$white;
+  display: block;
+  width: fit-content;
 }
 .gray:hover {
   border-color: c.$gray;
@@ -217,6 +223,8 @@ p.text {
 
 .underline {
   @extend .btn;
+  text-decoration: none;
+  width: fit-content;
   color: c.$black;
   font-weight: 600;
   border: 0;
@@ -228,19 +236,6 @@ p.text {
   &.white {
     color: white;
   }
-}
-
-a.underline {
-  @extend .underline;
-  text-decoration: none;
-  width: fit-content;
-}
-
-a.ghostery.gray {
-  @extend .gray;
-  text-decoration: none;
-  display: block;
-  width: fit-content;
 }
 
 .underline.withArrow {
@@ -287,8 +282,8 @@ a.ghostery.gray {
     .btn {
       margin-bottom: 0;
     }
-    .underline {
-      margin-left: 32px;
+    .right {
+      margin-left: 24px;
     }
   }
 }
@@ -336,12 +331,28 @@ a.ghostery.gray {
   .actionBar {
     height: 0;
   }
+
+  // home page specific hero fontsize
+  .home .hero .title {
+    font-size: 44px;
+  }
+  .home .hero .subTitle {
+    font-size: 28px;
+  }
 }
 
-// iphone 6,7,8 styles
-@media (min-width: 330px) and (max-width: 380px) {
+// iphone 6,7,8 and above styles
+@media (min-width: 330px) and (max-width: 420px) {
   .container {
     padding: 0 30px;
+  }
+
+  // home page specific hero fontsize
+  .home .hero .title {
+    font-size: 44px;
+  }
+  .home .hero .subTitle {
+    font-size: 28px;
   }
 }
 

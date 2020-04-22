@@ -48,7 +48,7 @@ class AboutPage extends Component {
             <a href="#video" className="btn ghostery gray">
               Bekijk video
             </a>
-            <Link to="/contact" className="btn underline ml-2">
+            <Link to="/contact" className="btn ghostery right">
               Contact
             </Link>
           </div>

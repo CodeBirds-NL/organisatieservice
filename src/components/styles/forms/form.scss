@@ -55,6 +55,10 @@ label {
   -o-border-radius: 5px;
 }
 
+.form-group select option {
+  color: c.$black; // on windows & firefox
+}
+
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {

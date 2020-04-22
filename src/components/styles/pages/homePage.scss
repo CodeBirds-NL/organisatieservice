@@ -1,6 +1,16 @@
 @use '../layout/colors.scss' as c;
 @use '../layout/layout.scss' as l;
 
+// those heading styles are specifically for the hero section on the homepage and have highest priority
+@media (min-width: 550px) {
+  .home .hero .title {
+    font-size: 76px !important;
+  }
+  .home .hero .subTitle {
+    font-size: 48px !important;
+  }
+}
+
 /* =============================
 2. REFERENCE SECTION STYLES
 ================================ */
@@ -391,8 +401,11 @@ ACTIONBAR STYLES
 /* =============================
 RESPONSIVE STYLES
 ================================ */
-
 @media (min-width: 768px) {
+  .home .hero .title {
+    font-size: 76px;
+  }
+
   #references {
     & .gallery {
       grid-template-columns: repeat(4, 1fr);

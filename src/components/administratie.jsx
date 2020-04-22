@@ -16,7 +16,6 @@ class Administratie extends Form {
     const { id, options } = this.props.data
     const { nextStep, submitted } = this.props
     const { name } = this.state.data
-    if (submitted) console.log("Yeah man! You submitted the form!")
 
     return (
       <Fragment>

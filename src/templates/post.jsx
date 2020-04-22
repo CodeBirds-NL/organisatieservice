@@ -36,7 +36,7 @@ export default ({ pageContext }) => {
           <a className="btn ghostery gray" href="#aanpak">
             Bekijk aanpak
           </a>
-          <Link to="/portfolio" className="btn underline">
+          <Link to="/portfolio" className="btn ghostery right">
             Alle projecten
           </Link>
         </div>
