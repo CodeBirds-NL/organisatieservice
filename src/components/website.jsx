@@ -14,14 +14,12 @@ class Website extends Form {
   render() {
     const { id, options } = this.props.data
     const { nextStep } = this.props
+    const { title, text } = this.props.queryData
 
     return (
       <div className="formWrapper" data-actionid={id}>
-        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel ons iets meer`)}
-        {this.renderSubHeading(
-          "Don't worry, we will turn your website into a killer-website",
-          "🎉"
-        )}
+        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} ${title}`)}
+        {this.renderSubHeading(text)}
         {this.renderForm(
           "Details",
           this.inputs,

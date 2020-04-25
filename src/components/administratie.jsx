@@ -16,6 +16,8 @@ class Administratie extends Form {
     const { id, options } = this.props.data
     const { nextStep, submitted } = this.props
     const { name } = this.state.data
+    // query data is pulled in here
+    const { title, text } = this.props.queryData
 
     return (
       <Fragment>
@@ -23,10 +25,8 @@ class Administratie extends Form {
           <SuccessMessage name={name} />
         ) : (
           <div className="formWrapper" data-actionid={id}>
-            {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel meer...`)}
-            {this.renderSubHeading(
-              "Vul hier het onderwerp in en geef aan wat je verwacht. Ik ga direct voor je aan de slag."
-            )}
+            {this.renderHeading(`${nextStep ? "2/2" : "1/2"} ${title}`)}
+            {this.renderSubHeading(text)}
             {this.renderForm(
               "Details",
               this.inputs,

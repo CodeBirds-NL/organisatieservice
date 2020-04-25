@@ -28,6 +28,7 @@ class AboutPage extends Component {
       video,
       highlights,
       highlights_title,
+      references_title,
     } = this.props.data.acf.about
 
     return (
@@ -81,7 +82,7 @@ class AboutPage extends Component {
         </section>
         <section id="references" className="about">
           <div className="container">
-            <h2 className="subHeading">Zij gingen u voor</h2>
+            <h2 className="subHeading">{references_title}</h2>
             <div className="gallery">{this.showLogos()}</div>
           </div>
         </section>
@@ -113,6 +114,7 @@ export default props => (
                     alt_text
                     source_url
                   }
+                  references_title
                 }
               }
             }

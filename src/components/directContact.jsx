@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql } from "gatsby"
 import axios from "axios"
-import Emoji from "./common/emoji"
 import "./styles/forms/form.scss"
 import ProgressCircle from "./common/ProgressCircle"
 
@@ -86,14 +85,13 @@ class DirectContact extends Component {
   }
 
   render() {
-    const { uploadPercentage, dragEnter, files, name } = this.state
+    const { uploadPercentage, dragEnter, files } = this.state
 
     const {
       data,
       nextStep,
       onNextStep,
       onCustomBackClick = "",
-      submitted,
     } = this.props.inheritedProps
 
     const {
@@ -101,6 +99,8 @@ class DirectContact extends Component {
       email,
       whatsapp_link,
     } = this.props.wpData.allWordpressPage.edges[0].node.acf.contactgegevens
+
+    const { title, text } = this.props.inheritedProps.queryData
 
     return (
       <div className="contactPageWrapper">
@@ -111,11 +111,8 @@ class DirectContact extends Component {
               nextStep ? "contact actionData" : "show contact actionData"
             }
           >
-            <div className="heading">Neem contact op</div>
-            <div className="subHeading">
-              Wij helpen u graag met uw probleem. Just hit one of the buttons
-              for now! <Emoji symbol="😄" label="contact" />
-            </div>
+            <div className="heading">{title}</div>
+            <div className="subHeading">{text}</div>
             <div className="actions">
               <a className="btn full" href={`tel:${tel2}`}>
                 Bellen

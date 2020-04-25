@@ -15,14 +15,12 @@ class CopyWriting extends Form {
   render() {
     const { id, options } = this.props.data
     const { nextStep } = this.props
+    const { title, text } = this.props.queryData
 
     return (
       <div className="formWrapper" data-actionid={id}>
-        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} Vertel ons iets meer`)}
-        {this.renderSubHeading(
-          "Probeer het formulier zo compleet mogelijk in te vullen, zodat wij u zo snel mogelijk kunnen helpen!",
-          "🎉"
-        )}
+        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} ${title}`)}
+        {this.renderSubHeading(text)}
         {this.renderForm(
           "Details",
           this.inputs,

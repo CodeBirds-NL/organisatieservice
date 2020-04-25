@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import ActionStep from "./actionStep"
 import ActionButtons from "./common/actionButtons"
 import Administratie from "./administratie"
@@ -11,7 +11,7 @@ import Hero from "./common/hero"
 import Arrow from "./common/arrow"
 import "./styles/forms/form.scss"
 
-export default class ActionBarParent extends Component {
+class ActionBarParent extends Component {
   state = {
     actionBarClicked: false,
     action: null,
@@ -21,9 +21,11 @@ export default class ActionBarParent extends Component {
   }
 
   componentDidMount() {
-    if (!this.props.action) return
+    if (!this.props.inheritedProps.action) return
 
-    const action = this.actions.find(({ name }) => name === this.props.action)
+    const action = this.actions.find(
+      ({ name }) => name === this.props.inheritedProps.action
+    )
     this.history = [...this.history, { ...this.state }]
     const scrollY = window.pageYOffset
     this.setState({ action, actionBarClicked: true, scrollY })
@@ -89,6 +91,7 @@ export default class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
         onSuccessfulSubmit={this.handleSuccessfulSubmit}
         submitted={this.state.submitted}
+        queryData={this.props.queryData.administratie}
       />
     ),
     tekstschrijven: () => (
@@ -98,6 +101,7 @@ export default class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
         onSuccessfulSubmit={this.handleSuccessfulSubmit}
         submitted={this.state.submitted}
+        queryData={this.props.queryData.copy}
       />
     ),
     website: () => (
@@ -107,6 +111,7 @@ export default class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
         onSuccessfulSubmit={this.handleSuccessfulSubmit}
         submitted={this.state.submitted}
+        queryData={this.props.queryData.website}
       />
     ),
     marketing: () => (
@@ -116,6 +121,7 @@ export default class ActionBarParent extends Component {
         nextStep={this.state.nextStep}
         onSuccessfulSubmit={this.handleSuccessfulSubmit}
         submitted={this.state.submitted}
+        queryData={this.props.queryData.marketing}
       />
     ),
     contact: () => (
@@ -124,10 +130,13 @@ export default class ActionBarParent extends Component {
         data={this.state.action}
         nextStep={this.state.nextStep}
         onCustomBackClick={
-          this.props.src === "contact" ? this.handleBackClick : null
+          this.props.inheritedProps.src === "contact"
+            ? this.handleBackClick
+            : null
         }
         onSuccessfulSubmit={this.handleSuccessfulSubmit}
         submitted={this.state.submitted}
+        queryData={this.props.queryData.contact}
       />
     ),
   }
@@ -150,7 +159,7 @@ export default class ActionBarParent extends Component {
 
   handleBackClick = () => {
     // unmountMe is a callback passed from the parent that applies to diensten page
-    const { unmountMe = "" } = this.props
+    const { unmountMe = "" } = this.props.inheritedProps
 
     const { ...rest } = this.history[this.history.length - 1]
     this.setState({ ...rest })
@@ -197,7 +206,7 @@ export default class ActionBarParent extends Component {
   }
 
   handleClosing = _ => {
-    const { unmountMe = "" } = this.props
+    const { unmountMe = "" } = this.props.inheritedProps
     // set state to first history item and then clear history array
     this.setState({ ...this.history[0] })
     this.history.length = 0
@@ -211,42 +220,13 @@ export default class ActionBarParent extends Component {
     }
   }
 
-  renderSideBarView = () => {
-    return (
-      <ActionStep heading="Direct actie">
-        <ActionButtons
-          onActionButtonClick={this.handleActionButtonClick}
-          actions={this.actions}
-          type="withArrow"
-        />
-      </ActionStep>
-    )
-  }
-
-  renderExpandedView = () => {
-    return (
-      <ActionStep
-        heading="Waarmee kan ik je helpen?"
-        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken."
-        active={this.state.actionBarClicked}
-      >
-        <ActionButtons
-          onActionButtonClick={this.handleActionButtonClick}
-          actions={this.actions}
-          type="full"
-        />
-      </ActionStep>
-    )
-  }
-
   renderActionTemplate() {
     return this.templates[this.state.action.name]()
   }
 
   render() {
-    console.log(this.props)
     const { actionBarClicked: active, action, submitted } = this.state
-    const { src, acf } = this.props
+    const { src, acf } = this.props.inheritedProps
 
     return src === "home" ? (
       <Hero
@@ -271,6 +251,7 @@ export default class ActionBarParent extends Component {
               handleClosing: this.handleClosing,
               handleActionButtonClick: this.handleActionButtonClick,
               renderActionTemplate: this.renderActionTemplate.bind(this),
+              queryData: this.props.queryData,
             }}
           />
         }
@@ -311,50 +292,61 @@ export default class ActionBarParent extends Component {
           handleClosing: this.handleClosing,
           handleActionButtonClick: this.handleActionButtonClick,
           renderActionTemplate: this.renderActionTemplate.bind(this),
+          queryData: this.props.queryData,
         }}
       />
     )
   }
 }
 
-export const query = graphql`
-  query actionBarQuery {
-    allWordpressPage(filter: { slug: { eq: "direct-actie" } }) {
-      edges {
-        node {
-          acf {
-            actionbar {
-              main {
-                title
-                text
-              }
-              administratie {
-                text
-                title
-              }
-              marketing {
-                text
-                title
-              }
-              website {
-                text
-                title
-              }
-              copy {
-                text
-                title
-              }
-              contact {
-                text
-                title
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query actionBarQuery {
+        allWordpressPage(filter: { slug: { eq: "direct-actie" } }) {
+          edges {
+            node {
+              acf {
+                actionbar {
+                  main {
+                    title
+                    text
+                  }
+                  administratie {
+                    text
+                    title
+                  }
+                  marketing {
+                    text
+                    title
+                  }
+                  website {
+                    text
+                    title
+                  }
+                  copy {
+                    text
+                    title
+                  }
+                  contact {
+                    text
+                    title
+                  }
+                }
               }
             }
           }
         }
       }
-    }
-  }
-`
+    `}
+    render={data => (
+      <ActionBarParent
+        inheritedProps={props}
+        queryData={data.allWordpressPage.edges[0].node.acf.actionbar}
+      />
+    )}
+  />
+)
 
 class ActionBar extends Component {
   renderSideBarView = () => {
@@ -372,11 +364,17 @@ class ActionBar extends Component {
   }
 
   renderExpandedView = () => {
-    const { active, actions, handleActionButtonClick, src } = this.props.data
+    const {
+      active,
+      actions,
+      handleActionButtonClick,
+      src,
+      queryData,
+    } = this.props.data
     return src !== "contact" ? (
       <ActionStep
-        heading="Waarmee kan ik je helpen?"
-        subHeading="Ontdek snel hoe ik je kan helpen door op een dienst te klikken."
+        heading={queryData.main.title}
+        subHeading={queryData.main.text}
         active={active}
       >
         <ActionButtons
