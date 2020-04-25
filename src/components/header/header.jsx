@@ -16,15 +16,16 @@ const Header = props => {
         ? (document.body.style.position = "fixed")
         : (document.body.style.position = "unset")
     }
-  }, [active])
 
-  window.onscroll = () => {
-    if (window.scrollY > 600) {
-      toggleStickyHeader(true)
-    } else {
-      return toggleStickyHeader(false) && stickyHeader
+    // add scroll event listener to window upon mount
+    window.onscroll = () => {
+      if (window.scrollY > 600) {
+        toggleStickyHeader(true)
+      } else {
+        return toggleStickyHeader(false) && stickyHeader
+      }
     }
-  }
+  }, [active])
 
   // background-color of header is set using props
   const { data, color = "white" } = props
