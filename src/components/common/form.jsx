@@ -4,6 +4,8 @@ import Button from "./button"
 import Emoji from "./emoji"
 import axios from "axios"
 
+const api = "https://organisatieservice.codebirds-apiserver.nl"
+
 class Form extends Component {
   state = {
     data: {},
@@ -45,7 +47,7 @@ class Form extends Component {
 
     // handle form submission
     try {
-      const res = await axios.post("http://vantuijl.uk:6003/directactie", {
+      const res = await axios.post(`${api}/directactie`, {
         ...this.state.data,
         dienst: data.label,
       })
