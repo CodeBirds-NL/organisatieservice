@@ -37,7 +37,7 @@ class PortfolioPage extends Component {
               const { project_foto, logo_klant_white, titel } = item.node.acf
               return (
                 <div key={item.node.id} className="card">
-                  <Link className="link" to={`portfolio/${item.node.slug}`}>
+                  <Link className="link" to={`/portfolio/${item.node.slug}`}>
                     <img
                       src={project_foto.source_url}
                       alt={project_foto.alt_text}

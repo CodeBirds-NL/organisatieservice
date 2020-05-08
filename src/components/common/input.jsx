@@ -54,7 +54,7 @@ const select = (name, label, onChange, options) => {
         defaultValue={label}
         className="form-control"
         name={name}
-        onChange={e => onChange(e)}
+        onBlur={e => onChange(e)}
       >
         <option disabled value={label}>
           {label}

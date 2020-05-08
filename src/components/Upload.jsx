@@ -5,7 +5,8 @@ import axios from "axios"
 function Upload(props) {
   const [files, setFiles] = useState()
   const [name, setName] = useState("")
-  const api = "http://vantuijl.uk:6003"
+  const api =
+    "https://zecs44yyx7.execute-api.eu-central-1.amazonaws.com/prod/upload-url"
 
   function handleFileUpload({ target: input }) {
     const fileList = input.files
@@ -23,17 +24,39 @@ function Upload(props) {
       formData.append("images", file)
     }
 
+    // 1. get upload url
     try {
-      const res = await axios.post(`${api}/upload`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      const res = await axios.post(
+        api,
+        {
+          name: name
+            .toLowerCase()
+            .split(" ")
+            .join(),
         },
-      })
-      const data = res.data
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      const data = await res.data
       console.log(data)
-    } catch (err) {
-      console.log(err)
+    } catch (error) {
+      console.log(error)
     }
+
+    // try {
+    //   const res = await axios.post(`${api}/upload`, formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   })
+    //   const data = res.data
+    //   console.log(data)
+    // } catch (err) {
+    //   console.log(err)
+    // }
   }
 
   return (

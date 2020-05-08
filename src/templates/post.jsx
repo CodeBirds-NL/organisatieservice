@@ -3,13 +3,11 @@ import Layout from "../components/layout"
 import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
-import BottomWave from "../components/common/bottomWave"
 import TopWave from "../components/common/topWave"
 import { Link } from "gatsby"
-import Star from "../components/common/star"
 
 export default ({ pageContext }) => {
-  const { title, acf } = pageContext
+  const { acf } = pageContext
 
   return (
     <Layout>
@@ -78,32 +76,13 @@ export default ({ pageContext }) => {
                 <h2 className="subHeading">Resultaat</h2>
                 <p className="text">{acf.resultaat}</p>
                 <a href={acf.link_website} className="btn underline withArrow">
-                  <span className="content">Bekijk live resultaat</span>{" "}
+                  <span className="content">{acf.link_label}</span>{" "}
                   <Arrow width="18px" color="#001010" />
                 </a>
               </div>
             </div>
           </div>
         </section>
-        {/* <section className="testimonial">
-          <div className="container">
-            <div className="inner">
-              <div className="stars"></div>
-              <div className="message">
-                <p className="text"></p>
-                <p className="name"></p>
-              </div>
-            </div>
-          </div>
-        </section> */}
-        {/* <section id="projects">
-          <div className="container">
-            <div className="inner">
-              <h2 className="subHeading">Bekijk meer projecten</h2>
-
-            </div>
-          </div>
-        </section> */}
       </div>
     </Layout>
   )

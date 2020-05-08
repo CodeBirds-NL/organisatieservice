@@ -182,7 +182,7 @@ class ActionBarParent extends Component {
     e.stopPropagation()
 
     this.history = [...this.history, { ...this.state }]
-    const { actionBarClicked, scrollY } = this.state
+    const { actionBarClicked } = this.state
 
     // check if click comes from modal or from sidebar
     if (actionBarClicked) return this.setState({ action })

@@ -25,6 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
             acf {
               aanpak
               link_website
+              link_label
               resultaat
               titel
               vraag
@@ -43,11 +44,6 @@ exports.createPages = async ({ graphql, actions }) => {
               highlights
               steps {
                 stap
-              }
-              testimonial {
-                text
-                name
-                stars
               }
             }
           }

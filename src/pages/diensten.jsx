@@ -140,6 +140,7 @@ class Diensten extends Component {
                         </div>
                       )
                     }
+                    return null
                   })}
                 </div>
               </div>

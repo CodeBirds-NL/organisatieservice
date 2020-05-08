@@ -8,14 +8,14 @@ class DirectContact extends Component {
   defaultState = {
     uploadPercentage: null,
     dragEnter: false,
-    files: null,
+    files: [],
     name: "",
   }
 
   state = {
     uploadPercentage: null,
     dragEnter: false,
-    files: null,
+    files: [],
     name: "",
   }
 
@@ -25,18 +25,15 @@ class DirectContact extends Component {
     whatsapp_link: "WhatsApp",
   }
 
-  handleUpload = (e, method) => {
+  handleUpload = async (e, method) => {
     e.preventDefault()
 
-    let files
-    // check whether event is raised from click or from drag
-    if (method === "drop") {
-      const dt = e.dataTransfer
-      e.target.files = dt.files
-    }
-    files = e.target.files
-
-    this.setState({ files: [...files], dragEnter: false })
+    let files = e.target.files || e.dataTransfer.files
+    // update state
+    this.setState({
+      files: [...this.state.files, ...files],
+      dragEnter: false,
+    })
   }
 
   handleDragEnter = () => {
@@ -51,7 +48,69 @@ class DirectContact extends Component {
     e.preventDefault()
 
     const { name, files } = this.state
-    const api = "http://vantuijl.uk:6003"
+    // const api = "https://zecs44yyx7.execute-api.eu-central-1.amazonaws.com/prod"
+    const api = "https://organisatieservice.codebirds-apiserver.nl"
+
+    // if (!files) return console.error("Please select 1 or more files")
+
+    // // 1. Now first zip all selected files
+    // files.forEach(f => zip.file(f.name, f))
+    // const blob = zip.generateAsync({ type: "arraybuffer" })
+
+    // let formattedName = name
+    //   .toLowerCase()
+    //   .split(" ")
+    //   .join("")
+
+    // try {
+    //   // 1. get upload url
+    //   const res = await axios.post(`${api}/upload-url`, {
+    //     Key: `${formattedName}.zip`,
+    //     ContentType: "application/zip",
+    //   })
+
+    //   const { url: preSignedUrl } = await res.data
+
+    //   // 2. upload files
+    //   blob.then(body => {
+    //     console.log(body)
+
+    //     axios
+    //       .put(
+    //         preSignedUrl,
+    //         { body },
+    //         {
+    //           onUploadProgress: progressEvent => {
+    //             this.setState({
+    //               uploadPercentage: parseInt(
+    //                 Math.round(
+    //                   (progressEvent.loaded * 100) / progressEvent.total
+    //                 )
+    //               ),
+    //             })
+    //           },
+    //         }
+    //       )
+    //       .then(uploadFilesToDrive)
+    //   })
+
+    //   // 3. get object and send to google drive
+    //   // const uploadToDriveRes = axios.post(`${api}/upload-to-drive`, {
+    //   //   key: `${formattedName}.zip`,
+    //   // })
+    // } catch (error) {
+    //   console.log(error)
+    // }
+
+    // async function uploadFilesToDrive() {
+    //   try {
+    //     const res = await axios.post(`${api}/upload-to-drive`, {
+    //       Key: `${formattedName}.zip`,
+    //     })
+    //     const data = await res.json()
+    //     console.log(data)
+    //   } catch (error) {}
+    // }
 
     if (!files) return console.error("Please select 1 or more files")
 
@@ -243,8 +302,3 @@ export default props => (
     render={data => <DirectContact inheritedProps={props} wpData={data} />}
   />
 )
-
-/* component interface 
-  - receive data from staticquery (header.contactdetails)
-  - 
-*/

@@ -1,6 +1,6 @@
 import React from "react"
 import "./styles/layout/footer.scss"
-import { StaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql, Link } from "gatsby"
 
 const Footer = ({ socials }) => {
   return (
@@ -8,11 +8,13 @@ const Footer = ({ socials }) => {
       <div className="container">
         <div className="copyright">
           <p>
-            ©<span>{new Date().getFullYear()} </span>{" "}
-            <span style={{ fontSize: 20 }} className="brand">
-              Organisatie
-              <span className="bold">service</span>
-            </span>
+            ©<span>{new Date().getFullYear()} </span>
+            <Link to="/" className="brand">
+              <span style={{ fontSize: 20 }}>
+                Organisatie
+                <span className="bold">service</span>
+              </span>
+            </Link>
           </p>
           <div className="vendor">
             Realisatie: <a href="https://codebirds.nl">CodeBirds</a>

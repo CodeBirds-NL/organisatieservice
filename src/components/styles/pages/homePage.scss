@@ -356,6 +356,11 @@ ACTIONBAR STYLES
   box-shadow: unset;
 }
 
+#contact .actionBar.active {
+  min-height: calc(100vh - 110px);
+  height: auto;
+}
+
 /* Step transitions in ActionBar - styles */
 .actionStep.active {
   opacity: 0;
@@ -463,6 +468,12 @@ RESPONSIVE STYLES
       }
     }
     box-shadow: unset;
+  }
+
+  // reset mobile specific header styles for contactpage
+  #contact .actionBar.active {
+    min-height: 100vh;
+    height: 100%;
   }
 }
 

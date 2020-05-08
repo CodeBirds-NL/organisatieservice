@@ -57,16 +57,6 @@
   align-items: center;
 }
 
-.brand {
-  font-size: 24px;
-  font-weight: 400;
-  // line-height: 1em;
-  position: relative;
-  &::after {
-    @extend %dot;
-  }
-}
-
 .logoBlack {
   display: inline-block;
   width: 200px;
@@ -109,6 +99,11 @@
   -o-transform: translateX(0);
 }
 
+// contact specific offcanvas styles
+.open .offCanvasMenu.contact {
+  z-index: 16;
+}
+
 .offCanvasMenu .nav .menuItem {
   font-size: 48px;
   font-weight: 700;
@@ -119,6 +114,7 @@
 .offCanvasMenu .nav .menuItem a {
   text-decoration: none;
   position: relative;
+  color: c.$black;
   &::after {
     content: "";
     position: absolute;
@@ -161,6 +157,7 @@
 
 .offCanvasMenu .contactInfo li a {
   text-decoration: none;
+  color: c.$black;
   border-bottom: 3px solid currentColor;
   border-color: c.$primary-color;
 }
@@ -170,6 +167,7 @@
   .header {
     padding: 30px 20px;
   }
+
   #nav-icon {
     margin-right: 20px;
   }
@@ -183,7 +181,22 @@
   .header {
     padding: 30px;
   }
+  .btn.ghostery.gray.openActionBar {
+    display: none;
+  }
   .offCanvasMenu {
     padding: 120px 30px 30px 30px;
+  }
+}
+
+@media (max-width: 550px) {
+  .stickyHeader {
+    padding: 15px 30px;
+    .left {
+      width: 100%;
+    }
+    .btn.ghostery.gray.openActionBar {
+      display: none;
+    }
   }
 }
