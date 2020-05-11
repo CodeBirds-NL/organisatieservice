@@ -44,75 +44,33 @@ class DirectContact extends Component {
     this.setState({ dragEnter: false })
   }
 
+  formatBytes = (bytes, decimals = 2) => {
+    if (bytes === 0) return "0 Bytes"
+
+    const k = 1024
+    const dm = decimals < 0 ? 0 : decimals
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i]
+  }
+
   handleSubmit = async e => {
     e.preventDefault()
 
     const { name, files } = this.state
-    // const api = "https://zecs44yyx7.execute-api.eu-central-1.amazonaws.com/prod"
     const api = "https://organisatieservice.codebirds-apiserver.nl"
 
-    // if (!files) return console.error("Please select 1 or more files")
-
-    // // 1. Now first zip all selected files
-    // files.forEach(f => zip.file(f.name, f))
-    // const blob = zip.generateAsync({ type: "arraybuffer" })
-
-    // let formattedName = name
-    //   .toLowerCase()
-    //   .split(" ")
-    //   .join("")
-
-    // try {
-    //   // 1. get upload url
-    //   const res = await axios.post(`${api}/upload-url`, {
-    //     Key: `${formattedName}.zip`,
-    //     ContentType: "application/zip",
-    //   })
-
-    //   const { url: preSignedUrl } = await res.data
-
-    //   // 2. upload files
-    //   blob.then(body => {
-    //     console.log(body)
-
-    //     axios
-    //       .put(
-    //         preSignedUrl,
-    //         { body },
-    //         {
-    //           onUploadProgress: progressEvent => {
-    //             this.setState({
-    //               uploadPercentage: parseInt(
-    //                 Math.round(
-    //                   (progressEvent.loaded * 100) / progressEvent.total
-    //                 )
-    //               ),
-    //             })
-    //           },
-    //         }
-    //       )
-    //       .then(uploadFilesToDrive)
-    //   })
-
-    //   // 3. get object and send to google drive
-    //   // const uploadToDriveRes = axios.post(`${api}/upload-to-drive`, {
-    //   //   key: `${formattedName}.zip`,
-    //   // })
-    // } catch (error) {
-    //   console.log(error)
-    // }
-
-    // async function uploadFilesToDrive() {
-    //   try {
-    //     const res = await axios.post(`${api}/upload-to-drive`, {
-    //       Key: `${formattedName}.zip`,
-    //     })
-    //     const data = await res.json()
-    //     console.log(data)
-    //   } catch (error) {}
-    // }
-
     if (!files) return console.error("Please select 1 or more files")
+
+    // check if file upload size doesn't exceed maximum
+    let bytes = 0
+    files.forEach(f => (bytes += f.size))
+
+    if (bytes > 512000000)
+      // show error message here
+      return console.error("You exceeded the max file-upload size")
 
     const formData = new FormData()
     //append name
@@ -133,11 +91,13 @@ class DirectContact extends Component {
               Math.round((progressEvent.loaded * 100) / progressEvent.total)
             ),
           })
+
+          // remove backbutton
+          this.props.inheritedProps.onSuccessfulSubmit()
         },
       })
       const data = res.data
       if (data !== "success") return
-      console.log("succesfully uploaded!")
     } catch (err) {
       console.log(err)
     }
@@ -197,8 +157,9 @@ class DirectContact extends Component {
           >
             <div className="heading">Upload je foto's</div>
             <div className="subHeading">
-              Je kunt hier meerdere foto's uploaden zonder kwaliteitsverlies.
-              Pdf's en andere files behoren ook to de mogelijkheden.
+              Je kunt hier meerdere foto's/bestanden uploaden zonder
+              kwaliteitsverlies. Let op: de maximale upload grootte bedraagt{" "}
+              <u>512MB</u>
             </div>
             {uploadPercentage ? (
               <div className="animation">

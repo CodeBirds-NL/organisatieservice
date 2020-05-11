@@ -1,5 +1,6 @@
-import React from "react"
+import React, { Fragment } from "react"
 import Form from "./common/form"
+import SuccessMessage from "./common/successMessage"
 
 class CopyWriting extends Form {
   state = {
@@ -14,21 +15,31 @@ class CopyWriting extends Form {
 
   render() {
     const { id, options } = this.props.data
-    const { nextStep } = this.props
+    const { nextStep, submitted } = this.props
     const { title, text } = this.props.queryData
 
     return (
-      <div className="formWrapper" data-actionid={id}>
-        {this.renderHeading(`${nextStep ? "2/2" : "1/2"} ${title}`)}
-        {this.renderSubHeading(text)}
-        {this.renderForm(
-          "Details",
-          this.inputs,
-          this.renderRadioOptions(options, "contactOption", "Contact Opties"),
-          Object.values(this.contactInputs),
-          this.renderButton("full", "Verstuur")
+      <Fragment>
+        {submitted ? (
+          <SuccessMessage name={this.state.data.name} />
+        ) : (
+          <div className="formWrapper" data-actionid={id}>
+            {this.renderHeading(`${nextStep ? "2/2" : "1/2"} ${title}`)}
+            {this.renderSubHeading(text)}
+            {this.renderForm(
+              "Details",
+              this.inputs,
+              this.renderRadioOptions(
+                options,
+                "contactOption",
+                "Contact Opties"
+              ),
+              Object.values(this.contactInputs),
+              this.renderButton("full", "Verstuur")
+            )}
+          </div>
         )}
-      </div>
+      </Fragment>
     )
   }
 }

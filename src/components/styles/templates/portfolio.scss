@@ -178,6 +178,7 @@ PORTFOLIO SINGLE STYLES
     }
   }
 }
+
 #resultaat {
   padding: 48px 0;
   & .inner {
@@ -236,7 +237,25 @@ PORTFOLIO SINGLE STYLES
 /* =============================
 RESPONSIVE STYLES
 ================================ */
-
+@media (max-width: 600px) {
+  #aanpak,
+  #resultaat {
+    .inner {
+      flex-direction: column;
+      height: auto;
+      .col-1,
+      .col-2 {
+        width: 100%;
+      }
+      .col-1 img {
+        position: relative;
+        max-width: 100%;
+        max-height: 280px;
+        object-fit: cover;
+      }
+    }
+  }
+}
 @media (min-width: 728px) {
   .cards .container {
     grid-template-columns: 1fr 1fr;

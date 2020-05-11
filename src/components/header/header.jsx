@@ -15,8 +15,6 @@ const Header = props => {
   function handleClickOutsideMenu({ target }) {
     // don't respond to clicks on hamburger icon
     if (target.closest("#nav-icon")) return
-    console.log(target)
-    console.log(ref.current)
 
     if (ref.current && !ref.current.contains(target)) {
       toggleActive(false)
