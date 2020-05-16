@@ -1,41 +1,5 @@
 const path = require(`path`)
 const { slash } = require(`gatsby-core-utils`)
-const { createRemoteFileNode } = require("gatsby-source-filesystem")
-
-// Download images hosted on wordpress and convert in optimized local file assets
-exports.downloadMediaFiles = ({
-  nodes,
-  getCache,
-  createNode,
-  createNodeId,
-  _auth,
-}) => {
-  nodes.map(async node => {
-    let fileNode
-    // Ensures we are only processing Media Files
-    // `wordpress__wp_media` is the media file type name for WordPress
-    if (node.__type === `wordpress__wp_media`) {
-      try {
-        fileNode = await createRemoteFileNode({
-          url: node.source_url,
-          parentNodeId: node.id,
-          getCache,
-          createNode,
-          createNodeId,
-          auth: _auth,
-        })
-      } catch (e) {
-        // Ignore
-      }
-    }
-
-    // Adds a field `localFile` to the node
-    // ___NODE appendix tells Gatsby that this field will link to another node
-    if (fileNode) {
-      node.localFile___NODE = fileNode.id
-    }
-  })
-}
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
