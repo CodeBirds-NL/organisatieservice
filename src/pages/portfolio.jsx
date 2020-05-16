@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ActionBarParent from "../components/actionBar"
 import Hero from "../components/common/hero"
@@ -16,9 +17,9 @@ class PortfolioPage extends Component {
       <Layout>
         <Hero
           image={
-            <img
+            <Img
               className="portfolioHeroImage"
-              src={image.source_url}
+              fluid={image.localFile.childImageSharp.fluid}
               alt={image.alt_text}
             />
           }
@@ -38,14 +39,17 @@ class PortfolioPage extends Component {
               return (
                 <div key={item.node.id} className="card">
                   <Link className="link" to={`/portfolio/${item.node.slug}`}>
-                    <img
-                      src={project_foto.source_url}
+                    <Img
+                      fluid={project_foto.localFile.childImageSharp.fluid}
                       alt={project_foto.alt_text}
+                      className="img"
+                      style={{ position: "absolute" }}
                     />
                     <div className="logo">
-                      <img
-                        src={logo_klant_white.source_url}
+                      <Img
+                        fixed={logo_klant_white.localFile.childImageSharp.fixed}
                         alt={logo_klant_white.alt_text}
+                        className="img"
                       />
                       <div className="overlay"></div>
                       <div className="info">
@@ -80,8 +84,8 @@ export default props => (
                 text
                 cta
                 image {
+                  ...heroImageFragment
                   alt_text
-                  source_url
                 }
               }
             }
@@ -105,12 +109,12 @@ export default props => (
                 titel
                 vraag
                 logo_klant_white {
+                  ...whiteLogoFragment
                   alt_text
-                  source_url
                 }
                 project_foto {
+                  ...heroImageFragment
                   alt_text
-                  source_url
                 }
               }
             }

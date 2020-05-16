@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { graphql, StaticQuery } from "gatsby"
+import Img from "gatsby-image"
 import ActionStep from "./actionStep"
 import ActionButtons from "./common/actionButtons"
 import Administratie from "./administratie"
@@ -232,10 +233,10 @@ class ActionBarParent extends Component {
       <Hero
         minHeight="100%"
         image={
-          <img
-            className="homeHeroImage"
-            src={acf.hero_image.source_url}
+          <Img
+            fluid={acf.hero_image.localFile.childImageSharp.fluid}
             alt={acf.hero_image.alt_text}
+            className="homeHeroImage"
           />
         }
         blobContent={

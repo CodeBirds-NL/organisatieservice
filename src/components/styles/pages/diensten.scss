@@ -78,17 +78,17 @@ SERVICES STYLES
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 50px;
       grid-row-gap: 30px;
-      & .logo {
-        display: flex;
-        align-items: center;
-        & img {
-          width: 100%;
-          height: 100%;
-          // align logo's with different dimensions
-          max-height: 180px;
-          object-fit: contain;
-        }
-      }
+      // & .logo {
+      //   display: flex;
+      //   align-items: center;
+      //   & img {
+      //     width: 100%;
+      //     height: 100%;
+      //     // align logo's with different dimensions
+      //     max-height: 180px;
+      //     object-fit: contain;
+      //   }
+      // }
     }
   }
 }
@@ -114,8 +114,9 @@ RESPONSIVE STYLES
         width: 50%;
       }
       & .col-2 {
-        display: flex;
-        align-items: center;
+        // display: flex;
+        // align-items: center;
+        margin: auto 0;
       }
       & .col-1 {
         .btn {

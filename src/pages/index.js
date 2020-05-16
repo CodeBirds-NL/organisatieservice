@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { graphql, Link } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 import ActionBarParent from "../components/actionBar"
 import SEO from "../components/seo"
@@ -26,7 +27,10 @@ class HomePage extends Component {
     return filtered.map(({ node: p }) => (
       <div key={p.wordpress_id} className="logo">
         <Link to={`/portfolio/${p.slug}`}>
-          <img src={p.acf.logo_klant.source_url} alt={p.title}></img>
+          <Img
+            fluid={p.acf.logo_klant.localFile.childImageSharp.fluid}
+            alt={p.title}
+          />
         </Link>
       </div>
     ))
@@ -55,7 +59,10 @@ class HomePage extends Component {
                 {acf.services.map((i, index) => (
                   <div key={index} className="service">
                     <div className="imageBox">
-                      <img src={i.icon.source_url} alt={i.icon.alt_text} />
+                      <Img
+                        fixed={i.icon.localFile.childImageSharp.fixed}
+                        alt={i.icon.alt_text}
+                      />
                     </div>
                     <h5>{i.title}</h5>
                     <h6>{i.subTitle}</h6>
@@ -107,7 +114,7 @@ export const query = graphql`
             hero_text
             hero_title
             hero_image {
-              source_url
+              ...heroImageFragment
               alt_text
             }
             references {
@@ -132,8 +139,8 @@ export const query = graphql`
               title
               subTitle
               icon {
+                ...serviceIconFragment
                 alt_text
-                source_url
               }
             }
           }
@@ -146,8 +153,8 @@ export const query = graphql`
         node {
           acf {
             logo_klant {
+              ...logoFragment
               alt_text
-              source_url
             }
           }
           slug

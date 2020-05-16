@@ -1,7 +1,8 @@
 import React, { Component } from "react"
+import { StaticQuery, Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 import Hero from "../components/common/hero"
 import Layout from "../components/layout"
-import { StaticQuery, Link, graphql } from "gatsby"
 import ActionBarParent from "../components/actionBar"
 import "../components/styles/pages/diensten.scss"
 import Arrow from "../components/common/arrow"
@@ -50,7 +51,10 @@ class Diensten extends Component {
           </button>
         </div>
         <div className="col-2">
-          <img src={data.image.source_url} alt={data.image.alt_text} />
+          <Img
+            fluid={data.image.localFile.childImageSharp.fluid}
+            alt={data.image.alt_text}
+          />
         </div>
       </div>
     )
@@ -79,10 +83,10 @@ class Diensten extends Component {
         ) : null}
         <Hero
           image={
-            <img
-              className="dienstenImage"
-              src={image.source_url}
+            <Img
+              fluid={image.localFile.childImageSharp.fluid}
               alt={image.alt_text}
+              className="dienstenImage"
             />
           }
           blobContent={
@@ -132,8 +136,10 @@ class Diensten extends Component {
                       return (
                         <div key={i.slug} className="logo">
                           <Link to={`/portfolio/${i.slug}`}>
-                            <img
-                              src={i.acf.logo_klant.source_url}
+                            <Img
+                              fluid={
+                                i.acf.logo_klant.localFile.childImageSharp.fluid
+                              }
                               alt={i.acf.logo_klant.alt_text}
                             />
                           </Link>
@@ -173,7 +179,7 @@ export default props => (
                   text
                   cta
                   image {
-                    source_url
+                    ...heroImageFragment
                     alt_text
                   }
                   references_title
@@ -182,8 +188,8 @@ export default props => (
                     text
                     title
                     image {
+                      ...heroImageFragment
                       alt_text
-                      source_url
                     }
                   }
                 }
@@ -197,8 +203,8 @@ export default props => (
               slug
               acf {
                 logo_klant {
+                  ...logoFragment
                   alt_text
-                  source_url
                 }
               }
             }
