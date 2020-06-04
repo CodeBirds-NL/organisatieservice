@@ -3,7 +3,7 @@ module.exports = {
     title: `Organisatieservice`,
     description: `Dé specialist in wat jij nodig hebt!`,
     url: "https://organisatieservice.nl",
-    image: "/images/seo_image.webp",
+    image: "/seo_image.webp",
     author: `@codebirds`,
   },
   plugins: [
