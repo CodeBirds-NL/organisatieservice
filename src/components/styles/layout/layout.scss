@@ -375,13 +375,15 @@ p.text {
 @media (min-width: 800px) {
   .hero .wrapper {
     flex-direction: row;
+    align-items: center;
     & .col-1 {
       width: 60%;
       & .title,
       & .subTitle {
         font-size: 64px;
       }
-      & .post.title {
+      & .post.title,
+      .about.title {
         font-size: 48px;
       }
       .text {
@@ -401,6 +403,9 @@ p.text {
     position: unset;
     & .col-1 {
       width: 50%;
+      & .about.title {
+        font-size: 40px;
+      }
     }
     & .col-2 {
       width: 50%;

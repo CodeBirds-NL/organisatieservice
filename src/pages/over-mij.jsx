@@ -1,10 +1,13 @@
 import React, { Component } from "react"
 import { StaticQuery, Link, graphql } from "gatsby"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 import Hero from "../components/common/hero"
 import "../components/styles/pages/about.scss"
 import TopWave from "../components/common/topWave"
 import ActionBarParent from "../components/actionBar"
+
+import "../components/fragments/images"
 
 class AboutPage extends Component {
   showLogos = _ => {
@@ -14,7 +17,10 @@ class AboutPage extends Component {
     return filtered.map(({ node: p }) => (
       <div key={p.wordpress_id} className="logo">
         <Link to={`/portfolio/${p.slug}`}>
-          <img src={p.acf.logo_klant.source_url} alt={p.title}></img>
+          <Img
+            fluid={p.acf.logo_klant.localFile.childImageSharp.fluid}
+            alt={p.acf.logo_klant.alt_text}
+          />
         </Link>
       </div>
     ))
@@ -35,15 +41,15 @@ class AboutPage extends Component {
       <Layout>
         <Hero
           image={
-            <img
+            <Img
               className="aboutHeroImage"
-              src={image.source_url}
+              fluid={image.localFile.childImageSharp.fluid}
               alt={image.alt_text}
             />
           }
           blobContent={<ActionBarParent src="about" />}
         >
-          <h1 className="title">{title}</h1>
+          <h1 className="about title">{title}</h1>
           <p className="text">{text}</p>
           <div className="buttonGroup">
             <a href="#video" className="btn ghostery gray">
@@ -107,7 +113,7 @@ export default props => (
                   text
                   title
                   image {
-                    source_url
+                    ...heroImageFragment
                     alt_text
                   }
                   video {
@@ -125,8 +131,8 @@ export default props => (
             node {
               acf {
                 logo_klant {
+                  ...logoFragment
                   alt_text
-                  source_url
                 }
               }
               slug

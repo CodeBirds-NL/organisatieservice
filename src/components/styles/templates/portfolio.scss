@@ -188,15 +188,6 @@ PORTFOLIO SINGLE STYLES
     & .col-1 {
       width: 60%;
       height: 100%;
-      img {
-        // make image take up all the white space in the left column
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        max-width: 60%;
-        object-fit: cover;
-      }
     }
     & .col-2 {
       width: 40%;
@@ -206,29 +197,35 @@ PORTFOLIO SINGLE STYLES
 }
 
 // number styles for list
-.steps ul {
-  color: c.$black;
-  font-size: 20px;
-  & .step {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 1em;
-    line-height: 1em;
-    & span {
-      margin-right: 0.5em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: c.$primary-color;
-      color: c.$white;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      -ms-border-radius: 50%;
-      -o-border-radius: 50%;
+.steps {
+  width: 100%;
+  ul {
+    color: c.$black;
+    font-size: 20px;
+    width: 100%;
+    & .step {
+      display: grid;
+      grid-template-columns: 36px calc(100% - 36px);
+      grid-column-gap: 0.5em;
+      margin-bottom: 1em;
+      line-height: 1em;
+      & span:first-of-type {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: c.$primary-color;
+        color: c.$white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+      & span:last-of-type {
+        line-height: 1.45em;
+      }
     }
   }
 }
@@ -253,6 +250,12 @@ RESPONSIVE STYLES
         object-fit: cover;
       }
     }
+  }
+  #resultaat .inner .col-2 {
+    padding: 32px 24px;
+  }
+  #aanpak .inner .col-2 {
+    padding-left: 0;
   }
 }
 @media (min-width: 728px) {

@@ -1,10 +1,13 @@
 import React from "react"
+import Img from "gatsby-image"
 import Layout from "../components/layout"
 import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
 import TopWave from "../components/common/topWave"
 import { Link } from "gatsby"
+
+import "../components/fragments/images"
 
 export default ({ pageContext }) => {
   const { acf } = pageContext
@@ -14,9 +17,9 @@ export default ({ pageContext }) => {
       <Hero
         background="#fff"
         image={
-          <img
+          <Img
             className="projectfoto"
-            src={acf.project_foto.source_url}
+            fluid={acf.project_foto.localFile.childImageSharp.fluid}
             alt={acf.project_foto.alt_text}
           />
         }
@@ -54,7 +57,7 @@ export default ({ pageContext }) => {
                     {acf.steps.map((item, index) => (
                       <li key={index} className="step">
                         <span>{index + 1}</span>
-                        {item.stap}
+                        <span>{item.stap}</span>
                       </li>
                     ))}
                   </ul>
@@ -67,8 +70,8 @@ export default ({ pageContext }) => {
           <div className="container">
             <div className="inner">
               <div className="col-1">
-                <img
-                  src={acf.project_foto.source_url}
+                <Img
+                  fluid={acf.project_foto.localFile.childImageSharp.fluid}
                   alt={acf.project_foto.alt_text}
                 />
               </div>

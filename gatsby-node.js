@@ -29,17 +29,21 @@ exports.createPages = async ({ graphql, actions }) => {
               resultaat
               titel
               vraag
-              logo_klant {
-                alt_text
-                source_url
-              }
-              logo_klant_white {
-                alt_text
-                source_url
-              }
               project_foto {
                 alt_text
-                source_url
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 800) {
+                      base64
+                      aspectRatio
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      sizes
+                    }
+                  }
+                }
               }
               highlights
               steps {
