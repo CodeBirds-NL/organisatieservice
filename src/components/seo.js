@@ -19,6 +19,8 @@ function SEO({ description, lang, meta, title }) {
             title
             description
             author
+            image
+            url
           }
         }
       }
@@ -40,12 +42,20 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
         {
+          name: "image",
+          content: site.siteMetadata.image,
+        },
+        {
           property: `og:title`,
           content: title,
         },
         {
           property: `og:description`,
           content: metaDescription,
+        },
+        {
+          name: "og:image",
+          content: site.siteMetadata.image,
         },
         {
           property: `og:type`,
@@ -73,7 +83,7 @@ function SEO({ description, lang, meta, title }) {
 }
 
 SEO.defaultProps = {
-  lang: `en`,
+  lang: `nl`,
   meta: [],
   description: ``,
 }
