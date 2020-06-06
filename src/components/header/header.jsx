@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import { Link, StaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 import ActionBar from "../actionBar"
 import Hamburger from "./hamburger"
 import "../styles/layout/header.scss"
@@ -73,7 +74,7 @@ const Header = props => {
   } = data.allWordpressPage.edges[0].node.acf.contactgegevens
 
   const {
-    source_url,
+    localFile,
     alt_text,
   } = data.allWordpressPage.edges[0].node.acf.logo_black
 
@@ -101,7 +102,7 @@ const Header = props => {
         </nav>
         <div className="contactInfo">
           <span className="logoBlack">
-            <img src={source_url} alt={alt_text} />
+            <Img alt={alt_text} fixed={localFile.childImageSharp.fixed} />
           </span>
           <ul>
             <li dangerouslySetInnerHTML={{ __html: adres }} />
@@ -203,13 +204,15 @@ export default props => (
                   email
                 }
                 logo_black {
-                  source_url
                   alt_text
+                  localFile {
+                    childImageSharp {
+                      fixed(width: 200) {
+                        ...GatsbyImageSharpFixed_withWebp_noBase64
+                      }
+                    }
+                  }
                 }
-              }
-              site_logo_src {
-                source_url
-                alt_text
               }
             }
           }
