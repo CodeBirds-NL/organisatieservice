@@ -1,6 +1,25 @@
 @use 'colors' as c;
 @use 'reset.css';
 
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy"), url("../../../fonts/Gilroy-Bold.woff2") format("woff2"),
+    url("../../../fonts/Gilroy-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: local("Gilroy"),
+    url("../../../fonts/Gilroy-Medium.woff2") format("woff2"),
+    url("../../../fonts/Gilroy-Medium.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 $sectionST: 80px;
 $sectionSB: 80px;
 $heroST: 80px;
