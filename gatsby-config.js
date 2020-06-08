@@ -8,6 +8,15 @@ const generateFavicons = sizes => {
   })
 }
 
+const dropUnusedMediaNormalizer = {
+  name: "dropUnusedMediaNormalizer",
+  normalizer: function({ entities }) {
+    return entities.filter(
+      e => !(e.__type === "wordpress__wp_media" && !e.post)
+    )
+  },
+}
+
 module.exports = {
   siteMetadata: {
     title: `Organisatieservice`,
@@ -59,24 +68,12 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        /*
-         * The base URL of the WordPress site without the trailingslash and the protocol. This is required.
-         * Example : 'dev-gatbsyjswp.pantheonsite.io' or 'www.example-site.com'
-         */
         baseUrl: `organisatieservice.nl/wp`,
         protocol: `https`,
         hostingWPCOM: false,
         useACF: true,
-        includedRoutes: [
-          "**/posts",
-          "**/pages",
-          "**/media",
-          "**/categories",
-          "**/tags",
-          "**/taxonomies",
-          "**/users",
-          "**/menus",
-        ],
+        includedRoutes: ["**/posts", "**/pages", "**/media", "**/menus"],
+        normalizers: normalizers => [dropUnusedMediaNormalizer, ...normalizers],
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
