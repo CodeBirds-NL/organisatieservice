@@ -98,10 +98,6 @@ export default props => (
               slug
               title
               date
-              tags {
-                name
-                id
-              }
               acf {
                 aanpak
                 link_website
