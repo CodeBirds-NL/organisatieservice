@@ -267,7 +267,7 @@ ACTIONBAR STYLES
   width: 48px;
   height: 48px;
   position: absolute;
-  right: -20px;
+  right: 0;
   top: 0px;
   overflow: hidden;
   border: none;
@@ -297,7 +297,7 @@ ACTIONBAR STYLES
   width: 100vw;
   min-height: 100vh;
   height: 100%;
-  padding: 30px 40px;
+  padding: 30px 20px;
   padding-left: 0;
   z-index: 15;
   display: flex;
@@ -307,8 +307,9 @@ ACTIONBAR STYLES
   & .backArea {
     z-index: 15;
     display: block;
-    padding: 0 20px;
+    padding: 0 10px;
     & button.back {
+      display: none;
       border: 0;
       width: 100%;
       padding: 0;
@@ -356,8 +357,9 @@ ACTIONBAR STYLES
   box-shadow: unset;
 }
 
+// Contact page specific styles
 #contact .actionBar.active {
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 93px);
   height: auto;
 }
 
@@ -406,6 +408,11 @@ ACTIONBAR STYLES
 /* =============================
 RESPONSIVE STYLES
 ================================ */
+@media (min-width: 500px) {
+  .actionBar.active .backArea button.back {
+    display: block;
+  }
+}
 @media (min-width: 768px) {
   .home .hero .title {
     font-size: 76px;
@@ -421,6 +428,10 @@ RESPONSIVE STYLES
     .servicesGrid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .actionBar .form-close {
+    right: -20px;
   }
 
   .actionBar {
@@ -451,6 +462,7 @@ RESPONSIVE STYLES
     &.active {
       padding-left: 140px;
       z-index: 9;
+      padding-right: 40px;
       &::before {
         content: "";
         height: 100%;
@@ -464,6 +476,7 @@ RESPONSIVE STYLES
         display: block;
       }
       & .backArea {
+        display: block;
         padding: 0 40px;
       }
     }

@@ -275,6 +275,11 @@ p.text {
   }
 }
 
+// contact page specific styles
+#contact .buttonGroup {
+  flex-direction: row;
+}
+
 /* Logo styles */
 .brand {
   font-size: 24px;
@@ -379,7 +384,7 @@ p.text {
 // iphone 6,7,8 and above styles
 @media (min-width: 330px) and (max-width: 420px) {
   .container {
-    padding: 0 30px;
+    padding: 0 20px;
   }
 
   // home page specific hero fontsize

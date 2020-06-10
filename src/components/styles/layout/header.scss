@@ -162,10 +162,11 @@
   border-color: c.$primary-color;
 }
 
-//iphone 5 styles
-@media (max-width: 330px) {
+//iphone 5, 6,7,8 styles
+@media (max-width: 380px) {
   .header {
-    padding: 30px 20px;
+    padding: 24px 20px;
+    height: auto;
   }
 
   #nav-icon {
@@ -174,18 +175,12 @@
   .brand {
     font-size: 21px;
   }
-}
 
-// iphone 6,7,8 styles
-@media (min-width: 330px) and (max-width: 380px) {
-  .header {
-    padding: 30px;
-  }
   .btn.ghostery.gray.openActionBar {
     display: none;
   }
   .offCanvasMenu {
-    padding: 120px 30px 30px 30px;
+    padding: 120px 20px 30px 20px;
   }
 }
 

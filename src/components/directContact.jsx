@@ -172,7 +172,7 @@ class DirectContact extends Component {
               </div>
             ) : (
               <div className="uploadWrapper">
-                <form onSubmit={e => this.handleSubmit(e)}>
+                <form>
                   <div className="form-group">
                     <input
                       className="form-control"
@@ -220,7 +220,12 @@ class DirectContact extends Component {
                     </div>
                   )}
                   <div className="buttonGroup" style={{ marginBottom: 30 }}>
-                    <input className="btn full" type="submit" value="Upload" />
+                    <input
+                      onClick={e => this.handleSubmit(e)}
+                      className="btn full"
+                      type="submit"
+                      value="Upload"
+                    />
                     {/* render go back button only on contactpage */}
                     {onCustomBackClick && (
                       <button

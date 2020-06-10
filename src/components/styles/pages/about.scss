@@ -47,6 +47,15 @@
   padding: 48px 0;
 }
 
+@media (max-width: 500px) {
+  #video .container .col-2 {
+    padding: 30px 20px;
+  }
+  .hero .title.about {
+    font-size: 32px;
+  }
+}
+
 @media (min-width: 1068px) {
   #video .container {
     flex-direction: row;
