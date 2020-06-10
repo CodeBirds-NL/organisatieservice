@@ -32,7 +32,7 @@ class PortfolioPage extends Component {
           </a>
         </Hero>
         <TopWave />
-        <section className="cards">
+        <section id="projecten" className="cards">
           <div className="container">
             {items.map(item => {
               const { project_foto, logo_klant_white, titel } = item.node.acf

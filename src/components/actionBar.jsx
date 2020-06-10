@@ -158,7 +158,8 @@ class ActionBarParent extends Component {
     document.body.style.position = "fixed"
   }
 
-  handleBackClick = () => {
+  handleBackClick = e => {
+    e && e.preventDefault()
     // unmountMe is a callback passed from the parent that applies to diensten page
     const { unmountMe = "" } = this.props.inheritedProps
 

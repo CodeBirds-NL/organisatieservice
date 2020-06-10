@@ -229,7 +229,7 @@ class DirectContact extends Component {
                     {/* render go back button only on contactpage */}
                     {onCustomBackClick && (
                       <button
-                        onClick={onCustomBackClick}
+                        onClick={e => onCustomBackClick(e)}
                         className="btn underline white"
                       >
                         Ga terug
