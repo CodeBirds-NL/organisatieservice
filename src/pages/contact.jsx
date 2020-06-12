@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import Layout from "../components/layout"
 import ActionBarParent from "../components/actionBar"
 
+import "./contact.scss"
+
 class ContactPage extends Component {
   render() {
     return (

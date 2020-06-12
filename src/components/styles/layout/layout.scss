@@ -38,7 +38,10 @@ $heroSB: 80px;
 DEFAULT PAGE CONFIG
 ================================ */
 body {
-  overflow-x: hidden;
+  overscroll-behavior: none;
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .container {

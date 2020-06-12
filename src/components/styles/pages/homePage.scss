@@ -227,7 +227,7 @@ ACTIONBAR STYLES
   width: 250px;
   background-color: c.$primary-color;
   //transition: all 0.4s cubic-bezier(0.74, 0, 0.2, 1);
-  overflow-y: hidden;
+  // overflow-y: hidden;
   overflow-x: hidden;
   & .backArea {
     display: none;
@@ -249,7 +249,7 @@ ACTIONBAR STYLES
 }
 
 .actionBar .subHeading {
-  font-size: 20px;
+  font-size: 18px;
   margin-bottom: 2em;
   line-height: 1.5em;
 }
@@ -290,12 +290,13 @@ ACTIONBAR STYLES
 /* action bar ---- active styles */
 .actionBar.active {
   position: fixed;
+  -webkit-overflow-scrolling: touch;
   visibility: visible;
   right: 0;
   bottom: 0;
   background-color: c.$primary-color;
   width: 100vw;
-  min-height: 100vh;
+  // min-height: 100vh;
   height: 100%;
   padding: 30px 20px;
   padding-left: 0;
@@ -328,9 +329,9 @@ ACTIONBAR STYLES
     flex-grow: 1;
     position: relative;
     & .heading {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
-      width: 90%;
+      width: 80%;
       height: auto;
       display: block;
       margin-bottom: 17px;
@@ -409,8 +410,18 @@ ACTIONBAR STYLES
 RESPONSIVE STYLES
 ================================ */
 @media (min-width: 500px) {
-  .actionBar.active .backArea button.back {
-    display: block;
+  .actionBar.active {
+    margin-top: 0;
+    & .viewArea .heading {
+      font-size: 32px;
+      width: 90%;
+    }
+    & .backArea button.back {
+      display: block;
+    }
+  }
+  .actionBar .subHeading {
+    font-size: 20px;
   }
 }
 @media (min-width: 768px) {
