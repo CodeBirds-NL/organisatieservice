@@ -290,7 +290,7 @@ ACTIONBAR STYLES
 /* action bar ---- active styles */
 .actionBar.active {
   position: fixed;
-  // -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
   visibility: visible;
   right: 0;
   bottom: 0;
