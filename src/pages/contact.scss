@@ -1,3 +1,9 @@
 #contact .actionBar.active {
   top: 93px;
 }
+
+@media (min-width: 768px) {
+  #contact .actionBar.active {
+    top: 0;
+  }
+}
