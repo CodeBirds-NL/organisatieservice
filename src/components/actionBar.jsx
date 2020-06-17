@@ -76,7 +76,7 @@ class ActionBarParent extends Component {
     },
     {
       id: 2,
-      name: "tekstschrijven",
+      name: "tekst",
       label: "Tekst schrijven",
       options: ["Opdracht", "Aanbieding"],
     },
@@ -95,7 +95,7 @@ class ActionBarParent extends Component {
         queryData={this.props.queryData.administratie}
       />
     ),
-    tekstschrijven: () => (
+    tekst: () => (
       <CopyWriting
         onNextStep={this.handleNextStep}
         data={this.state.action}

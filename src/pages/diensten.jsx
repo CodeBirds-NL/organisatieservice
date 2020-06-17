@@ -43,6 +43,7 @@ class Diensten extends Component {
                   .toLowerCase()
                   .split(" ")
                   .join("")
+                  .split("/")[0]
               )
             }
             className="btn ghostery gray"
