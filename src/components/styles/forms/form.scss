@@ -379,6 +379,12 @@ form .right .btn.full {
   }
 }
 
+.feedback_msg {
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+  line-height: 1em;
+}
+
 @keyframes drawCircle {
   to {
     stroke-dashoffset: 0;

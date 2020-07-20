@@ -10,6 +10,8 @@ class DirectContact extends Component {
     dragEnter: false,
     files: [],
     name: "",
+    project: "",
+    feedback_msg: "",
   }
 
   state = {
@@ -17,6 +19,8 @@ class DirectContact extends Component {
     dragEnter: false,
     files: [],
     name: "",
+    project: "",
+    feedback_msg: "",
   }
 
   contactOptions = {
@@ -59,10 +63,15 @@ class DirectContact extends Component {
   handleSubmit = async e => {
     e.preventDefault()
 
-    const { name, files } = this.state
+    const { name, project, files } = this.state
     const api = "https://organisatieservice.codebirds-apiserver.nl"
 
-    if (!files) return console.error("Please select 1 or more files")
+    if (files.length < 1)
+      return this.setState({ feedback_msg: "*Selecteer 1 of meer bestanden." })
+    if (!name)
+      return this.setState({
+        feedback_msg: "*Oeps! Naam/bedrijfsnaam invullen is verplicht.",
+      })
 
     // check if file upload size doesn't exceed maximum
     let bytes = 0
@@ -70,11 +79,15 @@ class DirectContact extends Component {
 
     if (bytes > 512000000)
       // show error message here
-      return console.error("You exceeded the max file-upload size")
+      return this.setState({
+        feedback_msg:
+          "*Oeps! De uploadgrootte van je bestanden is groter dan 512 MB",
+      })
 
     const formData = new FormData()
     //append name
     formData.append("name", name)
+    formData.append("project", project)
     // append files
     for (let file of files) {
       formData.append("images", file)
@@ -104,7 +117,7 @@ class DirectContact extends Component {
   }
 
   render() {
-    const { uploadPercentage, dragEnter, files } = this.state
+    const { uploadPercentage, dragEnter, files, feedback_msg } = this.state
 
     const {
       data,
@@ -161,7 +174,7 @@ class DirectContact extends Component {
               kwaliteitsverlies. Let op: de maximale upload grootte bedraagt{" "}
               <u>512MB</u>
             </div>
-            {uploadPercentage ? (
+            {uploadPercentage > 0 ? (
               <div className="animation">
                 <ProgressCircle percentage={uploadPercentage} />
                 <div className="chartInfo">
@@ -180,6 +193,15 @@ class DirectContact extends Component {
                       name="name"
                       placeholder="Naam/bedrijfsnaam"
                       onChange={e => this.setState({ name: e.target.value })}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="project"
+                      placeholder="Project"
+                      onChange={e => this.setState({ project: e.target.value })}
                     />
                   </div>
                   <div
@@ -211,14 +233,17 @@ class DirectContact extends Component {
                       </label>
                     </div>
                   </div>
-                  {uploadPercentage && (
+                  <div className="feedback_msg">
+                    <p className="content">{feedback_msg}</p>
+                  </div>
+                  {/* {uploadPercentage && (
                     <div className="progressBar form-group">
                       <div
                         style={{ width: uploadPercentage + "%" }}
                         className="fill"
                       >{`${uploadPercentage}%`}</div>
                     </div>
-                  )}
+                  )} */}
                   <div className="buttonGroup" style={{ marginBottom: 30 }}>
                     <input
                       onClick={e => this.handleSubmit(e)}
