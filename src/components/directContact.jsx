@@ -84,10 +84,25 @@ class DirectContact extends Component {
           "*Oeps! De uploadgrootte van je bestanden is groter dan 512 MB",
       })
 
+    const strip = str => {
+      // this regex selects all illegal characters
+      let regex0 = RegExp(
+        /\/|\\|\||\.|\,|\*|'|"|~|#|`|;|\?|<|>|{|}|\[|\]|:/,
+        "g"
+      )
+      // this regex selects space and dashes
+      let regex1 = RegExp(/ |-/, "g")
+      str = str
+        .trim()
+        .replace(regex0, "")
+        .replace(regex1, "_")
+      return str
+    }
+
     const formData = new FormData()
     //append name
-    formData.append("name", name)
-    formData.append("project", project)
+    formData.append("name", strip(name))
+    formData.append("project", strip(project))
     // append files
     for (let file of files) {
       formData.append("images", file)
@@ -236,14 +251,6 @@ class DirectContact extends Component {
                   <div className="feedback_msg">
                     <p className="content">{feedback_msg}</p>
                   </div>
-                  {/* {uploadPercentage && (
-                    <div className="progressBar form-group">
-                      <div
-                        style={{ width: uploadPercentage + "%" }}
-                        className="fill"
-                      >{`${uploadPercentage}%`}</div>
-                    </div>
-                  )} */}
                   <div className="buttonGroup" style={{ marginBottom: 30 }}>
                     <input
                       onClick={e => this.handleSubmit(e)}
