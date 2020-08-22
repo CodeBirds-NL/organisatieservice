@@ -6,8 +6,7 @@ import Hero from "../components/common/hero"
 import "../components/styles/pages/about.scss"
 import TopWave from "../components/common/topWave"
 import ActionBarParent from "../components/actionBar"
-
-import "../components/fragments/images"
+import SEO from "../components/seo"
 
 class AboutPage extends Component {
   showLogos = _ => {
@@ -39,6 +38,7 @@ class AboutPage extends Component {
 
     return (
       <Layout>
+        <SEO title={this.props.data.title} />
         <Hero
           image={
             <Img
@@ -104,6 +104,7 @@ export default props => (
         allWordpressPage(filter: { slug: { eq: "over-mij" } }) {
           edges {
             node {
+              title
               acf {
                 about {
                   highlights {

@@ -7,6 +7,7 @@ import ActionBarParent from "../components/actionBar"
 import "../components/styles/pages/diensten.scss"
 import Arrow from "../components/common/arrow"
 import TopWave from "../components/common/topWave"
+import SEO from "../components/seo"
 
 class Diensten extends Component {
   state = {
@@ -75,6 +76,7 @@ class Diensten extends Component {
 
     return (
       <Layout>
+        <SEO title={this.props.data.title} />
         {selectedAction ? (
           <ActionBarParent
             action={selectedAction}
@@ -133,7 +135,7 @@ class Diensten extends Component {
                 <h5>{references_title}</h5>
                 <div className="gallery">
                   {logos.map(({ node: i }, index) => {
-                    if (index < 4) {
+                    if (index < 8) {
                       return (
                         <div key={i.slug} className="logo">
                           <Link to={`/portfolio/${i.slug}`}>
@@ -174,6 +176,7 @@ export default props => (
         allWordpressPage(filter: { slug: { eq: "diensten" } }) {
           edges {
             node {
+              title
               acf {
                 services_page {
                   title

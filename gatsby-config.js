@@ -19,7 +19,7 @@ const dropUnusedMediaNormalizer = {
 
 module.exports = {
   siteMetadata: {
-    title: `Organisatieservice`,
+    title: `Organisatieservice regelt het`,
     description: `Dé specialist in wat jij nodig hebt!`,
     url: "https://organisatieservice.nl",
     image: "/seo_image.webp",

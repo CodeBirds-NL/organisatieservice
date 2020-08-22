@@ -7,6 +7,7 @@ import Hero from "../components/common/hero"
 import "../components/styles/templates/portfolio.scss"
 import TopWave from "../components/common/topWave"
 import Arrow from "../components/common/arrow"
+import SEO from "../components/seo"
 
 class PortfolioPage extends Component {
   render() {
@@ -15,6 +16,7 @@ class PortfolioPage extends Component {
 
     return (
       <Layout>
+        <SEO title={title} />
         <Hero
           image={
             <Img
@@ -91,7 +93,9 @@ export default props => (
             }
           }
         }
-        allWordpressPost {
+
+        # Sort projects by date
+        allWordpressPost(sort: { fields: date, order: DESC }) {
           edges {
             node {
               id
