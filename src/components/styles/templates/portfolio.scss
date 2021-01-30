@@ -159,7 +159,7 @@ PORTFOLIO SINGLE STYLES
 .body {
   background-color: c.$light-gray;
 }
-#aanpak {
+.aanpak {
   padding: 48px 0;
   & .inner {
     display: flex;
@@ -178,7 +178,7 @@ PORTFOLIO SINGLE STYLES
   }
 }
 
-#resultaat {
+.resultaat {
   padding: 48px 0;
   & .inner {
     background-color: c.$white;
@@ -234,8 +234,8 @@ PORTFOLIO SINGLE STYLES
 RESPONSIVE STYLES
 ================================ */
 @media (max-width: 600px) {
-  #aanpak,
-  #resultaat {
+  .aanpak,
+  .resultaat {
     .inner {
       flex-direction: column;
       height: auto;
@@ -251,10 +251,10 @@ RESPONSIVE STYLES
       }
     }
   }
-  #resultaat .inner .col-2 {
+  .resultaat .inner .col-2 {
     padding: 32px 24px;
   }
-  #aanpak .inner .col-2 {
+  .aanpak .inner .col-2 {
     padding-left: 0;
   }
 }

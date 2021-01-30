@@ -6,14 +6,14 @@ import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
 import TopWave from "../components/common/topWave"
 import { Link } from "gatsby"
-
-import "../components/fragments/images"
+import SEO from "../components/seo"
 
 export default ({ pageContext }) => {
-  const { acf } = pageContext
+  const { acf, title } = pageContext
 
   return (
     <Layout>
+      <SEO title={"Project " + title} />
       <Hero
         background="#fff"
         image={
@@ -44,7 +44,7 @@ export default ({ pageContext }) => {
       </Hero>
       <TopWave />
       <div className="body">
-        <section id="aanpak">
+        <section className="aanpak" id="aanpak">
           <div className="container">
             <div className="inner">
               <div className="col-1">
@@ -66,7 +66,7 @@ export default ({ pageContext }) => {
             </div>
           </div>
         </section>
-        <section id="resultaat">
+        <section className="resultaat" id="resultaat">
           <div className="container">
             <div className="inner">
               <div className="col-1">

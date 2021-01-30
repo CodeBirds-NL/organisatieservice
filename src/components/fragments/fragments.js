@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 
 export const heroImageFragment = graphql`
   fragment heroImageFragment on wordpress__wp_media {
+    alt_text
     localFile {
       childImageSharp {
         fluid(maxWidth: 800) {

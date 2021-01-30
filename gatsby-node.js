@@ -24,11 +24,17 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             acf {
               aanpak
+              aanpak_title
               link_website
               link_label
               resultaat
+              resultaat_title
               titel
               vraag
+              hero_buttons {
+                label
+                link
+              }
               project_foto {
                 alt_text
                 localFile {
@@ -53,6 +59,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allWordpressPage(filter: { template: { eq: "service.php" } }) {
+        edges {
+          node {
+            wordpress_id
+            slug
+            template
+            title
+          }
+        }
+      }
     }
   `)
 
@@ -62,15 +78,24 @@ exports.createPages = async ({ graphql, actions }) => {
   }
 
   // Access query results via object destructuring
-  const { allWordpressPost } = result.data
+  const { allWordpressPost, allWordpressPage } = result.data
 
   const portfolioTemplate = path.resolve(`./src/templates/post.jsx`)
+  const serviceTemplate = path.resolve(`./src/templates/service.jsx`)
 
   allWordpressPost.edges.forEach(edge => {
     createPage({
       path: `/portfolio/${edge.node.slug}`,
       component: slash(portfolioTemplate),
       context: edge.node,
+    })
+  })
+
+  allWordpressPage.edges.forEach(edge => {
+    createPage({
+      path: `/diensten/${edge.node.slug}`,
+      component: slash(serviceTemplate),
+      context: { ...edge.node },
     })
   })
 }

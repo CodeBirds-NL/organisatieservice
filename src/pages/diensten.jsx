@@ -37,20 +37,9 @@ class Diensten extends Component {
         <div className="col-1">
           <h2 className="subHeading">{data.title}</h2>
           <p className="text">{data.text}</p>
-          <button
-            onClick={() =>
-              this.handleDienstCTA(
-                data.title
-                  .toLowerCase()
-                  .split(" ")
-                  .join("")
-                  .split("/")[0]
-              )
-            }
-            className="btn ghostery gray"
-          >
+          <Link to={`/diensten/${data.slug}`} className="btn ghostery gray">
             {data.cta}
-          </button>
+          </Link>
         </div>
         <div className="col-2">
           <Img
@@ -184,16 +173,15 @@ export default props => (
                   cta
                   image {
                     ...heroImageFragment
-                    alt_text
                   }
                   references_title
                   services {
                     cta
                     text
                     title
+                    slug
                     image {
                       ...heroImageFragment
-                      alt_text
                     }
                   }
                 }
