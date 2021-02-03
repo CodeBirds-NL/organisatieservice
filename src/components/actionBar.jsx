@@ -41,7 +41,7 @@ class ActionBarParent extends Component {
     {
       id: 1,
       name: "administratie",
-      label: "Administratie",
+      label: "Documentatie",
       options: [
         "Opdracht",
         "Aanbieding",
@@ -77,7 +77,7 @@ class ActionBarParent extends Component {
     {
       id: 2,
       name: "tekst",
-      label: "Tekst schrijven",
+      label: "Fotografie",
       options: ["Opdracht", "Aanbieding"],
     },
 

@@ -5,7 +5,7 @@ import "../components/styles/templates/portfolio.scss"
 import Arrow from "../components/common/arrow"
 import Hero from "../components/common/hero"
 import TopWave from "../components/common/topWave"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 import SEO from "../components/seo"
 
 export default ({ pageContext, data }) => {
