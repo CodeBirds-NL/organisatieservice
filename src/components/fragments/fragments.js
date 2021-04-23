@@ -7,6 +7,7 @@ export const heroImageFragment = graphql`
       childImageSharp {
         fluid(maxWidth: 800) {
           ...GatsbyImageSharpFluid_withWebp
+          presentationWidth
         }
       }
     }
