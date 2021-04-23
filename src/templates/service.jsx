@@ -229,7 +229,7 @@ export const data = graphql`
         }
         fotografie {
           photos {
-            ...heroImageFragment
+            ...galleryImage
           }
         }
       }
